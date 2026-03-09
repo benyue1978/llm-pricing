@@ -2,22 +2,25 @@ import { load } from "cheerio";
 import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
 import { fetchRenderedHtml, parseUsdAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const MOONSHOT_PRICING_SOURCE = "https://platform.moonshot.ai/docs/pricing/chat";
 
-export async function fetchMoonshotPricing(): Promise<PricingModel[]> {
+export async function fetchMoonshotPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   try {
     const html = await fetchRenderedHtml(MOONSHOT_PRICING_SOURCE, {
       validateHtml: (candidate) => parseMoonshotHtml(candidate).length > 0
     });
     const parsed = parseMoonshotHtml(html);
     if (parsed.length > 0) {
+      logger(`live rendered official pricing page (${parsed.length} models)`);
       return parsed;
     }
   } catch {
     // Fall back to current official values if client-rendered scraping fails.
   }
 
+  logger(`fallback manual values (${getMoonshotManualFallback().length} models)`);
   return getMoonshotManualFallback();
 }
 

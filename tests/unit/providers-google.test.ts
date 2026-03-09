@@ -11,7 +11,8 @@ describe("providers/google", () => {
 
     const models = parseGoogleHtml(html);
 
-    expect(models).toEqual([
+    expect(models).toHaveLength(3);
+    expect(models).toEqual(expect.arrayContaining([
       expect.objectContaining({
         model: "gemini-2.5-pro",
         input_price_per_million: 1.25,
@@ -27,7 +28,7 @@ describe("providers/google", () => {
         input_price_per_million: 0.1,
         output_price_per_million: 0.4
       })
-    ]);
+    ]));
   });
 
   test("getGoogleManualFallback returns current official text models", () => {
@@ -45,11 +46,9 @@ describe("providers/google", () => {
     });
     const models = parseGoogleHtml(html);
 
-    expect(models.map((model) => model.model)).toEqual([
-      "gemini-2.5-pro",
-      "gemini-2.5-flash",
-      "gemini-2.5-flash-lite"
-    ]);
+    expect(models.length).toBeGreaterThan(6);
+    expect(models.map((model) => model.model)).toContain("gemini-2.5-pro");
+    expect(models.map((model) => model.model)).toContain("gemini-2.0-flash");
     expect(
       models.find((model) => model.model === "gemini-2.5-pro")
     ).toMatchObject({

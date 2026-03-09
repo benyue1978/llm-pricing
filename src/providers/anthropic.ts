@@ -1,22 +1,25 @@
 import { load } from "cheerio";
 import type { PricingModel } from "../schema.js";
 import { fetchHtml, parseUsdAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const ANTHROPIC_PRICING_SOURCE = "https://platform.claude.com/docs/en/about-claude/pricing";
 
-export async function fetchAnthropicPricing(): Promise<PricingModel[]> {
+export async function fetchAnthropicPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   try {
     const html = await fetchHtml(ANTHROPIC_PRICING_SOURCE, {
       validateHtml: (candidate) => parseAnthropicHtml(candidate).length > 0
     });
     const parsed = parseAnthropicHtml(html);
     if (parsed.length > 0) {
+      logger(`live official pricing page (${parsed.length} models)`);
       return parsed;
     }
   } catch {
     // Fall back to official values if scraping fails.
   }
 
+  logger(`fallback manual values (${getAnthropicManualFallback().length} models)`);
   return getAnthropicManualFallback();
 }
 
@@ -67,7 +70,7 @@ function normalizeAnthropicModel(displayName: string): string {
   return displayName.toLowerCase().replace(/^claude\s+/, "claude-").replace(/\s+/g, "-");
 }
 
-export function getAnthropicManualFallback(): Promise<PricingModel[]> | PricingModel[] {
+export function getAnthropicManualFallback(): PricingModel[] {
   return [
     {
       provider: "anthropic",

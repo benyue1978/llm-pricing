@@ -1,76 +1,74 @@
 import type { PricingModel } from "../schema.js";
-import { fetchHtml, fetchJson, parseCnyAmount } from "./utils.js";
+import { load } from "cheerio";
+import { fetchRenderedHtml, parseCnyAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const ZHIPU_PRICING_SOURCE = "https://open.bigmodel.cn/pricing";
-const ZHIPU_PRICING_DATA_URL = "https://open.bigmodel.cn/api/biz/operation/query?ids=1122";
 
-interface ZhipuOperationResponse {
-  data?: Array<{ content?: string }>;
-}
-
-interface ZhipuSectionContent {
-  list?: Array<{
-    modelNameEn?: string;
-    fieldListEn?: Array<{ code?: string; label?: string }>;
-    modelListEn?: Array<Record<string, string | number | undefined>>;
-  }>;
-}
-
-export async function fetchZhipuPricing(): Promise<PricingModel[]> {
+export async function fetchZhipuPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   try {
-    await fetchHtml(ZHIPU_PRICING_SOURCE, {
-      validateHtml: (candidate) => candidate.includes('<div id="app">')
+    const html = await fetchRenderedHtml(ZHIPU_PRICING_SOURCE, {
+      validateHtml: (candidate) => parseZhipuHtml(candidate).length > 0
     });
-    const payload = await fetchJson<ZhipuOperationResponse>(ZHIPU_PRICING_DATA_URL, {
-      validateJson: (candidate) => parseZhipuPayload(candidate).length > 0
-    });
-    const parsed = parseZhipuPayload(payload);
+    const parsed = parseZhipuHtml(html);
     if (parsed.length > 0) {
+      logger(`live rendered official pricing page (${parsed.length} models)`);
       return parsed;
     }
   } catch {
     // Fall back to current official values if scraping fails.
   }
 
+  logger(`fallback manual values (${getZhipuManualFallback().length} models)`);
   return getZhipuManualFallback();
 }
 
-export function parseZhipuPayload(payload: ZhipuOperationResponse): PricingModel[] {
-  const contentRaw = payload.data?.[0]?.content;
-  if (!contentRaw) {
-    return [];
-  }
-
-  const content = JSON.parse(contentRaw) as ZhipuSectionContent;
-  const languageSection = content.list?.find((section) => section.modelNameEn === "Language Models");
-  if (!languageSection) {
-    return [];
-  }
-
-  const modelField = languageSection.fieldListEn?.find((field) => field.label?.trim() === "Model")?.code;
-  const priceField = languageSection.fieldListEn?.find((field) => field.label?.trim() === "Pricing")?.code;
-  if (!modelField || !priceField) {
-    return [];
-  }
-
+export function parseZhipuHtml(html: string): PricingModel[] {
+  const $ = load(html);
   const models: PricingModel[] = [];
-  for (const row of languageSection.modelListEn ?? []) {
-    const model = normalizeText(String(row[modelField] ?? ""));
-    const input = parseCnyAmount(String(row[priceField] ?? ""));
-    if (!model || !Number.isFinite(input)) {
-      continue;
-    }
+  const seen = new Set<string>();
 
-    models.push({
-      provider: "zhipu",
-      model,
-      type: "text",
-      input_price_per_million: input,
-      output_price_per_million: null,
-      currency: "CNY",
-      source: ZHIPU_PRICING_SOURCE
-    });
-  }
+  $("div.model-price-item-bottom.langue_model table.el-table__body tbody").each((_, tbody) => {
+    let currentModel = "";
+
+    $(tbody)
+      .find("tr")
+      .each((_, row) => {
+        const cells = $(row).find("td");
+        if (!cells.length) {
+          return;
+        }
+
+        const firstCellText = normalizeZhipuModel(cells.eq(0).text());
+        const rowModel = cells.length >= 6 ? firstCellText : currentModel;
+        if (cells.length >= 6) {
+          currentModel = rowModel;
+        }
+
+        if (!rowModel || seen.has(rowModel) || !shouldIncludeZhipuModel(rowModel)) {
+          return;
+        }
+
+        const inputIndex = cells.length >= 6 ? 2 : 1;
+        const outputIndex = cells.length >= 6 ? 3 : 2;
+        const input = parseCnyAmount(cells.eq(inputIndex).text());
+        const output = parseCnyAmount(cells.eq(outputIndex).text());
+        if (!Number.isFinite(input) || !Number.isFinite(output)) {
+          return;
+        }
+
+        seen.add(rowModel);
+        models.push({
+          provider: "zhipu",
+          model: rowModel,
+          type: "text",
+          input_price_per_million: input,
+          output_price_per_million: output,
+          currency: "CNY",
+          source: ZHIPU_PRICING_SOURCE
+        });
+      });
+  });
 
   return models;
 }
@@ -79,61 +77,72 @@ function normalizeText(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
 
+function normalizeZhipuModel(value: string): string {
+  return normalizeText(value)
+    .replace(/\s+(?:new|coming soon)$/i, "")
+    .trim();
+}
+
 export function getZhipuManualFallback(): PricingModel[] {
   return [
     {
       provider: "zhipu",
-      model: "GLM-4-Plus",
+      model: "GLM-5",
       type: "text",
-      input_price_per_million: 5,
-      output_price_per_million: null,
+      input_price_per_million: 4,
+      output_price_per_million: 18,
       currency: "CNY",
       source: ZHIPU_PRICING_SOURCE
     },
     {
       provider: "zhipu",
-      model: "GLM-4-Air",
+      model: "GLM-5-Code",
+      type: "text",
+      input_price_per_million: 6,
+      output_price_per_million: 28,
+      currency: "CNY",
+      source: ZHIPU_PRICING_SOURCE
+    },
+    {
+      provider: "zhipu",
+      model: "GLM-4.7",
+      type: "text",
+      input_price_per_million: 2,
+      output_price_per_million: 8,
+      currency: "CNY",
+      source: ZHIPU_PRICING_SOURCE
+    },
+    {
+      provider: "zhipu",
+      model: "GLM-4.5-Air",
+      type: "text",
+      input_price_per_million: 0.8,
+      output_price_per_million: 2,
+      currency: "CNY",
+      source: ZHIPU_PRICING_SOURCE
+    },
+    {
+      provider: "zhipu",
+      model: "GLM-4.7-FlashX",
       type: "text",
       input_price_per_million: 0.5,
-      output_price_per_million: null,
-      currency: "CNY",
-      source: ZHIPU_PRICING_SOURCE
-    },
-    {
-      provider: "zhipu",
-      model: "GLM-4-AirX",
-      type: "text",
-      input_price_per_million: 10,
-      output_price_per_million: null,
-      currency: "CNY",
-      source: ZHIPU_PRICING_SOURCE
-    },
-    {
-      provider: "zhipu",
-      model: "GLM-4-FlashX-250414",
-      type: "text",
-      input_price_per_million: 0.1,
-      output_price_per_million: null,
-      currency: "CNY",
-      source: ZHIPU_PRICING_SOURCE
-    },
-    {
-      provider: "zhipu",
-      model: "GLM-4-Long",
-      type: "text",
-      input_price_per_million: 1,
-      output_price_per_million: null,
-      currency: "CNY",
-      source: ZHIPU_PRICING_SOURCE
-    },
-    {
-      provider: "zhipu",
-      model: "GLM-4-Assistant",
-      type: "text",
-      input_price_per_million: 5,
-      output_price_per_million: null,
+      output_price_per_million: 3,
       currency: "CNY",
       source: ZHIPU_PRICING_SOURCE
     }
   ];
+}
+
+function shouldIncludeZhipuModel(model: string): boolean {
+  const normalized = model.toLowerCase();
+  return !/\bglm-[\d.]+v(?:[-\s]|$)/i.test(normalized) &&
+    !normalized.includes("voice") &&
+    !normalized.includes("tts") &&
+    !normalized.includes("asr") &&
+    !normalized.includes("image") &&
+    !normalized.includes("embedding") &&
+    !normalized.includes("cog") &&
+    !normalized.includes("rerank") &&
+    !normalized.includes("charglm") &&
+    !normalized.includes("emohaa");
 }

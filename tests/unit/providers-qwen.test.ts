@@ -20,6 +20,7 @@ describe("providers/qwen", () => {
       input_price_per_million: 0.05,
       output_price_per_million: 0.2
     });
+    expect(models.map((model) => model.model)).not.toContain("32k");
   });
 
   test("getQwenManualFallback returns current official text models", () => {
@@ -34,8 +35,9 @@ describe("providers/qwen", () => {
     });
     const models = parseQwenHtml(html);
 
-    expect(models.length).toBeGreaterThanOrEqual(7);
+    expect(models.length).toBeGreaterThan(40);
     expect(models.map((model) => model.model)).toContain("qwen-max");
+    expect(models.map((model) => model.model)).not.toContain("32k");
     expect(
       models.find((model) => model.model === "qwen-max")
     ).toMatchObject({

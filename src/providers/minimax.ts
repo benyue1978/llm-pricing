@@ -1,30 +1,25 @@
 import { load } from "cheerio";
 import type { PricingModel } from "../schema.js";
 import { fetchHtml, parseUsdAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const MINIMAX_PRICING_SOURCE = "https://platform.minimax.io/docs/guides/pricing-paygo";
-const MINIMAX_TEXT_MODELS = [
-  "MiniMax-M2.5",
-  "MiniMax-M2.5-highspeed",
-  "MiniMax-M2.1",
-  "MiniMax-M2.1-highspeed",
-  "MiniMax-M2",
-  "M2-her"
-] as const;
 
-export async function fetchMinimaxPricing(): Promise<PricingModel[]> {
+export async function fetchMinimaxPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   try {
     const html = await fetchHtml(MINIMAX_PRICING_SOURCE, {
       validateHtml: (candidate) => parseMinimaxHtml(candidate).length > 0
     });
     const parsed = parseMinimaxHtml(html);
     if (parsed.length > 0) {
+      logger(`live official pricing page (${parsed.length} models)`);
       return parsed;
     }
   } catch {
     // Fall back to current official values if scraping fails.
   }
 
+  logger(`fallback manual values (${getMinimaxManualFallback().length} models)`);
   return getMinimaxManualFallback();
 }
 
@@ -32,11 +27,20 @@ export function parseMinimaxHtml(html: string): PricingModel[] {
   const $ = load(html);
   const models: PricingModel[] = [];
   const seen = new Set<string>();
+  const table = $("table")
+    .filter((_, element) => {
+      const headers = $(element)
+        .find("th")
+        .toArray()
+        .map((cell) => normalizeText($(cell).text()).toLowerCase());
+      return headers.includes("model") && headers.includes("prompt caching read") && headers.includes("prompt caching write");
+    })
+    .first();
 
-  $("tbody tr").each((_, row) => {
+  table.find("tbody tr").each((_, row) => {
     const cells = $(row).find("td");
     const model = normalizeText(cells.eq(0).text());
-    if (!MINIMAX_TEXT_MODELS.includes(model as (typeof MINIMAX_TEXT_MODELS)[number]) || seen.has(model)) {
+    if (!model || seen.has(model)) {
       return;
     }
 

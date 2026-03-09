@@ -2,34 +2,38 @@ import { load, type Cheerio, type CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
 import { fetchHtml, parseUsdAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const GOOGLE_PRICING_SOURCE = "https://ai.google.dev/gemini-api/docs/pricing";
-const GOOGLE_TEXT_MODEL_IDS = ["gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite"] as const;
 
-export async function fetchGooglePricing(): Promise<PricingModel[]> {
+export async function fetchGooglePricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   try {
     const html = await fetchHtml(GOOGLE_PRICING_SOURCE, {
       validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0
     });
     const parsed = parseGoogleHtml(html);
     if (parsed.length > 0) {
+      logger(`live official pricing page (${parsed.length} models)`);
       return parsed;
     }
   } catch {
     // Fall back to official values if scraping fails.
   }
 
+  logger(`fallback manual values (${getGoogleManualFallback().length} models)`);
   return getGoogleManualFallback();
 }
 
 export function parseGoogleHtml(html: string): PricingModel[] {
   const $ = load(html);
   const models: PricingModel[] = [];
+  const seen = new Set<string>();
 
-  for (const modelId of GOOGLE_TEXT_MODEL_IDS) {
-    const heading = $(`[id="${modelId}"]`).first();
-    if (!heading.length) {
-      continue;
+  $(".models-section h2[id]").each((_, element) => {
+    const heading = $(element);
+    const modelId = heading.attr("id")?.trim();
+    if (!modelId || seen.has(modelId)) {
+      return;
     }
 
     const table = findGooglePricingTable($, heading);
@@ -37,15 +41,16 @@ export function parseGoogleHtml(html: string): PricingModel[] {
     const inputRow = rows.find((row) => $(row).text().includes("Input price"));
     const outputRow = rows.find((row) => $(row).text().includes("Output price"));
     if (!inputRow || !outputRow) {
-      continue;
+      return;
     }
 
     const input = parseUsdAmount($(inputRow).find("td").eq(2).text());
     const output = parseUsdAmount($(outputRow).find("td").eq(2).text());
     if (!Number.isFinite(input) || !Number.isFinite(output)) {
-      continue;
+      return;
     }
 
+    seen.add(modelId);
     models.push({
       provider: "google",
       model: modelId,
@@ -55,7 +60,7 @@ export function parseGoogleHtml(html: string): PricingModel[] {
       currency: "USD",
       source: GOOGLE_PRICING_SOURCE
     });
-  }
+  });
 
   return models;
 }

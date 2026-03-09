@@ -2,12 +2,13 @@ import { load } from "cheerio";
 import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
 import { fetchHtml, parseUsdAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const OPENAI_PRICING_URL = "https://platform.openai.com/pricing";
 const OPENAI_PRICING_DOCS_URL = "https://developers.openai.com/api/docs/pricing";
 const OPENAI_TEXT_SWITCHER_ID = "latest-pricing";
 
-export async function fetchOpenAIPricing(): Promise<PricingModel[]> {
+export async function fetchOpenAIPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   for (const url of [OPENAI_PRICING_DOCS_URL, OPENAI_PRICING_URL]) {
     try {
       const html = await fetchHtml(url, {
@@ -15,6 +16,7 @@ export async function fetchOpenAIPricing(): Promise<PricingModel[]> {
       });
       const parsed = parseOpenAIHtml(html);
       if (parsed.length > 0) {
+        logger(`live ${url} (${parsed.length} models)`);
         return parsed;
       }
     } catch {
@@ -22,6 +24,7 @@ export async function fetchOpenAIPricing(): Promise<PricingModel[]> {
     }
   }
 
+  logger(`fallback manual values (${getOpenAIManualFallback().length} models)`);
   return getOpenAIManualFallback();
 }
 

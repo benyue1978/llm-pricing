@@ -2,6 +2,15 @@
 <html lang="en">
   <body>
     <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Mode</th>
+          <th>Input tokens per request</th>
+          <th>Input price (per 1M tokens)</th>
+          <th>Output price (per 1M tokens)</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
           <td>qwen3-max</td>
@@ -40,6 +49,11 @@
           <td>0&lt;Token≤32K</td>
           <td>$1</td>
           <td>$5</td>
+        </tr>
+        <tr>
+          <td>32K&lt;Token≤128K</td>
+          <td>$1.8</td>
+          <td>$9</td>
         </tr>
         <tr>
           <td>qwen-coder-turbo</td>

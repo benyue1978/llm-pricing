@@ -1,22 +1,25 @@
 import { load } from "cheerio";
 import type { PricingModel } from "../schema.js";
 import { fetchHtml, parseUsdAmount } from "./utils.js";
+import type { ProviderLogger } from "./types.js";
 
 const DEEPSEEK_PRICING_SOURCE = "https://api-docs.deepseek.com/quick_start/pricing";
 
-export async function fetchDeepseekPricing(): Promise<PricingModel[]> {
+export async function fetchDeepseekPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
   try {
     const html = await fetchHtml(DEEPSEEK_PRICING_SOURCE, {
       validateHtml: (candidate) => parseDeepseekHtml(candidate).length > 0
     });
     const parsed = parseDeepseekHtml(html);
     if (parsed.length > 0) {
+      logger(`live official pricing page (${parsed.length} models)`);
       return parsed;
     }
   } catch {
     // Fall back to official values if scraping fails.
   }
 
+  logger(`fallback manual values (${getDeepseekManualFallback().length} models)`);
   return getDeepseekManualFallback();
 }
 

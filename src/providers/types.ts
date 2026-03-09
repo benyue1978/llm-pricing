@@ -12,6 +12,7 @@ export type ProviderId =
   | "zhipu"
   | (string & {});
 
-export type ProviderFetcher = () => Promise<PricingModel[]>;
+export type ProviderLogger = (message: string) => void;
 
+export type ProviderFetcher = (logger?: ProviderLogger) => Promise<PricingModel[]>;
 

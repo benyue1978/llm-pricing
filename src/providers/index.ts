@@ -1,5 +1,5 @@
 import type { PricingModel } from "../schema.js";
-import type { ProviderFetcher, ProviderId } from "./types.js";
+import type { ProviderFetcher, ProviderId, ProviderLogger } from "./types.js";
 import { fetchOpenAIPricing } from "./openai.js";
 import { fetchAnthropicPricing } from "./anthropic.js";
 import { fetchGooglePricing } from "./google.js";
@@ -30,7 +30,8 @@ export async function fetchAllProviders(
   for (const [id, fetcher] of Object.entries(providers) as [ProviderId, ProviderFetcher][]) {
     try {
       logger(`Fetching ${id} pricing...`);
-      const models = await fetcher();
+      const providerLogger: ProviderLogger = (message) => logger(`${id}: ${message}`);
+      const models = await fetcher(providerLogger);
       all.push(...models);
     } catch (error) {
       logger(`Failed to fetch ${id} pricing: ${(error as Error).message ?? String(error)}`);
@@ -39,4 +40,3 @@ export async function fetchAllProviders(
 
   return all;
 }
-
