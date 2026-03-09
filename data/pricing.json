@@ -1,0 +1,77 @@
+{
+  "updated_at": "2026-03-09T13:26:39.251Z",
+  "models": [
+    {
+      "provider": "openai",
+      "model": "gpt-4o",
+      "input_price_per_million": 5,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 0.6,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-3-opus",
+      "input_price_per_million": 15,
+      "output_price_per_million": 75,
+      "currency": "USD",
+      "source": "https://docs.anthropic.com/claude/docs/models-overview"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-3-sonnet",
+      "input_price_per_million": 3,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://docs.anthropic.com/claude/docs/models-overview"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-1.5-pro",
+      "input_price_per_million": 3.5,
+      "output_price_per_million": 10.5,
+      "currency": "USD",
+      "source": "https://ai.google.dev/pricing"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-1.5-flash",
+      "input_price_per_million": 0.35,
+      "output_price_per_million": 1.05,
+      "currency": "USD",
+      "source": "https://ai.google.dev/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "mistral-large",
+      "input_price_per_million": 8,
+      "output_price_per_million": 24,
+      "currency": "USD",
+      "source": "https://docs.mistral.ai/platform/pricing/"
+    },
+    {
+      "provider": "mistral",
+      "model": "mistral-small",
+      "input_price_per_million": 2,
+      "output_price_per_million": 6,
+      "currency": "USD",
+      "source": "https://docs.mistral.ai/platform/pricing/"
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "input_price_per_million": 0.27,
+      "output_price_per_million": 0.55,
+      "currency": "USD",
+      "source": "https://api-docs.deepseek.com/quick_start/pricing"
+    }
+  ]
+}

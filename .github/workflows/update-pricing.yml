@@ -1,0 +1,49 @@
+name: Update LLM pricing registry
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-pricing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CLI
+        run: npm run build
+
+      - name: Update pricing registry
+        run: npm run update
+
+      - name: Run tests
+        run: |
+          npm test
+          npm run test:e2e
+
+      - name: Commit updated pricing data
+        if: success()
+        run: |
+          if git diff --quiet --exit-code data/pricing.json; then
+            echo "No pricing changes to commit."
+            exit 0
+          fi
+
+          git config user.name "llm-pricing-bot"
+          git config user.email "llm-pricing-bot@users.noreply.github.com"
+
+          git add data/pricing.json
+          git commit -m "chore: update pricing data"
+          git push
+
