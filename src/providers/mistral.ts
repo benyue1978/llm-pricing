@@ -7,6 +7,7 @@ export async function fetchMistralPricing(): Promise<PricingModel[]> {
     {
       provider: "mistral",
       model: "mistral-large",
+      type: "text",
       input_price_per_million: 8,
       output_price_per_million: 24,
       currency: "USD",
@@ -15,6 +16,7 @@ export async function fetchMistralPricing(): Promise<PricingModel[]> {
     {
       provider: "mistral",
       model: "mistral-small",
+      type: "text",
       input_price_per_million: 2,
       output_price_per_million: 6,
       currency: "USD",
@@ -22,4 +24,3 @@ export async function fetchMistralPricing(): Promise<PricingModel[]> {
     }
   ];
 }
-

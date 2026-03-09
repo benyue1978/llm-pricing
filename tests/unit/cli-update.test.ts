@@ -14,6 +14,7 @@ describe("cli runUpdate", () => {
       {
         provider: "test-provider",
         model: "test-model",
+        type: "text",
         input_price_per_million: 1,
         output_price_per_million: 2,
         currency: "USD",
@@ -45,4 +46,3 @@ describe("cli runUpdate", () => {
     expect(result.outputPath).toBe(jsonPath);
   });
 });
-

@@ -4,6 +4,10 @@ export interface PricingModel {
   provider: string;
   model: string;
   /**
+   * High-level billing category for the model entry.
+   */
+  type: "text" | "image" | "audio" | "embedding" | "tool" | string;
+  /**
    * Price per 1M input tokens in USD.
    */
   input_price_per_million: number;
@@ -35,4 +39,3 @@ export function createEmptyRegistry(): PricingRegistry {
     models: []
   };
 }
-

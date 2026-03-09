@@ -6,7 +6,7 @@ This repo is intentionally minimal: a single CLI command keeps a JSON registry o
 
 ## Features
 
-- **CLI core**: `npx llm-pricing update` (or `npm run update`) fetches pricing data from multiple providers and writes a unified registry to `data/pricing.json`.
+- **CLI core**: `npx llm-pricing update` (or `npm run update`) fetches provider pricing pages and writes a unified registry to `data/pricing.json`.
 - **Single source of truth**: `data/pricing.json` is the only data source; everything else is derived from it.
 - **Static dashboard**: `web/index.html` + `web/main.js` read `data/pricing.json` and render a pricing table, deployable to Vercel / Cloudflare Pages as pure static assets.
 - **Scheduled updates**: GitHub Actions workflow updates the registry on a cron schedule and commits changes back to the repo.
@@ -35,7 +35,8 @@ npm run update
 
 This will:
 
-- Fetch pricing from providers (OpenAI via scraper + static fallbacks for others).
+- Fetch pricing from provider implementations under `src/providers/`.
+- Aggregate the results in-process through the CLI.
 - Write a unified registry to `data/pricing.json`.
 - Print a short summary:
 
@@ -72,8 +73,9 @@ The registry is stored in `data/pricing.json` with the following shape:
     {
       "provider": "openai",
       "model": "gpt-4o",
-      "input_price_per_million": 5,
-      "output_price_per_million": 15,
+      "type": "text",
+      "input_price_per_million": 2.5,
+      "output_price_per_million": 10,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     }
@@ -82,6 +84,7 @@ The registry is stored in `data/pricing.json` with the following shape:
 ```
 
 - Prices are normalized to **USD / 1M tokens**.
+- `type` indicates the pricing category, such as `text`.
 - `output_price_per_million` can be `null` if not applicable.
 - `source` is typically the provider's pricing documentation URL.
 
@@ -89,10 +92,10 @@ The TypeScript types live in `src/schema.ts` and are used across CLI and provide
 
 ## Providers
 
-Provider implementations live in `src/providers/`:
+Provider implementations live in `src/providers/`.
 
-- `openai` — HTML scraper for `https://platform.openai.com/pricing` with a conservative parser and a static fallback.
-- `anthropic`, `google`, `mistral`, `deepseek` — static fallback implementations using values from their pricing docs.
+- `openai`, `anthropic`, `google`, `deepseek` currently fetch and parse official pricing pages.
+- Other providers are still represented by official-source fallbacks until their live parsers are implemented.
 
 The aggregator `src/providers/index.ts`:
 
@@ -125,16 +128,16 @@ Make sure you have run `npm run update` at least once so that `data/pricing.json
 
 ### Unit tests (Vitest)
 
-Run the unit test suite:
+Run the unit test suite in CI/non-watch mode:
 
 ```bash
-npm test
+npm run test:ci
 ```
 
 Coverage:
 
 - `schema` — `createEmptyRegistry` shape and defaults.
-- `providers/openai` — HTML fixture parsing and manual fallback.
+- `providers/openai|anthropic|google|deepseek` — HTML fixture parsing and official-page fetch coverage.
 - `providers/index` — aggregation behavior and error-survival when a provider fails.
 - `cli` — `runUpdate` behavior, including writing `data/pricing.json`.
 
@@ -163,7 +166,7 @@ The workflow `.github/workflows/update-pricing.yml`:
   - `npm ci`
   - `npm run build`
   - `npm run update`
-  - `npm test`
+  - `npm run test:ci`
   - `npm run test:e2e`
 - If `data/pricing.json` changed, it commits and pushes with message:
 
@@ -175,9 +178,8 @@ This makes the repo act as a lightweight, auto-updating LLM pricing registry.
 
 ## Future ideas
 
-- Add real scraping / API-based fetchers for non-OpenAI providers.
+- Add real official-page parsers for the remaining providers.
 - Implement richer CLI commands:
   - Cost calculators (e.g., cost for N tokens).
   - `cheapest` variants by capability tier.
 - Publish as a public npm package (`llm-pricing`) and use `npx llm-pricing` directly without cloning.
-

@@ -58,6 +58,12 @@ alwaysApply: true
 - 在改动较大、影响范围不明确时，建议跑一次更大范围或全量的 Vitest 测试。
 - 如有相关测试文件缺失，优先补齐或至少记录成后续待办事项。
 
+- **Provider / 价格数据源相关改动**：
+  - 每次新增或修改任意 provider（如 `openai`、`anthropic`、`google`、`mistral`、`deepseek`、`qwen`、`moonshot`、`minimax`、`zhipu` 等），或调整价格拉取 / 解析逻辑时，必须运行：
+    - 至少一次 `npx vitest tests/unit/providers-fetch.test.ts`（或等价命令）；
+    - 或运行全量 `npm test` / `npm run test:unit`，并确认与 provider 相关的用例全部通过。
+  - 在回复中需要说明这些与 provider 相关的测试是否已运行及结果。
+
 在回复中，应说明：
 
 - 运行了哪些 Vitest 命令（包括重要参数）；

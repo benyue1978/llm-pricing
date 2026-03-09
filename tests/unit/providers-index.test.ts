@@ -3,18 +3,52 @@ import { fetchAllProviders, providers } from "../../src/providers/index.js";
 
 describe("providers/index", () => {
   test("fetchAllProviders aggregates results from all providers", async () => {
-    const logger = vi.fn();
-    const result = await fetchAllProviders(logger);
-    expect(result.length).toBeGreaterThan(0);
-    expect(logger).toHaveBeenCalled();
+    const originalProviders = { ...providers };
+    for (const providerId of Object.keys(providers)) {
+      providers[providerId] = async () => [
+        {
+          provider: providerId,
+          model: `${providerId}-model`,
+          type: "text",
+          input_price_per_million: 1,
+          output_price_per_million: 2,
+          currency: "USD",
+          source: `https://example.com/${providerId}`
+        }
+      ];
+    }
+
+    try {
+      const logger = vi.fn();
+      const result = await fetchAllProviders(logger);
+      expect(result).toHaveLength(Object.keys(providers).length);
+      expect(logger).toHaveBeenCalled();
+    } finally {
+      Object.assign(providers, originalProviders);
+    }
   });
 
   test("fetchAllProviders continues when a provider throws", async () => {
-    const original = providers.openai;
-    // @ts-expect-error test override
+    const originalProviders = { ...providers };
     providers.openai = async () => {
       throw new Error("boom");
     };
+    for (const providerId of Object.keys(providers)) {
+      if (providerId === "openai") {
+        continue;
+      }
+      providers[providerId] = async () => [
+        {
+          provider: providerId,
+          model: `${providerId}-model`,
+          type: "text",
+          input_price_per_million: 1,
+          output_price_per_million: 2,
+          currency: "USD",
+          source: `https://example.com/${providerId}`
+        }
+      ];
+    }
 
     try {
       const logger = vi.fn();
@@ -26,8 +60,7 @@ describe("providers/index", () => {
       const joinedLogs = logger.mock.calls.map((c) => c[0]).join("\n");
       expect(joinedLogs).toContain("Failed to fetch openai pricing");
     } finally {
-      providers.openai = original;
+      Object.assign(providers, originalProviders);
     }
   });
 });
-

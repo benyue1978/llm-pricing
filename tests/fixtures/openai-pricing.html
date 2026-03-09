@@ -1,22 +1,98 @@
 <!doctype html>
 <html>
   <body>
-    <table>
-      <tr
-        data-llm-pricing-row
-        data-provider="openai"
-        data-model="gpt-4o"
-        data-input-usd-per-m="5"
-        data-output-usd-per-m="15"
-      ></tr>
-      <tr
-        data-llm-pricing-row
-        data-provider="openai"
-        data-model="gpt-4o-mini"
-        data-input-usd-per-m="0.15"
-        data-output-usd-per-m="0.6"
-      ></tr>
-    </table>
+    <article id="mainContent">
+      <div class="anchor-heading-wrapper">
+        <h2 id="text-tokens" class="anchor-heading" data-name="text-tokens">
+          <p>Text tokens</p>
+        </h2>
+      </div>
+      <p>Prices per 1M tokens.</p>
+      <div
+        id="content-switcher-latest-pricing"
+        data-content-switcher-root
+        data-content-switcher-id="latest-pricing"
+        data-content-switcher-initial="standard"
+      >
+        <div class="content-switcher-panes">
+          <div data-content-switcher-pane="true" data-value="batch" hidden>
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Input</th>
+                  <th>Cached input</th>
+                  <th>Output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>gpt-4.1</td>
+                  <td>$1.00</td>
+                  <td>-</td>
+                  <td>$4.00</td>
+                </tr>
+                <tr>
+                  <td>gpt-4o</td>
+                  <td>$1.25</td>
+                  <td>-</td>
+                  <td>$5.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div data-content-switcher-pane="true" data-value="standard">
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Input</th>
+                  <th>Cached input</th>
+                  <th>Output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>gpt-4.1</td>
+                  <td>$2.00</td>
+                  <td>$0.50</td>
+                  <td>$8.00</td>
+                </tr>
+                <tr>
+                  <td>gpt-4o</td>
+                  <td>$2.50</td>
+                  <td>$1.25</td>
+                  <td>$10.00</td>
+                </tr>
+                <tr>
+                  <td>gpt-4o-mini</td>
+                  <td>$0.15</td>
+                  <td>$0.075</td>
+                  <td>$0.60</td>
+                </tr>
+                <tr>
+                  <td>o3</td>
+                  <td>$2.00</td>
+                  <td>$0.50</td>
+                  <td>$8.00</td>
+                </tr>
+                <tr>
+                  <td>gpt-audio</td>
+                  <td>$2.50</td>
+                  <td>-</td>
+                  <td>$10.00</td>
+                </tr>
+                <tr>
+                  <td>gpt-image-1.5</td>
+                  <td>$5.00</td>
+                  <td>$1.25</td>
+                  <td>$10.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </article>
   </body>
 </html>
-

@@ -1,9 +1,226 @@
 {
-  "updated_at": "2026-03-09T13:26:39.251Z",
+  "updated_at": "2026-03-09T15:35:27.942Z",
   "models": [
     {
       "provider": "openai",
+      "model": "gpt-5.4 (<272K context length)",
+      "type": "text",
+      "input_price_per_million": 2.5,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.4 (>272K context length)",
+      "type": "text",
+      "input_price_per_million": 5,
+      "output_price_per_million": 22.5,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.4-pro (<272K context length)",
+      "type": "text",
+      "input_price_per_million": 30,
+      "output_price_per_million": 180,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.4-pro (>272K context length)",
+      "type": "text",
+      "input_price_per_million": 60,
+      "output_price_per_million": 270,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.2",
+      "type": "text",
+      "input_price_per_million": 1.75,
+      "output_price_per_million": 14,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.1",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5-mini",
+      "type": "text",
+      "input_price_per_million": 0.25,
+      "output_price_per_million": 2,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5-nano",
+      "type": "text",
+      "input_price_per_million": 0.05,
+      "output_price_per_million": 0.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.3-chat-latest",
+      "type": "text",
+      "input_price_per_million": 1.75,
+      "output_price_per_million": 14,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.2-chat-latest",
+      "type": "text",
+      "input_price_per_million": 1.75,
+      "output_price_per_million": 14,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.1-chat-latest",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5-chat-latest",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.3-codex",
+      "type": "text",
+      "input_price_per_million": 1.75,
+      "output_price_per_million": 14,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.2-codex",
+      "type": "text",
+      "input_price_per_million": 1.75,
+      "output_price_per_million": 14,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.1-codex-max",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.1-codex",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5-codex",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.2-pro",
+      "type": "text",
+      "input_price_per_million": 21,
+      "output_price_per_million": 168,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5-pro",
+      "type": "text",
+      "input_price_per_million": 15,
+      "output_price_per_million": 120,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4.1-mini",
+      "type": "text",
+      "input_price_per_million": 0.4,
+      "output_price_per_million": 1.6,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4.1-nano",
+      "type": "text",
+      "input_price_per_million": 0.1,
+      "output_price_per_million": 0.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
       "model": "gpt-4o",
+      "type": "text",
+      "input_price_per_million": 2.5,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-2024-05-13",
+      "type": "text",
       "input_price_per_million": 5,
       "output_price_per_million": 15,
       "currency": "USD",
@@ -12,46 +229,313 @@
     {
       "provider": "openai",
       "model": "gpt-4o-mini",
+      "type": "text",
       "input_price_per_million": 0.15,
       "output_price_per_million": 0.6,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
     {
+      "provider": "openai",
+      "model": "gpt-realtime",
+      "type": "text",
+      "input_price_per_million": 4,
+      "output_price_per_million": 16,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-realtime-1.5",
+      "type": "text",
+      "input_price_per_million": 4,
+      "output_price_per_million": 16,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-realtime-mini",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-realtime-preview",
+      "type": "text",
+      "input_price_per_million": 5,
+      "output_price_per_million": 20,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-mini-realtime-preview",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o1",
+      "type": "text",
+      "input_price_per_million": 15,
+      "output_price_per_million": 60,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o1-pro",
+      "type": "text",
+      "input_price_per_million": 150,
+      "output_price_per_million": 600,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o3-pro",
+      "type": "text",
+      "input_price_per_million": 20,
+      "output_price_per_million": 80,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o3",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o3-deep-research",
+      "type": "text",
+      "input_price_per_million": 10,
+      "output_price_per_million": 40,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o4-mini",
+      "type": "text",
+      "input_price_per_million": 1.1,
+      "output_price_per_million": 4.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o4-mini-deep-research",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o3-mini",
+      "type": "text",
+      "input_price_per_million": 1.1,
+      "output_price_per_million": 4.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "o1-mini",
+      "type": "text",
+      "input_price_per_million": 1.1,
+      "output_price_per_million": 4.4,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.1-codex-mini",
+      "type": "text",
+      "input_price_per_million": 0.25,
+      "output_price_per_million": 2,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "codex-mini-latest",
+      "type": "text",
+      "input_price_per_million": 1.5,
+      "output_price_per_million": 6,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5-search-api",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-mini-search-preview",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 0.6,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-search-preview",
+      "type": "text",
+      "input_price_per_million": 2.5,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "computer-use-preview",
+      "type": "text",
+      "input_price_per_million": 3,
+      "output_price_per_million": 12,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
       "provider": "anthropic",
-      "model": "claude-3-opus",
+      "model": "claude-opus-4.6",
+      "type": "text",
+      "input_price_per_million": 5,
+      "output_price_per_million": 25,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.5",
+      "type": "text",
+      "input_price_per_million": 5,
+      "output_price_per_million": 25,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.1",
+      "type": "text",
       "input_price_per_million": 15,
       "output_price_per_million": 75,
       "currency": "USD",
-      "source": "https://docs.anthropic.com/claude/docs/models-overview"
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
     {
       "provider": "anthropic",
-      "model": "claude-3-sonnet",
+      "model": "claude-opus-4",
+      "type": "text",
+      "input_price_per_million": 15,
+      "output_price_per_million": 75,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "type": "text",
       "input_price_per_million": 3,
       "output_price_per_million": 15,
       "currency": "USD",
-      "source": "https://docs.anthropic.com/claude/docs/models-overview"
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.5",
+      "type": "text",
+      "input_price_per_million": 3,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "type": "text",
+      "input_price_per_million": 3,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-4.5",
+      "type": "text",
+      "input_price_per_million": 1,
+      "output_price_per_million": 5,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-3.5",
+      "type": "text",
+      "input_price_per_million": 0.8,
+      "output_price_per_million": 4,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-3",
+      "type": "text",
+      "input_price_per_million": 0.25,
+      "output_price_per_million": 1.25,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
     {
       "provider": "google",
-      "model": "gemini-1.5-pro",
-      "input_price_per_million": 3.5,
-      "output_price_per_million": 10.5,
+      "model": "gemini-2.5-pro",
+      "type": "text",
+      "input_price_per_million": 1.25,
+      "output_price_per_million": 10,
       "currency": "USD",
-      "source": "https://ai.google.dev/pricing"
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
     {
       "provider": "google",
-      "model": "gemini-1.5-flash",
-      "input_price_per_million": 0.35,
-      "output_price_per_million": 1.05,
+      "model": "gemini-2.5-flash",
+      "type": "text",
+      "input_price_per_million": 0.3,
+      "output_price_per_million": 2.5,
       "currency": "USD",
-      "source": "https://ai.google.dev/pricing"
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-2.5-flash-lite",
+      "type": "text",
+      "input_price_per_million": 0.1,
+      "output_price_per_million": 0.4,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
     {
       "provider": "mistral",
       "model": "mistral-large",
+      "type": "text",
       "input_price_per_million": 8,
       "output_price_per_million": 24,
       "currency": "USD",
@@ -60,6 +544,7 @@
     {
       "provider": "mistral",
       "model": "mistral-small",
+      "type": "text",
       "input_price_per_million": 2,
       "output_price_per_million": 6,
       "currency": "USD",
@@ -68,10 +553,101 @@
     {
       "provider": "deepseek",
       "model": "deepseek-chat",
-      "input_price_per_million": 0.27,
-      "output_price_per_million": 0.55,
+      "type": "text",
+      "input_price_per_million": 0.28,
+      "output_price_per_million": 0.42,
       "currency": "USD",
       "source": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-chat-cached",
+      "type": "text",
+      "input_price_per_million": 0.028,
+      "output_price_per_million": 0.42,
+      "currency": "USD",
+      "source": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-reasoner",
+      "type": "text",
+      "input_price_per_million": 0.28,
+      "output_price_per_million": 0.42,
+      "currency": "USD",
+      "source": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-max",
+      "type": "text",
+      "input_price_per_million": 1.6,
+      "output_price_per_million": 6.4,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-turbo",
+      "type": "text",
+      "input_price_per_million": 0.05,
+      "output_price_per_million": 0.2,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2.5",
+      "type": "text",
+      "input_price_per_million": 0.45,
+      "output_price_per_million": 2.2,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2",
+      "type": "text",
+      "input_price_per_million": 0.4,
+      "output_price_per_million": 2,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai"
+    },
+    {
+      "provider": "minimax",
+      "model": "minimax-01",
+      "type": "text",
+      "input_price_per_million": 0.2,
+      "output_price_per_million": 1.1,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/pricing/overview"
+    },
+    {
+      "provider": "minimax",
+      "model": "minimax-m2.5",
+      "type": "text",
+      "input_price_per_million": 0.295,
+      "output_price_per_million": 1.2,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/pricing/overview"
+    },
+    {
+      "provider": "zhipu",
+      "model": "glm-4.5-air",
+      "type": "text",
+      "input_price_per_million": 0.2,
+      "output_price_per_million": 1.1,
+      "currency": "USD",
+      "source": "https://zhipu-32152247.mintlify.app/guides/overview/pricing"
+    },
+    {
+      "provider": "zhipu",
+      "model": "glm-5",
+      "type": "text",
+      "input_price_per_million": 0.8,
+      "output_price_per_million": 2.56,
+      "currency": "USD",
+      "source": "https://zhipu-32152247.mintlify.app/guides/overview/pricing"
     }
   ]
 }

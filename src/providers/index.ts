@@ -5,13 +5,21 @@ import { fetchAnthropicPricing } from "./anthropic.js";
 import { fetchGooglePricing } from "./google.js";
 import { fetchMistralPricing } from "./mistral.js";
 import { fetchDeepseekPricing } from "./deepseek.js";
+import { fetchQwenPricing } from "./qwen.js";
+import { fetchMoonshotPricing } from "./moonshot.js";
+import { fetchMinimaxPricing } from "./minimax.js";
+import { fetchZhipuPricing } from "./zhipu.js";
 
 export const providers: Record<ProviderId, ProviderFetcher> = {
   openai: fetchOpenAIPricing,
   anthropic: fetchAnthropicPricing,
   google: fetchGooglePricing,
   mistral: fetchMistralPricing,
-  deepseek: fetchDeepseekPricing
+  deepseek: fetchDeepseekPricing,
+  qwen: fetchQwenPricing,
+  moonshot: fetchMoonshotPricing,
+  minimax: fetchMinimaxPricing,
+  zhipu: fetchZhipuPricing
 };
 
 export async function fetchAllProviders(
