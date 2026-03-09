@@ -1,25 +1,156 @@
+import { load } from "cheerio";
+import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
+import { fetchRenderedHtml, parseUsdAmount } from "./utils.js";
 
-// Official Moonshot / Kimi docs (pricing is described across guides).
-const MOONSHOT_PRICING_SOURCE = "https://platform.moonshot.ai";
+const MOONSHOT_PRICING_SOURCE = "https://platform.moonshot.ai/docs/pricing/chat";
 
 export async function fetchMoonshotPricing(): Promise<PricingModel[]> {
+  try {
+    const html = await fetchRenderedHtml(MOONSHOT_PRICING_SOURCE, {
+      validateHtml: (candidate) => parseMoonshotHtml(candidate).length > 0
+    });
+    const parsed = parseMoonshotHtml(html);
+    if (parsed.length > 0) {
+      return parsed;
+    }
+  } catch {
+    // Fall back to current official values if client-rendered scraping fails.
+  }
+
+  return getMoonshotManualFallback();
+}
+
+export function parseMoonshotHtml(html: string): PricingModel[] {
+  const $ = load(html);
+  const models: PricingModel[] = [];
+  const seen = new Set<string>();
+  const headings = $("h3").toArray();
+
+  for (const heading of headings) {
+    const headingText = normalizeText($(heading).text()).toLowerCase();
+    if (!headingText.includes("kimi-k2.5") && !headingText.includes("kimi-k2") && !headingText.includes("moonshot-v1")) {
+      continue;
+    }
+
+    const table = findNextTable($, heading);
+    if (!table.length) {
+      continue;
+    }
+
+    table.find("tr").each((_, row) => {
+      const cells = $(row)
+        .find("td")
+        .toArray()
+        .map((cell) => normalizeText($(cell).text()));
+      const model = cells[0];
+      const unit = (cells[1] ?? "").toLowerCase();
+      if (!model || seen.has(model) || !unit.includes("1m tokens") || !shouldIncludeMoonshotModel(model)) {
+        return;
+      }
+
+      const input = parseUsdAmount(cells[2]);
+      const output = cells.length >= 6 ? parseUsdAmount(cells[4]) : parseUsdAmount(cells[3]);
+      if (!Number.isFinite(input) || !Number.isFinite(output)) {
+        return;
+      }
+
+      seen.add(model);
+      models.push({
+        provider: "moonshot",
+        model,
+        type: "text",
+        input_price_per_million: input,
+        output_price_per_million: output,
+        currency: "USD",
+        source: MOONSHOT_PRICING_SOURCE
+      });
+    });
+  }
+
+  return models;
+}
+
+function findNextTable($: ReturnType<typeof load>, heading: AnyNode) {
+  let current = $(heading).next();
+
+  while (current.length) {
+    if (current.is("table")) {
+      return current;
+    }
+
+    const nestedTable = current.find("table").first();
+    if (nestedTable.length) {
+      return nestedTable;
+    }
+
+    current = current.next();
+  }
+
+  return $("");
+}
+
+function normalizeText(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function shouldIncludeMoonshotModel(model: string): boolean {
+  return !model.toLowerCase().includes("vision");
+}
+
+export function getMoonshotManualFallback(): PricingModel[] {
   return [
     {
       provider: "moonshot",
       model: "kimi-k2.5",
       type: "text",
-      input_price_per_million: 0.45,
-      output_price_per_million: 2.2,
+      input_price_per_million: 0.1,
+      output_price_per_million: 3,
       currency: "USD",
       source: MOONSHOT_PRICING_SOURCE
     },
     {
       provider: "moonshot",
-      model: "kimi-k2",
+      model: "kimi-k2-0905-preview",
       type: "text",
-      input_price_per_million: 0.4,
+      input_price_per_million: 0.15,
+      output_price_per_million: 2.5,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "kimi-k2-turbo-preview",
+      type: "text",
+      input_price_per_million: 0.15,
+      output_price_per_million: 8,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "moonshot-v1-8k",
+      type: "text",
+      input_price_per_million: 0.2,
       output_price_per_million: 2,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "moonshot-v1-32k",
+      type: "text",
+      input_price_per_million: 1,
+      output_price_per_million: 3,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "moonshot-v1-128k",
+      type: "text",
+      input_price_per_million: 2,
+      output_price_per_million: 5,
       currency: "USD",
       source: MOONSHOT_PRICING_SOURCE
     }

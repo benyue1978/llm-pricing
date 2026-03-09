@@ -35,7 +35,7 @@ describe("provider fetchers", () => {
   test("mistral returns valid pricing models", async () => {
     const models = await fetchMistralPricing();
     assertValidPricingModels(models);
-  });
+  }, 30000);
 
   test("deepseek returns valid pricing models", async () => {
     const models = await fetchDeepseekPricing();
@@ -45,20 +45,20 @@ describe("provider fetchers", () => {
   test("qwen returns valid pricing models", async () => {
     const models = await fetchQwenPricing();
     assertValidPricingModels(models);
-  });
+  }, 30000);
 
   test("moonshot returns valid pricing models", async () => {
     const models = await fetchMoonshotPricing();
     assertValidPricingModels(models);
-  });
+  }, 90000);
 
   test("minimax returns valid pricing models", async () => {
     const models = await fetchMinimaxPricing();
     assertValidPricingModels(models);
-  });
+  }, 30000);
 
   test("zhipu returns valid pricing models", async () => {
     const models = await fetchZhipuPricing();
     assertValidPricingModels(models);
-  });
+  }, 30000);
 });

@@ -8,7 +8,8 @@ This repo is intentionally minimal: a single CLI command keeps a JSON registry o
 
 - **CLI core**: `npx llm-pricing update` (or `npm run update`) fetches provider pricing pages and writes a unified registry to `data/pricing.json`.
 - **Single source of truth**: `data/pricing.json` is the only data source; everything else is derived from it.
-- **Static dashboard**: `web/index.html` + `web/main.js` read `data/pricing.json` and render a pricing table, deployable to Vercel / Cloudflare Pages as pure static assets.
+- **Static dashboard**: root `index.html` + `main.js` read `data/pricing.json` and render a pricing table, deployable to Vercel / Cloudflare Pages as pure static assets.
+  - Includes client-side search, provider/type/currency filters, and sorting controls.
 - **Scheduled updates**: GitHub Actions workflow updates the registry on a cron schedule and commits changes back to the repo.
 - **Tests**:
   - Vitest unit tests for schema, providers, and CLI core.
@@ -94,7 +95,8 @@ The TypeScript types live in `src/schema.ts` and are used across CLI and provide
 
 Provider implementations live in `src/providers/`.
 
-- `openai`, `anthropic`, `google`, `deepseek` currently fetch and parse official pricing pages.
+- `openai`, `anthropic`, `google`, `deepseek`, `qwen`, `minimax`, `mistral`, and `moonshot` currently fetch and parse official pricing pages.
+- `zhipu` currently verifies the official pricing page and consumes the official page-backed pricing payload exposed by the platform.
 - Other providers are still represented by official-source fallbacks until their live parsers are implemented.
 
 The aggregator `src/providers/index.ts`:
@@ -106,10 +108,10 @@ The aggregator `src/providers/index.ts`:
 
 ## Web dashboard
 
-The static dashboard lives under `web/`:
+The static dashboard lives at the repo root:
 
-- `web/index.html` — layout, styles, containers for the pricing table and updated timestamp.
-- `web/main.js` — fetches `/data/pricing.json`, sorts models by provider/model, and renders a table:
+- `index.html` — layout, styles, containers for the pricing table and updated timestamp.
+- `main.js` — fetches `/data/pricing.json`, sorts models by provider/model, and renders a table:
   - Columns: Provider, Model, Input $/1M, Output $/1M, Source.
   - Uses tabular numerics for price columns and links to provider pricing pages.
 
@@ -119,7 +121,7 @@ Serve the repo root and open the dashboard:
 
 ```bash
 npm run web:dev
-# then visit http://localhost:4173/web/index.html
+# then visit http://localhost:4173/
 ```
 
 Make sure you have run `npm run update` at least once so that `data/pricing.json` exists with fresh data.
@@ -152,7 +154,7 @@ npm run test:e2e
 This will:
 
 - Start the static server via `npm run web:dev`.
-- Hit `/web/index.html`.
+- Hit `/`.
 - Assert that `/data/pricing.json` is served correctly and contains:
   - At least one model.
   - A valid `updated_at` timestamp.

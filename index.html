@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LLM Pricing Registry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">CLI-synced pricing registry</p>
+        <h1>LLM pricing, without tab chaos.</h1>
+        <p class="intro">
+          Official provider pages, normalized into one searchable index that stays
+          compatible with the repo’s scheduled CLI updates.
+        </p>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span class="meta-label">Last sync</span>
+            <strong id="updated-at">Loading pricing data…</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Registry</span>
+            <strong id="result-count">Preparing filters…</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel controls-panel" aria-label="Search and filters">
+        <div class="search-wrap">
+          <label class="field field-search">
+            <span>Search</span>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Model, provider, source URL…"
+              autocomplete="off"
+            />
+          </label>
+        </div>
+
+        <div class="filter-grid">
+          <label class="field">
+            <span>Provider</span>
+            <select id="provider-filter">
+              <option value="all">All providers</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Type</span>
+            <select id="type-filter">
+              <option value="all">All types</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Currency</span>
+            <select id="currency-filter">
+              <option value="all">All currencies</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Sort by</span>
+            <select id="sort-field">
+              <option value="provider">Provider</option>
+              <option value="model">Model</option>
+              <option value="type">Type</option>
+              <option value="currency">Currency</option>
+              <option value="input_price_per_million">Input price</option>
+              <option value="output_price_per_million">Output price</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="controls-footer">
+          <button id="sort-direction" class="toggle-button" type="button" aria-pressed="false">
+            Sort: ascending
+          </button>
+          <button id="reset-filters" class="ghost-button" type="button">Reset filters</button>
+        </div>
+      </section>
+
+      <section id="stats-grid" class="stats-grid" aria-label="Registry summary"></section>
+
+      <div id="error-banner" class="error-banner" role="alert" hidden></div>
+
+      <section class="panel table-panel">
+        <div class="table-header">
+          <div>
+            <p class="table-kicker">Live registry view</p>
+            <h2>Aggregated model prices</h2>
+          </div>
+          <p class="table-note">Prices are listed per 1M tokens in each model’s native currency.</p>
+        </div>
+
+        <div id="empty-state" class="empty-state">Fetching latest model pricing…</div>
+        <div class="table-scroll">
+          <table id="pricing-table" aria-label="LLM pricing table"></table>
+        </div>
+      </section>
+    </main>
+    <script src="/main.js" type="module"></script>
+  </body>
+</html>

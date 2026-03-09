@@ -1,0 +1,10 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "data": [
+    {
+      "operationId": "1122",
+      "content": "{\"list\":[{\"modelNameEn\":\"Language Models\",\"fieldListEn\":[{\"code\":\"modelCode\",\"label\":\"Model\"},{\"code\":\"descriptionCode\",\"label\":\"Description\"},{\"code\":\"contextCode\",\"label\":\"Context\"},{\"code\":\"priceCode\",\"label\":\"Pricing\"},{\"code\":\"batchCode\",\"label\":\"Pricing with Batch API\"}],\"modelListEn\":[{\"modelCode\":\"GLM-4-Plus\",\"descriptionCode\":\"Flagship\",\"contextCode\":\"128K\",\"priceCode\":\" ¥5  / M Tokens\",\"batchCode\":\" ¥2.5  / M Tokens\"},{\"modelCode\":\"GLM-4-Air\",\"descriptionCode\":\"High-performance\",\"contextCode\":\"128K\",\"priceCode\":\" ¥0.5  / M Tokens\",\"batchCode\":\" ¥0.25  / M Tokens\"},{\"modelCode\":\"GLM-4-AirX\",\"descriptionCode\":\"Fastest\",\"contextCode\":\"8K\",\"priceCode\":\" ¥10  / M Tokens\",\"batchCode\":\"Not Supported\"},{\"modelCode\":\"GLM-4-FlashX-250414\",\"descriptionCode\":\"Fast and Cheap\",\"contextCode\":\"128K\",\"priceCode\":\" ¥0.1  / M Tokens\",\"batchCode\":\" ¥0.05  / M Tokens\"},{\"modelCode\":\"GLM-4-Long\",\"descriptionCode\":\"Long input\",\"contextCode\":\"1M\",\"priceCode\":\" ¥1 / M Tokens\",\"batchCode\":\" ¥0.5  / M Tokens\"},{\"modelCode\":\"GLM-4-Assistant\",\"descriptionCode\":\"Agent\",\"contextCode\":\"128K\",\"priceCode\":\" ¥5  / M Tokens\",\"batchCode\":\"Not Supported\"}]}]}"
+    }
+  ]
+}

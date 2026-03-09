@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-09T15:35:27.942Z",
+  "updated_at": "2026-03-09T16:18:03.047Z",
   "models": [
     {
       "provider": "openai",
@@ -534,21 +534,57 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-large",
+      "model": "mistral-large-latest",
       "type": "text",
-      "input_price_per_million": 8,
-      "output_price_per_million": 24,
+      "input_price_per_million": 0.5,
+      "output_price_per_million": 1.5,
       "currency": "USD",
-      "source": "https://docs.mistral.ai/platform/pricing/"
+      "source": "https://mistral.ai/pricing"
     },
     {
       "provider": "mistral",
-      "model": "mistral-small",
+      "model": "mistral-medium-latest",
       "type": "text",
-      "input_price_per_million": 2,
-      "output_price_per_million": 6,
+      "input_price_per_million": 0.4,
+      "output_price_per_million": 2,
       "currency": "USD",
-      "source": "https://docs.mistral.ai/platform/pricing/"
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "mistral-small-latest",
+      "type": "text",
+      "input_price_per_million": 0.1,
+      "output_price_per_million": 0.3,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "codestral-latest",
+      "type": "text",
+      "input_price_per_million": 0.3,
+      "output_price_per_million": 0.9,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "ministral-8b-latest",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 0.15,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "ministral-14b-latest",
+      "type": "text",
+      "input_price_per_million": 0.2,
+      "output_price_per_million": 0.2,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
     },
     {
       "provider": "deepseek",
@@ -579,10 +615,28 @@
     },
     {
       "provider": "qwen",
+      "model": "qwen3-max",
+      "type": "text",
+      "input_price_per_million": 1.2,
+      "output_price_per_million": 6,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
       "model": "qwen-max",
       "type": "text",
       "input_price_per_million": 1.6,
       "output_price_per_million": 6.4,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-plus",
+      "type": "text",
+      "input_price_per_million": 0.4,
+      "output_price_per_million": 1.2,
       "currency": "USD",
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
@@ -596,58 +650,220 @@
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
     {
+      "provider": "qwen",
+      "model": "qwen-long-latest",
+      "type": "text",
+      "input_price_per_million": 0.072,
+      "output_price_per_million": 0.287,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3-coder-plus",
+      "type": "text",
+      "input_price_per_million": 1,
+      "output_price_per_million": 5,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-coder-turbo",
+      "type": "text",
+      "input_price_per_million": 0.287,
+      "output_price_per_million": 0.861,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
       "provider": "moonshot",
       "model": "kimi-k2.5",
       "type": "text",
-      "input_price_per_million": 0.45,
-      "output_price_per_million": 2.2,
+      "input_price_per_million": 0.1,
+      "output_price_per_million": 3,
       "currency": "USD",
-      "source": "https://platform.moonshot.ai"
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
     },
     {
       "provider": "moonshot",
-      "model": "kimi-k2",
+      "model": "kimi-k2-0905-preview",
       "type": "text",
-      "input_price_per_million": 0.4,
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 2.5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-0711-preview",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 2.5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-turbo-previewRecommended",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-thinking",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 2.5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-thinking-turbo",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "moonshot-v1-8k",
+      "type": "text",
+      "input_price_per_million": 0.2,
       "output_price_per_million": 2,
       "currency": "USD",
-      "source": "https://platform.moonshot.ai"
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
     },
     {
-      "provider": "minimax",
-      "model": "minimax-01",
+      "provider": "moonshot",
+      "model": "moonshot-v1-32k",
       "type": "text",
-      "input_price_per_million": 0.2,
-      "output_price_per_million": 1.1,
+      "input_price_per_million": 1,
+      "output_price_per_million": 3,
       "currency": "USD",
-      "source": "https://platform.minimax.io/docs/pricing/overview"
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "moonshot-v1-128k",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
     },
     {
       "provider": "minimax",
-      "model": "minimax-m2.5",
+      "model": "MiniMax-M2.5",
       "type": "text",
-      "input_price_per_million": 0.295,
+      "input_price_per_million": 0.3,
       "output_price_per_million": 1.2,
       "currency": "USD",
-      "source": "https://platform.minimax.io/docs/pricing/overview"
+      "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-M2.5-highspeed",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.4,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-M2.1",
+      "type": "text",
+      "input_price_per_million": 0.3,
+      "output_price_per_million": 1.2,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-M2.1-highspeed",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.4,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-M2",
+      "type": "text",
+      "input_price_per_million": 0.3,
+      "output_price_per_million": 1.2,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
+    },
+    {
+      "provider": "minimax",
+      "model": "M2-her",
+      "type": "text",
+      "input_price_per_million": 0.3,
+      "output_price_per_million": 1.2,
+      "currency": "USD",
+      "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
     },
     {
       "provider": "zhipu",
-      "model": "glm-4.5-air",
+      "model": "GLM-4-Plus",
       "type": "text",
-      "input_price_per_million": 0.2,
-      "output_price_per_million": 1.1,
-      "currency": "USD",
-      "source": "https://zhipu-32152247.mintlify.app/guides/overview/pricing"
+      "input_price_per_million": 5,
+      "output_price_per_million": null,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
     },
     {
       "provider": "zhipu",
-      "model": "glm-5",
+      "model": "GLM-4-Air",
       "type": "text",
-      "input_price_per_million": 0.8,
-      "output_price_per_million": 2.56,
-      "currency": "USD",
-      "source": "https://zhipu-32152247.mintlify.app/guides/overview/pricing"
+      "input_price_per_million": 0.5,
+      "output_price_per_million": null,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-4-AirX",
+      "type": "text",
+      "input_price_per_million": 10,
+      "output_price_per_million": null,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-4-FlashX-250414",
+      "type": "text",
+      "input_price_per_million": 0.1,
+      "output_price_per_million": null,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-4-Long",
+      "type": "text",
+      "input_price_per_million": 1,
+      "output_price_per_million": null,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-4-Assistant",
+      "type": "text",
+      "input_price_per_million": 5,
+      "output_price_per_million": null,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
     }
   ]
 }
