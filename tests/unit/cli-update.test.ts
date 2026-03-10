@@ -2,7 +2,7 @@ import { describe, expect, test, vi } from "vitest";
 import { mkdtemp, mkdir, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { PricingModel, ProviderOpsStatus } from "../../src/schema.js";
+import type { CurrencyRateRegistry, PricingModel, ProviderOpsStatus } from "../../src/schema.js";
 import { runUpdate } from "../../src/cli/index.js";
 
 describe("cli runUpdate", () => {
@@ -36,6 +36,16 @@ describe("cli runUpdate", () => {
         fail_reason: null
       }
     ];
+    const currencyRateRegistry: CurrencyRateRegistry = {
+      updated_at: "2026-03-10T00:00:00.000Z",
+      source: "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      base_currency: "EUR",
+      rates: {
+        EUR: 1,
+        USD: 1.1555,
+        CNY: 8.2881
+      }
+    };
 
     const logger = vi.fn();
 
@@ -48,15 +58,19 @@ describe("cli runUpdate", () => {
           models,
           providerStatuses
         };
-      }
+      },
+      fetchCurrencyRates: async () => currencyRateRegistry
     });
 
     const jsonPath = join(cwd, "data/pricing.json");
     const opsPath = join(cwd, "data/ops.json");
+    const currencyRatePath = join(cwd, "data/currency_rate.json");
     const raw = await readFile(jsonPath, "utf8");
     const opsRaw = await readFile(opsPath, "utf8");
+    const currencyRateRaw = await readFile(currencyRatePath, "utf8");
     const parsed = JSON.parse(raw);
     const opsParsed = JSON.parse(opsRaw);
+    const currencyRateParsed = JSON.parse(currencyRateRaw);
 
     expect(parsed.models).toEqual(models);
     expect(typeof parsed.updated_at).toBe("string");
@@ -70,10 +84,13 @@ describe("cli runUpdate", () => {
       fallback_count: 0,
       model_count: 1
     });
+    expect(currencyRateParsed).toEqual(currencyRateRegistry);
 
     expect(result.registry.models).toEqual(models);
     expect(result.opsRegistry.providers).toEqual(providerStatuses);
+    expect(result.currencyRateRegistry).toEqual(currencyRateRegistry);
     expect(result.outputPath).toBe(jsonPath);
     expect(result.opsOutputPath).toBe(opsPath);
+    expect(result.currencyRateOutputPath).toBe(currencyRatePath);
   });
 });

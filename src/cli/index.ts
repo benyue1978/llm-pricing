@@ -4,7 +4,14 @@ import { writeFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import process from "node:process";
 import { fetchAllProvidersDetailed } from "../providers/index.js";
-import type { OpsRegistry, PricingModel, PricingRegistry, ProviderOpsStatus } from "../schema.js";
+import { fetchCurrencyRateRegistry } from "../fx.js";
+import type {
+  CurrencyRateRegistry,
+  OpsRegistry,
+  PricingModel,
+  PricingRegistry,
+  ProviderOpsStatus
+} from "../schema.js";
 
 export type Logger = (message: string) => void;
 
@@ -16,13 +23,16 @@ export interface RunUpdateOptions {
     models: PricingModel[];
     providerStatuses: ProviderOpsStatus[];
   }>;
+  fetchCurrencyRates?: () => Promise<CurrencyRateRegistry>;
 }
 
 export interface RunUpdateResult {
   registry: PricingRegistry;
   opsRegistry: OpsRegistry;
+  currencyRateRegistry: CurrencyRateRegistry;
   outputPath: string;
   opsOutputPath: string;
+  currencyRateOutputPath: string;
 }
 
 export async function runUpdate(options: RunUpdateOptions = {}): Promise<RunUpdateResult> {
@@ -36,6 +46,7 @@ export async function runUpdate(options: RunUpdateOptions = {}): Promise<RunUpda
         providerStatuses: []
       }
       : await fetchAllProvidersDetailed(logger);
+  const currencyRateRegistry = await (options.fetchCurrencyRates ?? fetchCurrencyRateRegistry)();
   const models = detailedResult.models;
   const updatedAt = new Date().toISOString();
   const registry: PricingRegistry = {
@@ -46,15 +57,28 @@ export async function runUpdate(options: RunUpdateOptions = {}): Promise<RunUpda
 
   const outputPath = resolve(cwd, "data/pricing.json");
   const opsOutputPath = resolve(cwd, "data/ops.json");
+  const currencyRateOutputPath = resolve(cwd, "data/currency_rate.json");
   const json = JSON.stringify(registry, null, 2) + "\n";
   const opsJson = JSON.stringify(opsRegistry, null, 2) + "\n";
+  const currencyRateJson = JSON.stringify(currencyRateRegistry, null, 2) + "\n";
   await writeFile(outputPath, json, "utf8");
   await writeFile(opsOutputPath, opsJson, "utf8");
+  await writeFile(currencyRateOutputPath, currencyRateJson, "utf8");
 
   logger(`Updated data/pricing.json (${registry.models.length} models, updated_at=${registry.updated_at})`);
   logger(`Updated data/ops.json (${opsRegistry.providers.length} providers, updated_at=${opsRegistry.updated_at})`);
+  logger(
+    `Updated data/currency_rate.json (${Object.keys(currencyRateRegistry.rates).length} currencies, updated_at=${currencyRateRegistry.updated_at})`
+  );
 
-  return { registry, opsRegistry, outputPath, opsOutputPath };
+  return {
+    registry,
+    opsRegistry,
+    currencyRateRegistry,
+    outputPath,
+    opsOutputPath,
+    currencyRateOutputPath
+  };
 }
 
 async function cmdPrint(cwd: string): Promise<void> {

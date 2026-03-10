@@ -3,10 +3,11 @@ const state = {
   search: "",
   provider: "all",
   type: "all",
-  currency: "all",
+  currency: "USD",
   sortField: "provider",
   sortDirection: "asc",
-  updatedAt: null
+  updatedAt: null,
+  currencyRates: null
 };
 
 const elements = {
@@ -32,6 +33,21 @@ function normalizeText(value) {
 function formatPrice(value, currency) {
   if (value == null) return "–";
   return `${currency} ${Number(value).toFixed(value < 1 ? 3 : 2).replace(/\.?0+$/, "")}`;
+}
+
+function convertPrice(value, fromCurrency, toCurrency) {
+  if (value == null) return null;
+  if (fromCurrency === toCurrency) return value;
+
+  const fromRate = state.currencyRates?.rates?.[fromCurrency];
+  const toRate = state.currencyRates?.rates?.[toCurrency];
+  if (!Number.isFinite(fromRate) || !Number.isFinite(toRate) || !fromRate || !toRate) {
+    return null;
+  }
+
+  const amountInBase = value / fromRate;
+  const converted = amountInBase * toRate;
+  return Number.isFinite(converted) ? converted : null;
 }
 
 function formatUpdatedAt(value) {
@@ -70,7 +86,6 @@ function setOptions(select, values, allLabel) {
 function hydrateFilters(models) {
   setOptions(elements.providerFilter, [...new Set(models.map((model) => model.provider))].sort(), "All providers");
   setOptions(elements.typeFilter, [...new Set(models.map((model) => model.type))].sort(), "All types");
-  setOptions(elements.currencyFilter, [...new Set(models.map((model) => model.currency))].sort(), "All currencies");
 }
 
 function getVisibleModels() {
@@ -78,7 +93,6 @@ function getVisibleModels() {
   const filtered = state.allModels.filter((model) => {
     if (state.provider !== "all" && model.provider !== state.provider) return false;
     if (state.type !== "all" && model.type !== state.type) return false;
-    if (state.currency !== "all" && model.currency !== state.currency) return false;
     if (!query) return true;
 
     const haystack = [model.provider, model.model, model.type, model.currency, model.source]
@@ -94,8 +108,8 @@ function getVisibleModels() {
 
 function compareModels(left, right, field) {
   if (field === "input_price_per_million" || field === "output_price_per_million") {
-    const a = left[field] ?? Number.POSITIVE_INFINITY;
-    const b = right[field] ?? Number.POSITIVE_INFINITY;
+    const a = convertPrice(left[field], left.currency, state.currency) ?? Number.POSITIVE_INFINITY;
+    const b = convertPrice(right[field], right.currency, state.currency) ?? Number.POSITIVE_INFINITY;
     return a - b || compareModels(left, right, "provider");
   }
 
@@ -108,9 +122,13 @@ function renderStats(models) {
   const providerCount = new Set(models.map((model) => model.provider)).size;
   const currencyCount = new Set(models.map((model) => model.currency)).size;
   const cheapest = models
-    .filter((model) => Number.isFinite(model.input_price_per_million))
+    .map((model) => ({
+      model,
+      convertedInput: convertPrice(model.input_price_per_million, model.currency, state.currency)
+    }))
+    .filter((entry) => Number.isFinite(entry.convertedInput))
     .slice()
-    .sort((a, b) => a.input_price_per_million - b.input_price_per_million)[0];
+    .sort((a, b) => a.convertedInput - b.convertedInput)[0];
 
   const stats = [
     {
@@ -124,14 +142,14 @@ function renderStats(models) {
       detail: "Unique vendors represented in the current view."
     },
     {
-      label: "Currencies",
+      label: "Native currencies",
       value: `${currencyCount}`,
-      detail: "Native pricing currencies preserved from official sources."
+      detail: "Official provider currencies preserved in the source registry."
     },
     {
       label: "Lowest input",
-      value: cheapest ? formatPrice(cheapest.input_price_per_million, cheapest.currency) : "–",
-      detail: cheapest ? `${cheapest.provider} / ${cheapest.model}` : "No visible models."
+      value: cheapest ? formatPrice(cheapest.convertedInput, state.currency) : "–",
+      detail: cheapest ? `${cheapest.model.provider} / ${cheapest.model.model}` : "No visible models."
     }
   ];
 
@@ -163,7 +181,7 @@ function renderTable(models) {
         <th>Provider</th>
         <th>Model</th>
         <th>Type</th>
-        <th>Currency</th>
+        <th>Native</th>
         <th>Input / 1M</th>
         <th>Output / 1M</th>
         <th>Source</th>
@@ -176,15 +194,17 @@ function renderTable(models) {
       const sourceLink = model.source
         ? `<a class="source-link" href="${model.source}" target="_blank" rel="noreferrer">Official page</a>`
         : "–";
+      const convertedInput = convertPrice(model.input_price_per_million, model.currency, state.currency);
+      const convertedOutput = convertPrice(model.output_price_per_million, model.currency, state.currency);
 
       return `
         <tr>
           <td data-label="Provider"><span class="provider-pill">${model.provider}</span></td>
           <td data-label="Model" class="model-cell">${model.model}</td>
           <td data-label="Type"><span class="type-pill">${model.type}</span></td>
-          <td data-label="Currency"><span class="currency-pill">${model.currency}</span></td>
-          <td data-label="Input" class="price-cell">${formatPrice(model.input_price_per_million, model.currency)}</td>
-          <td data-label="Output" class="price-cell">${formatPrice(model.output_price_per_million, model.currency)}</td>
+          <td data-label="Native"><span class="currency-pill">${model.currency}</span></td>
+          <td data-label="Input" class="price-cell">${formatPrice(convertedInput, state.currency)}</td>
+          <td data-label="Output" class="price-cell">${formatPrice(convertedOutput, state.currency)}</td>
           <td data-label="Source">${sourceLink}</td>
         </tr>
       `;
@@ -242,14 +262,14 @@ function bindEvents() {
     state.search = "";
     state.provider = "all";
     state.type = "all";
-    state.currency = "all";
+    state.currency = "USD";
     state.sortField = "provider";
     state.sortDirection = "asc";
 
     elements.searchInput.value = "";
     elements.providerFilter.value = "all";
     elements.typeFilter.value = "all";
-    elements.currencyFilter.value = "all";
+    elements.currencyFilter.value = "USD";
     elements.sortField.value = "provider";
     render();
   });
@@ -257,14 +277,24 @@ function bindEvents() {
 
 async function loadPricing() {
   try {
-    const response = await fetch("/data/pricing.json", { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`Failed to load pricing.json: ${response.status}`);
+    const [pricingResponse, currencyRateResponse] = await Promise.all([
+      fetch("/data/pricing.json", { cache: "no-store" }),
+      fetch("/data/currency_rate.json", { cache: "no-store" })
+    ]);
+    if (!pricingResponse.ok) {
+      throw new Error(`Failed to load pricing.json: ${pricingResponse.status}`);
+    }
+    if (!currencyRateResponse.ok) {
+      throw new Error(`Failed to load currency_rate.json: ${currencyRateResponse.status}`);
     }
 
-    const data = await response.json();
+    const [data, currencyRates] = await Promise.all([
+      pricingResponse.json(),
+      currencyRateResponse.json()
+    ]);
     state.allModels = Array.isArray(data.models) ? data.models : [];
     state.updatedAt = data.updated_at ?? null;
+    state.currencyRates = currencyRates ?? null;
 
     hydrateFilters(state.allModels);
     render();

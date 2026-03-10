@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { createEmptyOpsRegistry, createEmptyRegistry } from "../../src/schema.js";
+import { createEmptyCurrencyRateRegistry, createEmptyOpsRegistry, createEmptyRegistry } from "../../src/schema.js";
 
 describe("schema", () => {
   test("createEmptyRegistry returns an empty registry with epoch timestamp", () => {
@@ -20,5 +20,12 @@ describe("schema", () => {
       fallback_count: 0,
       model_count: 0
     });
+  });
+
+  test("createEmptyCurrencyRateRegistry returns an empty fx registry with epoch timestamp", () => {
+    const registry = createEmptyCurrencyRateRegistry();
+    expect(registry.updated_at).toBe("1970-01-01T00:00:00.000Z");
+    expect(registry.base_currency).toBe("EUR");
+    expect(registry.rates).toEqual({});
   });
 });

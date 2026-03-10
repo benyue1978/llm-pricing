@@ -5,10 +5,14 @@ test.describe("LLM Pricing Dashboard", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    const response = await page.request.get("/data/pricing.json");
-    expect(response.ok()).toBe(true);
+    const [pricingResponse, currencyRateResponse] = await Promise.all([
+      page.request.get("/data/pricing.json"),
+      page.request.get("/data/currency_rate.json")
+    ]);
+    expect(pricingResponse.ok()).toBe(true);
+    expect(currencyRateResponse.ok()).toBe(true);
 
-    const json = await response.json();
+    const json = await pricingResponse.json();
     expect(Array.isArray(json.models)).toBe(true);
     expect(json.models.length).toBeGreaterThan(0);
 
@@ -29,7 +33,12 @@ test.describe("LLM Pricing Dashboard", () => {
     expect(modelTexts.length).toBeGreaterThan(0);
     expect(modelTexts.every((text) => text.toLowerCase().includes("gpt-4.1"))).toBe(true);
 
-    await page.locator("#currency-filter").selectOption("USD");
+    const firstPriceBefore = await page.locator("tbody tr td:nth-child(5)").first().textContent();
+    await page.locator("#currency-filter").selectOption("CNY");
+    const firstPriceAfter = await page.locator("tbody tr td:nth-child(5)").first().textContent();
+    expect(firstPriceAfter).toContain("CNY");
+    expect(firstPriceAfter).not.toBe(firstPriceBefore);
+
     await page.locator("#sort-field").selectOption("input_price_per_million");
     await page.getByRole("button", { name: "Sort: ascending" }).click();
 

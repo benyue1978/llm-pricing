@@ -60,6 +60,13 @@ export interface OpsRegistry {
   providers: ProviderOpsStatus[];
 }
 
+export interface CurrencyRateRegistry {
+  updated_at: string;
+  source: string;
+  base_currency: string;
+  rates: Record<string, number>;
+}
+
 export function createEmptyRegistry(): PricingRegistry {
   return {
     updated_at: new Date(0).toISOString(),
@@ -79,5 +86,14 @@ export function createEmptyOpsRegistry(): OpsRegistry {
       model_count: 0
     },
     providers: []
+  };
+}
+
+export function createEmptyCurrencyRateRegistry(): CurrencyRateRegistry {
+  return {
+    updated_at: new Date(0).toISOString(),
+    source: "",
+    base_currency: "EUR",
+    rates: {}
   };
 }
