@@ -27,6 +27,9 @@ jobs:
       - name: Update pricing registry
         run: npm run update
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
       - name: Run tests
         run: |
           npm run test:ci
@@ -35,7 +38,7 @@ jobs:
       - name: Commit updated pricing data
         if: success()
         run: |
-          if git diff --quiet --exit-code data/pricing.json; then
+          if git diff --quiet --exit-code -- data/; then
             echo "No pricing changes to commit."
             exit 0
           fi
@@ -43,6 +46,6 @@ jobs:
           git config user.name "llm-pricing-bot"
           git config user.email "llm-pricing-bot@users.noreply.github.com"
 
-          git add data/pricing.json
+          git add data/
           git commit -m "chore: update pricing data"
           git push
