@@ -1,7 +1,12 @@
 import { load } from "cheerio";
 import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
-import { fetchHtml, parseUsdAmount } from "./utils.js";
+import {
+  createTextPricingModel,
+  fetchHtml,
+  parseUsdAmount,
+  normalizeText
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const OPENAI_PRICING_URL = "https://platform.openai.com/pricing";
@@ -46,7 +51,7 @@ export function parseOpenAIHtml(html: string): PricingModel[] {
         const cells = $(row)
           .find("td")
           .toArray()
-          .map((cell) => $(cell).text().replace(/\s+/g, " ").trim());
+          .map((cell) => normalizeText($(cell).text()));
 
         const [model, inputRaw, _cachedInputRaw, outputRaw] = cells;
         if (!model || models.has(model) || !shouldIncludeOpenAITextModel(model)) {
@@ -59,15 +64,14 @@ export function parseOpenAIHtml(html: string): PricingModel[] {
           return;
         }
 
-        models.set(model, {
+        models.set(model, createTextPricingModel({
           provider: "openai",
           model,
-          type: "text",
-          input_price_per_million: input,
-          output_price_per_million: Number.isFinite(output) ? output : null,
+          input,
+          output: Number.isFinite(output) ? output : null,
           currency: "USD",
           source: OPENAI_PRICING_URL
-        });
+        }));
       });
   }
 

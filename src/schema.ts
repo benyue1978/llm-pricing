@@ -33,9 +33,51 @@ export interface PricingRegistry {
   models: PricingModel[];
 }
 
+export interface ProviderOpsStatus {
+  provider: string;
+  success: boolean;
+  mode: "live" | "fallback" | "failed" | "unknown";
+  model_count: number;
+  started_at: string;
+  finished_at: string;
+  checked_at: string;
+  duration_ms: number;
+  message: string | null;
+  messages: string[];
+  fail_reason: string | null;
+}
+
+export interface OpsRegistry {
+  updated_at: string;
+  summary: {
+    provider_count: number;
+    success_count: number;
+    failure_count: number;
+    live_count: number;
+    fallback_count: number;
+    model_count: number;
+  };
+  providers: ProviderOpsStatus[];
+}
+
 export function createEmptyRegistry(): PricingRegistry {
   return {
     updated_at: new Date(0).toISOString(),
     models: []
+  };
+}
+
+export function createEmptyOpsRegistry(): OpsRegistry {
+  return {
+    updated_at: new Date(0).toISOString(),
+    summary: {
+      provider_count: 0,
+      success_count: 0,
+      failure_count: 0,
+      live_count: 0,
+      fallback_count: 0,
+      model_count: 0
+    },
+    providers: []
   };
 }

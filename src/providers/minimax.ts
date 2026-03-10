@@ -1,41 +1,35 @@
 import { load } from "cheerio";
 import type { PricingModel } from "../schema.js";
-import { fetchHtml, parseUsdAmount } from "./utils.js";
+import {
+  createTextPricingModel,
+  fetchHtml,
+  fetchProviderPricing,
+  findTableByHeaders,
+  normalizeText,
+  parseUsdAmount
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const MINIMAX_PRICING_SOURCE = "https://platform.minimax.io/docs/guides/pricing-paygo";
 
 export async function fetchMinimaxPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchHtml(MINIMAX_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseMinimaxHtml(candidate).length > 0
-    });
-    const parsed = parseMinimaxHtml(html);
-    if (parsed.length > 0) {
-      logger(`live official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to current official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getMinimaxManualFallback().length} models)`);
-  return getMinimaxManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchHtml(MINIMAX_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseMinimaxHtml(candidate).length > 0
+      });
+      return parseMinimaxHtml(html);
+    },
+    getFallback: getMinimaxManualFallback
+  });
 }
 
 export function parseMinimaxHtml(html: string): PricingModel[] {
   const $ = load(html);
   const models: PricingModel[] = [];
   const seen = new Set<string>();
-  const table = $("table")
-    .filter((_, element) => {
-      const headers = $(element)
-        .find("th")
-        .toArray()
-        .map((cell) => normalizeText($(cell).text()).toLowerCase());
-      return headers.includes("model") && headers.includes("prompt caching read") && headers.includes("prompt caching write");
-    })
-    .first();
+  const table = findTableByHeaders($, ["model", "prompt caching read", "prompt caching write"]);
 
   table.find("tbody tr").each((_, row) => {
     const cells = $(row).find("td");
@@ -51,22 +45,17 @@ export function parseMinimaxHtml(html: string): PricingModel[] {
     }
 
     seen.add(model);
-    models.push({
+    models.push(createTextPricingModel({
       provider: "minimax",
       model,
-      type: "text",
-      input_price_per_million: input,
-      output_price_per_million: output,
+      input,
+      output,
       currency: "USD",
       source: MINIMAX_PRICING_SOURCE
-    });
+    }));
   });
 
   return models;
-}
-
-function normalizeText(value: string): string {
-  return value.replace(/\s+/g, " ").trim();
 }
 
 export function getMinimaxManualFallback(): PricingModel[] {

@@ -1,25 +1,25 @@
 import type { PricingModel } from "../schema.js";
-import { fetchHtml } from "./utils.js";
+import {
+  createTextPricingModel,
+  extractUsdAmounts,
+  fetchHtml,
+  fetchProviderPricing
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const MISTRAL_PRICING_SOURCE = "https://mistral.ai/pricing";
 
 export async function fetchMistralPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchHtml(MISTRAL_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseMistralHtml(candidate).length > 0
-    });
-    const parsed = parseMistralHtml(html);
-    if (parsed.length > 0) {
-      logger(`live official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to current official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getMistralManualFallback().length} models)`);
-  return getMistralManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchHtml(MISTRAL_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseMistralHtml(candidate).length > 0
+      });
+      return parseMistralHtml(html);
+    },
+    getFallback: getMistralManualFallback
+  });
 }
 
 export function parseMistralHtml(html: string): PricingModel[] {
@@ -40,24 +40,17 @@ export function parseMistralHtml(html: string): PricingModel[] {
     }
 
     seen.add(modelId);
-    models.push({
+    models.push(createTextPricingModel({
       provider: "mistral",
       model: modelId,
-      type: "text",
-      input_price_per_million: prices[0],
-      output_price_per_million: prices[1],
+      input: prices[0],
+      output: prices[1],
       currency: "USD",
       source: MISTRAL_PRICING_SOURCE
-    });
+    }));
   }
 
   return models;
-}
-
-function extractUsdAmounts(text: string): number[] {
-  return [...text.matchAll(/\$([0-9]+(?:\.[0-9]+)?)/g)]
-    .map((match) => Number.parseFloat(match[1]))
-    .filter((value) => Number.isFinite(value));
 }
 
 export function getMistralManualFallback(): PricingModel[] {

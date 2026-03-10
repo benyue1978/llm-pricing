@@ -3,8 +3,8 @@
 import { writeFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import process from "node:process";
-import { fetchAllProviders } from "../providers/index.js";
-import type { PricingModel, PricingRegistry } from "../schema.js";
+import { fetchAllProvidersDetailed } from "../providers/index.js";
+import type { OpsRegistry, PricingModel, PricingRegistry, ProviderOpsStatus } from "../schema.js";
 
 export type Logger = (message: string) => void;
 
@@ -12,31 +12,49 @@ export interface RunUpdateOptions {
   cwd?: string;
   logger?: Logger;
   fetchAll?: (logger: Logger) => Promise<PricingModel[]>;
+  fetchAllDetailed?: (logger: Logger) => Promise<{
+    models: PricingModel[];
+    providerStatuses: ProviderOpsStatus[];
+  }>;
 }
 
 export interface RunUpdateResult {
   registry: PricingRegistry;
+  opsRegistry: OpsRegistry;
   outputPath: string;
+  opsOutputPath: string;
 }
 
 export async function runUpdate(options: RunUpdateOptions = {}): Promise<RunUpdateResult> {
   const cwd = options.cwd ?? process.cwd();
   const logger = options.logger ?? console.log;
-  const fetchAll = options.fetchAll ?? fetchAllProviders;
-
-  const models = await fetchAll(logger);
+  const detailedResult = options.fetchAllDetailed
+    ? await options.fetchAllDetailed(logger)
+    : options.fetchAll
+      ? {
+        models: await options.fetchAll(logger),
+        providerStatuses: []
+      }
+      : await fetchAllProvidersDetailed(logger);
+  const models = detailedResult.models;
+  const updatedAt = new Date().toISOString();
   const registry: PricingRegistry = {
-    updated_at: new Date().toISOString(),
+    updated_at: updatedAt,
     models
   };
+  const opsRegistry = createOpsRegistry(updatedAt, detailedResult.providerStatuses, models.length);
 
   const outputPath = resolve(cwd, "data/pricing.json");
+  const opsOutputPath = resolve(cwd, "data/ops.json");
   const json = JSON.stringify(registry, null, 2) + "\n";
+  const opsJson = JSON.stringify(opsRegistry, null, 2) + "\n";
   await writeFile(outputPath, json, "utf8");
+  await writeFile(opsOutputPath, opsJson, "utf8");
 
   logger(`Updated data/pricing.json (${registry.models.length} models, updated_at=${registry.updated_at})`);
+  logger(`Updated data/ops.json (${opsRegistry.providers.length} providers, updated_at=${opsRegistry.updated_at})`);
 
-  return { registry, outputPath };
+  return { registry, opsRegistry, outputPath, opsOutputPath };
 }
 
 async function cmdPrint(cwd: string): Promise<void> {
@@ -96,3 +114,26 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   });
 }
 
+function createOpsRegistry(
+  updatedAt: string,
+  providerStatuses: ProviderOpsStatus[],
+  modelCount: number
+): OpsRegistry {
+  const successCount = providerStatuses.filter((status) => status.success).length;
+  const failureCount = providerStatuses.length - successCount;
+  const liveCount = providerStatuses.filter((status) => status.mode === "live").length;
+  const fallbackCount = providerStatuses.filter((status) => status.mode === "fallback").length;
+
+  return {
+    updated_at: updatedAt,
+    summary: {
+      provider_count: providerStatuses.length,
+      success_count: successCount,
+      failure_count: failureCount,
+      live_count: liveCount,
+      fallback_count: fallbackCount,
+      model_count: modelCount
+    },
+    providers: providerStatuses
+  };
+}

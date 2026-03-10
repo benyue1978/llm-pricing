@@ -1,27 +1,28 @@
 import { load, type Cheerio, type CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
-import { fetchHtml, parseUsdAmount } from "./utils.js";
+import {
+  createTextPricingModel,
+  fetchHtml,
+  fetchProviderPricing,
+  findNextTable,
+  parseUsdAmount
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const GOOGLE_PRICING_SOURCE = "https://ai.google.dev/gemini-api/docs/pricing";
 
 export async function fetchGooglePricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchHtml(GOOGLE_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0
-    });
-    const parsed = parseGoogleHtml(html);
-    if (parsed.length > 0) {
-      logger(`live official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getGoogleManualFallback().length} models)`);
-  return getGoogleManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchHtml(GOOGLE_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0
+      });
+      return parseGoogleHtml(html);
+    },
+    getFallback: getGoogleManualFallback
+  });
 }
 
 export function parseGoogleHtml(html: string): PricingModel[] {
@@ -51,15 +52,14 @@ export function parseGoogleHtml(html: string): PricingModel[] {
     }
 
     seen.add(modelId);
-    models.push({
+    models.push(createTextPricingModel({
       provider: "google",
       model: modelId,
-      type: "text",
-      input_price_per_million: input,
-      output_price_per_million: output,
+      input,
+      output,
       currency: "USD",
       source: GOOGLE_PRICING_SOURCE
-    });
+    }));
   });
 
   return models;
@@ -70,26 +70,9 @@ function findGooglePricingTable(
   heading: Cheerio<AnyNode>
 ): Cheerio<AnyNode> {
   const section = heading.closest(".models-section");
-  let current = section.length ? section.next() : heading.next();
-
-  while (current.length) {
-    if (current.hasClass("models-section") || current.find(".models-section").length) {
-      break;
-    }
-
-    if (current.is("table")) {
-      return current;
-    }
-
-    const nestedTable = current.find("table").first();
-    if (nestedTable.length) {
-      return nestedTable;
-    }
-
-    current = current.next();
-  }
-
-  return $("");
+  return findNextTable($, section.length ? section : heading, {
+    stopAt: (current) => current.hasClass("models-section") || current.find(".models-section").length > 0
+  });
 }
 
 export function getGoogleManualFallback(): PricingModel[] {

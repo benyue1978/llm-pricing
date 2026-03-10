@@ -1,27 +1,28 @@
 import { load } from "cheerio";
 import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
-import { fetchHtml } from "./utils.js";
+import {
+  createTextPricingModel,
+  extractUsdAmounts,
+  fetchHtml,
+  fetchProviderPricing,
+  normalizeText
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const QWEN_PRICING_SOURCE = "https://www.alibabacloud.com/help/en/model-studio/model-pricing";
 
 export async function fetchQwenPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchHtml(QWEN_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseQwenHtml(candidate).length > 0
-    });
-    const parsed = parseQwenHtml(html);
-    if (parsed.length > 0) {
-      logger(`live official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to current official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getQwenManualFallback().length} models)`);
-  return getQwenManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchHtml(QWEN_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseQwenHtml(candidate).length > 0
+      });
+      return parseQwenHtml(html);
+    },
+    getFallback: getQwenManualFallback
+  });
 }
 
 export function parseQwenHtml(html: string): PricingModel[] {
@@ -58,29 +59,18 @@ export function parseQwenHtml(html: string): PricingModel[] {
         }
 
         seen.add(modelId);
-        models.push({
+        models.push(createTextPricingModel({
           provider: "qwen",
           model: modelId,
-          type: "text",
-          input_price_per_million: prices[0],
-          output_price_per_million: prices[1],
+          input: prices[0],
+          output: prices[1],
           currency: "USD",
           source: QWEN_PRICING_SOURCE
-        });
+        }));
       });
   });
 
   return models;
-}
-
-function extractUsdAmounts(text: string): number[] {
-  return [...text.matchAll(/\$([0-9]+(?:\.[0-9]+)?)/g)]
-    .map((match) => Number.parseFloat(match[1]))
-    .filter((value) => Number.isFinite(value));
-}
-
-function normalizeText(value: string): string {
-  return value.replace(/\s+/g, " ").trim();
 }
 
 function getQwenRowModel($: ReturnType<typeof load>, element: AnyNode): string {

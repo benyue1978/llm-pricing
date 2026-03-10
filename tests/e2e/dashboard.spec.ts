@@ -47,4 +47,19 @@ test.describe("LLM Pricing Dashboard", () => {
     const ts = Date.parse(json.updated_at);
     expect(Number.isNaN(ts)).toBe(false);
   });
+
+  test("ops page renders provider status data from ops.json", async ({ page }) => {
+    const response = await page.request.get("/data/ops.json");
+    expect(response.ok()).toBe(true);
+
+    const json = await response.json();
+    expect(Array.isArray(json.providers)).toBe(true);
+    expect(json.providers.length).toBeGreaterThan(0);
+
+    await page.goto("/ops.html");
+    await page.waitForLoadState("networkidle");
+
+    await expect(page.getByRole("heading", { name: "Provider execution status" })).toBeVisible();
+    await expect(page.locator("tbody tr")).toHaveCount(json.providers.length);
+  });
 });

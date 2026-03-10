@@ -1,4 +1,4 @@
-import type { PricingModel } from "../schema.js";
+import type { PricingModel, ProviderOpsStatus } from "../schema.js";
 
 export type ProviderId =
   | "openai"
@@ -16,3 +16,7 @@ export type ProviderLogger = (message: string) => void;
 
 export type ProviderFetcher = (logger?: ProviderLogger) => Promise<PricingModel[]>;
 
+export interface FetchAllProvidersResult {
+  models: PricingModel[];
+  providerStatuses: ProviderOpsStatus[];
+}

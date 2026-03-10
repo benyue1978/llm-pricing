@@ -1,0 +1,148 @@
+{
+  "updated_at": "2026-03-10T02:44:54.988Z",
+  "summary": {
+    "provider_count": 9,
+    "success_count": 9,
+    "failure_count": 0,
+    "live_count": 9,
+    "fallback_count": 0,
+    "model_count": 288
+  },
+  "providers": [
+    {
+      "provider": "openai",
+      "success": true,
+      "mode": "live",
+      "model_count": 46,
+      "started_at": "2026-03-10T02:44:28.334Z",
+      "finished_at": "2026-03-10T02:44:30.568Z",
+      "checked_at": "2026-03-10T02:44:30.568Z",
+      "duration_ms": 2234,
+      "message": "live https://developers.openai.com/api/docs/pricing (46 models)",
+      "messages": [
+        "live https://developers.openai.com/api/docs/pricing (46 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "anthropic",
+      "success": true,
+      "mode": "live",
+      "model_count": 10,
+      "started_at": "2026-03-10T02:44:30.569Z",
+      "finished_at": "2026-03-10T02:44:35.160Z",
+      "checked_at": "2026-03-10T02:44:35.160Z",
+      "duration_ms": 4591,
+      "message": "live official pricing page (10 models)",
+      "messages": [
+        "live official pricing page (10 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "google",
+      "success": true,
+      "mode": "live",
+      "model_count": 17,
+      "started_at": "2026-03-10T02:44:35.160Z",
+      "finished_at": "2026-03-10T02:44:36.826Z",
+      "checked_at": "2026-03-10T02:44:36.826Z",
+      "duration_ms": 1666,
+      "message": "live official pricing page (17 models)",
+      "messages": [
+        "live official pricing page (17 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "mistral",
+      "success": true,
+      "mode": "live",
+      "model_count": 24,
+      "started_at": "2026-03-10T02:44:36.827Z",
+      "finished_at": "2026-03-10T02:44:38.026Z",
+      "checked_at": "2026-03-10T02:44:38.026Z",
+      "duration_ms": 1199,
+      "message": "live official pricing page (24 models)",
+      "messages": [
+        "live official pricing page (24 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "deepseek",
+      "success": true,
+      "mode": "live",
+      "model_count": 3,
+      "started_at": "2026-03-10T02:44:38.026Z",
+      "finished_at": "2026-03-10T02:44:38.146Z",
+      "checked_at": "2026-03-10T02:44:38.146Z",
+      "duration_ms": 120,
+      "message": "live official pricing page (3 models)",
+      "messages": [
+        "live official pricing page (3 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "qwen",
+      "success": true,
+      "mode": "live",
+      "model_count": 168,
+      "started_at": "2026-03-10T02:44:38.146Z",
+      "finished_at": "2026-03-10T02:44:42.560Z",
+      "checked_at": "2026-03-10T02:44:42.560Z",
+      "duration_ms": 4414,
+      "message": "live official pricing page (168 models)",
+      "messages": [
+        "live official pricing page (168 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "moonshot",
+      "success": true,
+      "mode": "live",
+      "model_count": 9,
+      "started_at": "2026-03-10T02:44:42.560Z",
+      "finished_at": "2026-03-10T02:44:49.954Z",
+      "checked_at": "2026-03-10T02:44:49.954Z",
+      "duration_ms": 7394,
+      "message": "live rendered official pricing page (9 models)",
+      "messages": [
+        "live rendered official pricing page (9 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "minimax",
+      "success": true,
+      "mode": "live",
+      "model_count": 6,
+      "started_at": "2026-03-10T02:44:49.954Z",
+      "finished_at": "2026-03-10T02:44:50.995Z",
+      "checked_at": "2026-03-10T02:44:50.995Z",
+      "duration_ms": 1041,
+      "message": "live official pricing page (6 models)",
+      "messages": [
+        "live official pricing page (6 models)"
+      ],
+      "fail_reason": null
+    },
+    {
+      "provider": "zhipu",
+      "success": true,
+      "mode": "live",
+      "model_count": 5,
+      "started_at": "2026-03-10T02:44:50.995Z",
+      "finished_at": "2026-03-10T02:44:54.988Z",
+      "checked_at": "2026-03-10T02:44:54.988Z",
+      "duration_ms": 3993,
+      "message": "live rendered official pricing page (5 models)",
+      "messages": [
+        "live rendered official pricing page (5 models)"
+      ],
+      "fail_reason": null
+    }
+  ]
+}

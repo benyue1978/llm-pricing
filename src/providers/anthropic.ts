@@ -1,46 +1,37 @@
 import { load } from "cheerio";
 import type { PricingModel } from "../schema.js";
-import { fetchHtml, parseUsdAmount } from "./utils.js";
+import {
+  createTextPricingModel,
+  fetchHtml,
+  fetchProviderPricing,
+  findTableByHeaders,
+  getCellTexts,
+  parseUsdAmount
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const ANTHROPIC_PRICING_SOURCE = "https://platform.claude.com/docs/en/about-claude/pricing";
 
 export async function fetchAnthropicPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchHtml(ANTHROPIC_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseAnthropicHtml(candidate).length > 0
-    });
-    const parsed = parseAnthropicHtml(html);
-    if (parsed.length > 0) {
-      logger(`live official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getAnthropicManualFallback().length} models)`);
-  return getAnthropicManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchHtml(ANTHROPIC_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseAnthropicHtml(candidate).length > 0
+      });
+      return parseAnthropicHtml(html);
+    },
+    getFallback: getAnthropicManualFallback
+  });
 }
 
 export function parseAnthropicHtml(html: string): PricingModel[] {
   const $ = load(html);
-  const table = $("table")
-    .filter((_, tableEl) => {
-      const headers = $(tableEl)
-        .find("th")
-        .toArray()
-        .map((el) => $(el).text().trim());
-      return headers.includes("Base Input Tokens") && headers.includes("Output Tokens");
-    })
-    .first();
+  const table = findTableByHeaders($, ["Base Input Tokens", "Output Tokens"]);
 
   const models: PricingModel[] = [];
   table.find("tbody tr").each((_, row) => {
-    const cells = $(row)
-      .find("td")
-      .toArray()
-      .map((cell) => $(cell).text().replace(/\s+/g, " ").trim());
+    const cells = getCellTexts($, row);
     const [displayName, inputRaw, , , , outputRaw] = cells;
     if (!displayName || displayName.includes("deprecated")) {
       return;
@@ -52,15 +43,14 @@ export function parseAnthropicHtml(html: string): PricingModel[] {
       return;
     }
 
-    models.push({
+    models.push(createTextPricingModel({
       provider: "anthropic",
       model: normalizeAnthropicModel(displayName),
-      type: "text",
-      input_price_per_million: input,
-      output_price_per_million: output,
+      input,
+      output,
       currency: "USD",
       source: ANTHROPIC_PRICING_SOURCE
-    });
+    }));
   });
 
   return models;

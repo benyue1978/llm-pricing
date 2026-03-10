@@ -1,26 +1,27 @@
 import { load } from "cheerio";
 import type { PricingModel } from "../schema.js";
-import { fetchHtml, parseUsdAmount } from "./utils.js";
+import {
+  createTextPricingModel,
+  fetchHtml,
+  fetchProviderPricing,
+  getCellTexts,
+  parseUsdAmount
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const DEEPSEEK_PRICING_SOURCE = "https://api-docs.deepseek.com/quick_start/pricing";
 
 export async function fetchDeepseekPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchHtml(DEEPSEEK_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseDeepseekHtml(candidate).length > 0
-    });
-    const parsed = parseDeepseekHtml(html);
-    if (parsed.length > 0) {
-      logger(`live official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getDeepseekManualFallback().length} models)`);
-  return getDeepseekManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchHtml(DEEPSEEK_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseDeepseekHtml(candidate).length > 0
+      });
+      return parseDeepseekHtml(html);
+    },
+    getFallback: getDeepseekManualFallback
+  });
 }
 
 export function parseDeepseekHtml(html: string): PricingModel[] {
@@ -33,12 +34,7 @@ export function parseDeepseekHtml(html: string): PricingModel[] {
   const pricingRows = table
     .find("tr")
     .toArray()
-    .map((row) =>
-      $(row)
-        .find("td")
-        .toArray()
-        .map((cell) => $(cell).text().replace(/\s+/g, " ").trim())
-    );
+    .map((row) => getCellTexts($, row));
 
   const cacheHitRow = pricingRows.find((row) => row.includes("1M INPUT TOKENS (CACHE HIT)"));
   const cacheMissRow = pricingRows.find((row) => row.includes("1M INPUT TOKENS (CACHE MISS)"));
@@ -55,33 +51,30 @@ export function parseDeepseekHtml(html: string): PricingModel[] {
   }
 
   return [
-    {
+    createTextPricingModel({
       provider: "deepseek",
       model: "deepseek-chat",
-      type: "text",
-      input_price_per_million: cacheMiss,
-      output_price_per_million: output,
+      input: cacheMiss,
+      output,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
-    },
-    {
+    }),
+    createTextPricingModel({
       provider: "deepseek",
       model: "deepseek-chat-cached",
-      type: "text",
-      input_price_per_million: Number.isFinite(cacheHit) ? cacheHit : cacheMiss,
-      output_price_per_million: output,
+      input: Number.isFinite(cacheHit) ? cacheHit : cacheMiss,
+      output,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
-    },
-    {
+    }),
+    createTextPricingModel({
       provider: "deepseek",
       model: "deepseek-reasoner",
-      type: "text",
-      input_price_per_million: cacheMiss,
-      output_price_per_million: output,
+      input: cacheMiss,
+      output,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
-    }
+    })
   ];
 }
 

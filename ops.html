@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LLM Pricing Ops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <main class="shell">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="page-switch" href="/">Pricing</a>
+        <a class="page-switch is-active" href="/ops.html">Ops</a>
+      </nav>
+
+      <section class="hero hero-ops">
+        <p class="eyebrow">Operational status</p>
+        <h1>Provider runs, not guesswork.</h1>
+        <p class="intro">
+          A direct view into the latest CLI update attempt: which providers ran live,
+          which fell back, how long they took, and why any of them failed.
+        </p>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span class="meta-label">Last ops sync</span>
+            <strong id="ops-updated-at">Loading ops data…</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Run summary</span>
+            <strong id="ops-run-summary">Preparing provider status…</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="ops-summary" class="stats-grid" aria-label="Ops summary"></section>
+
+      <div id="ops-error-banner" class="error-banner" role="alert" hidden></div>
+
+      <section class="panel table-panel ops-table-panel">
+        <div class="table-header">
+          <div>
+            <p class="table-kicker">Latest update attempt</p>
+            <h2>Provider execution status</h2>
+          </div>
+          <p class="table-note">Each row reflects the most recent provider run during CLI update.</p>
+        </div>
+
+        <div id="ops-empty-state" class="empty-state">Fetching provider run history…</div>
+        <div class="table-scroll">
+          <table id="ops-table" aria-label="Provider ops table"></table>
+        </div>
+      </section>
+    </main>
+    <script src="/ops.js" type="module"></script>
+  </body>
+</html>

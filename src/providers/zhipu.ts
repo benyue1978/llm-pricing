@@ -1,26 +1,28 @@
 import type { PricingModel } from "../schema.js";
 import { load } from "cheerio";
-import { fetchRenderedHtml, parseCnyAmount } from "./utils.js";
+import {
+  createTextPricingModel,
+  fetchProviderPricing,
+  fetchRenderedHtml,
+  normalizeText,
+  parseCnyAmount
+} from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
 const ZHIPU_PRICING_SOURCE = "https://open.bigmodel.cn/pricing";
 
 export async function fetchZhipuPricing(logger: ProviderLogger = () => {}): Promise<PricingModel[]> {
-  try {
-    const html = await fetchRenderedHtml(ZHIPU_PRICING_SOURCE, {
-      validateHtml: (candidate) => parseZhipuHtml(candidate).length > 0
-    });
-    const parsed = parseZhipuHtml(html);
-    if (parsed.length > 0) {
-      logger(`live rendered official pricing page (${parsed.length} models)`);
-      return parsed;
-    }
-  } catch {
-    // Fall back to current official values if scraping fails.
-  }
-
-  logger(`fallback manual values (${getZhipuManualFallback().length} models)`);
-  return getZhipuManualFallback();
+  return fetchProviderPricing({
+    logger,
+    fetchLive: async () => {
+      const html = await fetchRenderedHtml(ZHIPU_PRICING_SOURCE, {
+        validateHtml: (candidate) => parseZhipuHtml(candidate).length > 0
+      });
+      return parseZhipuHtml(html);
+    },
+    getFallback: getZhipuManualFallback,
+    describeLive: (models) => `live rendered official pricing page (${models.length} models)`
+  });
 }
 
 export function parseZhipuHtml(html: string): PricingModel[] {
@@ -58,23 +60,18 @@ export function parseZhipuHtml(html: string): PricingModel[] {
         }
 
         seen.add(rowModel);
-        models.push({
+        models.push(createTextPricingModel({
           provider: "zhipu",
           model: rowModel,
-          type: "text",
-          input_price_per_million: input,
-          output_price_per_million: output,
+          input,
+          output,
           currency: "CNY",
           source: ZHIPU_PRICING_SOURCE
-        });
+        }));
       });
   });
 
   return models;
-}
-
-function normalizeText(value: string): string {
-  return value.replace(/\s+/g, " ").trim();
 }
 
 function normalizeZhipuModel(value: string): string {

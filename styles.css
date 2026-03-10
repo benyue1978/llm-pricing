@@ -66,9 +66,49 @@ body {
   margin: 22px auto 40px;
 }
 
+.site-nav {
+  display: flex;
+  gap: 10px;
+  padding: 0 30px;
+}
+
+.page-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 251, 246, 0.72);
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.page-switch:hover {
+  transform: translateY(-1px);
+  color: var(--text);
+}
+
+.page-switch.is-active {
+  background: linear-gradient(135deg, #2f1d10, #4a2711);
+  border-color: transparent;
+  color: #fff6ef;
+}
+
 .hero {
   position: relative;
   padding: 28px 30px 18px;
+}
+
+.hero-ops h1 {
+  max-width: 720px;
 }
 
 .eyebrow,
@@ -326,7 +366,8 @@ tbody tr:hover {
 
 .provider-pill,
 .type-pill,
-.currency-pill {
+.currency-pill,
+.status-pill {
   display: inline-flex;
   align-items: center;
   min-height: 30px;
@@ -335,6 +376,31 @@ tbody tr:hover {
   border: 1px solid var(--line);
   background: rgba(255, 251, 246, 0.85);
   font-size: 0.84rem;
+}
+
+.status-pill {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.status-live {
+  background: rgba(26, 127, 55, 0.12);
+  color: #1f6a32;
+}
+
+.status-fallback {
+  background: rgba(199, 91, 18, 0.12);
+  color: #8f3d09;
+}
+
+.status-failed {
+  background: rgba(162, 32, 32, 0.12);
+  color: #8f1d1d;
+}
+
+.status-unknown {
+  background: rgba(74, 58, 42, 0.1);
+  color: var(--muted);
 }
 
 .model-cell {
@@ -362,6 +428,15 @@ tbody tr:hover {
   color: var(--muted);
 }
 
+.ops-table-panel table {
+  min-width: 1120px;
+}
+
+.ops-message {
+  min-width: 220px;
+  color: var(--muted);
+}
+
 @media (max-width: 840px) {
   .shell {
     width: min(100vw - 18px, 1240px);
@@ -372,6 +447,10 @@ tbody tr:hover {
   .panel {
     padding-left: 18px;
     padding-right: 18px;
+  }
+
+  .site-nav {
+    padding: 0 18px;
   }
 
   .table-header {
