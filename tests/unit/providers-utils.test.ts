@@ -1,15 +1,23 @@
 import { describe, expect, test, vi } from "vitest";
 import { load } from "cheerio";
 import {
+  extractAssignedArray,
+  extractBracketedValue,
   fetchProviderPricing,
   findNextTable,
+  findScriptSrc,
   findTableByHeaders,
+  getJsNumberProperty,
+  getJsStringArrayFirst,
+  getJsStringProperty,
   getCellTexts,
   normalizeText,
   extractUsdAmounts,
   parseCnyAmount,
   parseUsdAmount,
-  createTextPricingModel
+  createTextPricingModel,
+  splitTopLevelObjects,
+  extractConditionalAssignedArray
 } from "../../src/providers/utils.js";
 
 describe("providers/utils", () => {
@@ -59,6 +67,53 @@ describe("providers/utils", () => {
     expect(parseUsdAmount("$1.25 per 1M tokens")).toBe(1.25);
     expect(parseCnyAmount("¥18 / M Tokens")).toBe(18);
     expect(extractUsdAmounts("$0.30 text, $1.00 audio, $2.50 output")).toEqual([0.3, 1, 2.5]);
+  });
+
+  test("findScriptSrc resolves relative and protocol-relative script URLs", () => {
+    const html = `
+      <script src="//cdn.example.com/shared.js"></script>
+      <script src="/js/app.123.js"></script>
+    `;
+
+    expect(findScriptSrc(html, (src) => src.includes("shared"), "https://example.com/page")).toBe(
+      "https://cdn.example.com/shared.js"
+    );
+    expect(findScriptSrc(html, (src) => /\/js\/app\./.test(src), "https://example.com/page")).toBe(
+      "https://example.com/js/app.123.js"
+    );
+  });
+
+  test("extractBracketedValue preserves nested arrays and quoted brackets", () => {
+    const source = 'prefix modelList:[{name:"GLM-5",upDownText:["Input length [0, 32)"],inPrice:["¥4"]}] suffix';
+    const openIndex = source.indexOf("[");
+
+    expect(extractBracketedValue(source, openIndex, "[", "]")).toBe(
+      '[{name:"GLM-5",upDownText:["Input length [0, 32)"],inPrice:["¥4"]}]'
+    );
+  });
+
+  test("extractAssignedArray and extractConditionalAssignedArray read JS array literals", () => {
+    const source = 'let ev=[{model_id:"moonshot-v1-8k",prompt:.2}];let ez=ei.lJ?[{model_id:"kimi-k2.5",prompt:.6}]:[{model_id:"kimi-k2.5",prompt:4}]';
+
+    expect(extractAssignedArray(source, "ev=")).toBe('[{model_id:"moonshot-v1-8k",prompt:.2}]');
+    expect(extractConditionalAssignedArray(source, "ez=ei.lJ?", "truthy")).toBe(
+      '[{model_id:"kimi-k2.5",prompt:.6}]'
+    );
+    expect(extractConditionalAssignedArray(source, "ez=ei.lJ?", "falsy")).toBe(
+      '[{model_id:"kimi-k2.5",prompt:4}]'
+    );
+  });
+
+  test("splitTopLevelObjects and JS property readers parse minified object literals", () => {
+    const objects = splitTopLevelObjects(
+      '[{name:"GLM-5",inPrice:["¥4"],outPrice:["¥18"],prompt:.6},{name:"",inPrice:["¥6"],outPrice:["¥22"]}]'
+    );
+
+    expect(objects).toHaveLength(2);
+    expect(getJsStringProperty(objects[0], "name")).toBe("GLM-5");
+    expect(getJsStringArrayFirst(objects[0], "inPrice")).toBe("¥4");
+    expect(getJsStringArrayFirst(objects[0], "outPrice")).toBe("¥18");
+    expect(getJsNumberProperty('{model_id:"kimi-k2.5",prompt:.6,completion:3}', "prompt")).toBe(0.6);
   });
 
   test("createTextPricingModel builds a standard text pricing entry", () => {

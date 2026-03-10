@@ -1,15 +1,19 @@
 import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { getZhipuManualFallback, parseZhipuHtml } from "../../src/providers/zhipu.js";
-import { fetchRenderedHtml } from "../../src/providers/utils.js";
+import { fetchHtml, fetchText } from "../../src/providers/utils.js";
+import {
+  findZhipuAppScriptUrl,
+  getZhipuManualFallback,
+  parseZhipuAppScript
+} from "../../src/providers/zhipu.js";
 
 describe("providers/zhipu", () => {
-  test("parseZhipuHtml parses the official rendered pricing tables", async () => {
-    const fixturePath = resolve(__dirname, "../fixtures/zhipu-pricing.html");
-    const html = await readFile(fixturePath, "utf8");
+  test("parseZhipuAppScript parses the official app bundle pricing config", async () => {
+    const fixturePath = resolve(__dirname, "../fixtures/zhipu-app.js");
+    const script = await readFile(fixturePath, "utf8");
 
-    const models = parseZhipuHtml(html);
+    const models = parseZhipuAppScript(script);
 
     expect(models).toHaveLength(5);
     expect(models.find((model) => model.model === "GLM-5")).toMatchObject({
@@ -21,6 +25,7 @@ describe("providers/zhipu", () => {
       input_price_per_million: 0.8,
       output_price_per_million: 2
     });
+    expect(models.map((model) => model.model)).not.toContain("GLM-4.6V");
   });
 
   test("getZhipuManualFallback returns current official text models", () => {
@@ -30,11 +35,19 @@ describe("providers/zhipu", () => {
     expect(fallback.every((model) => model.currency === "CNY")).toBe(true);
   });
 
-  test("live rendered pricing page still parses expected sentinel models", async () => {
-    const html = await fetchRenderedHtml("https://open.bigmodel.cn/pricing", {
-      validateHtml: (candidate) => parseZhipuHtml(candidate).length > 0
+  test("live official app bundle still parses expected sentinel models", async () => {
+    const html = await fetchHtml("https://open.bigmodel.cn/pricing", {
+      validateHtml: (candidate) => Boolean(findZhipuAppScriptUrl(candidate))
     });
-    const models = parseZhipuHtml(html);
+    const appScriptUrl = findZhipuAppScriptUrl(html);
+
+    expect(appScriptUrl).toBeTruthy();
+
+    const script = await fetchText(appScriptUrl as string, {
+      accept: "application/javascript,text/javascript,*/*",
+      validateText: (candidate) => parseZhipuAppScript(candidate).length > 0
+    });
+    const models = parseZhipuAppScript(script);
 
     expect(models.length).toBeGreaterThanOrEqual(5);
     expect(models.map((model) => model.model)).toContain("GLM-5");
@@ -46,5 +59,5 @@ describe("providers/zhipu", () => {
       output_price_per_million: 18,
       currency: "CNY"
     });
-  }, 90000);
+  }, 30000);
 });

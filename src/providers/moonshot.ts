@@ -1,13 +1,15 @@
-import { load } from "cheerio";
-import type { AnyNode } from "domhandler";
 import type { PricingModel } from "../schema.js";
 import {
   createTextPricingModel,
+  extractAssignedArray,
+  extractConditionalAssignedArray,
+  fetchHtml,
   fetchProviderPricing,
-  fetchRenderedHtml,
-  findNextTable,
-  normalizeText,
-  parseUsdAmount
+  fetchText,
+  findScriptSrc,
+  getJsNumberProperty,
+  getJsStringProperty,
+  splitTopLevelObjects
 } from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
@@ -17,48 +19,48 @@ export async function fetchMoonshotPricing(logger: ProviderLogger = () => {}): P
   return fetchProviderPricing({
     logger,
     fetchLive: async () => {
-      const html = await fetchRenderedHtml(MOONSHOT_PRICING_SOURCE, {
-        validateHtml: (candidate) => parseMoonshotHtml(candidate).length > 0
+      const html = await fetchHtml(MOONSHOT_PRICING_SOURCE, {
+        validateHtml: (candidate) => candidate.includes("_app-") && candidate.includes("/_next/static/chunks/pages/")
       });
-      return parseMoonshotHtml(html);
+      const appScriptUrl = findMoonshotAppScriptUrl(html);
+      if (!appScriptUrl) {
+        throw new Error("Moonshot app script not found");
+      }
+
+      const appScript = await fetchText(appScriptUrl, {
+        accept: "application/javascript,text/javascript,*/*",
+        validateText: (candidate) => parseMoonshotAppScript(candidate).length > 0
+      });
+      return parseMoonshotAppScript(appScript);
     },
     getFallback: getMoonshotManualFallback,
-    describeLive: (models) => `live rendered official pricing page (${models.length} models)`
+    describeLive: (models) => `live official app bundle (${models.length} models)`
   });
 }
 
-export function parseMoonshotHtml(html: string): PricingModel[] {
-  const $ = load(html);
+export function parseMoonshotAppScript(script: string): PricingModel[] {
+  const modelArrays = [
+    extractAssignedArray(script, "ev="),
+    extractConditionalAssignedArray(script, "ez=ei.lJ?", "truthy"),
+    extractConditionalAssignedArray(script, "eE=ei.lJ?", "truthy")
+  ].filter((value): value is string => Boolean(value));
+
   const models: PricingModel[] = [];
   const seen = new Set<string>();
-  const headings = $("h3").toArray();
 
-  for (const heading of headings) {
-    const headingText = normalizeText($(heading).text()).toLowerCase();
-    if (!headingText.includes("kimi-k2.5") && !headingText.includes("kimi-k2") && !headingText.includes("moonshot-v1")) {
-      continue;
-    }
+  for (const arrayLiteral of modelArrays) {
+    for (const objectLiteral of splitTopLevelObjects(arrayLiteral)) {
+      const model = getJsStringProperty(objectLiteral, "model_id");
+      const input = getJsNumberProperty(objectLiteral, "prompt");
+      const output = getJsNumberProperty(objectLiteral, "completion");
+      const unit = getJsStringProperty(objectLiteral, "unit")?.toLowerCase() ?? "";
 
-    const table = findMoonshotPricingTable($, heading);
-    if (!table.length) {
-      continue;
-    }
-
-    table.find("tr").each((_, row) => {
-      const cells = $(row)
-        .find("td")
-        .toArray()
-        .map((cell) => normalizeText($(cell).text()));
-      const model = cells[0];
-      const unit = (cells[1] ?? "").toLowerCase();
-      if (!model || seen.has(model) || !unit.includes("1m tokens") || !shouldIncludeMoonshotModel(model)) {
-        return;
+      if (!model || seen.has(model) || !shouldIncludeMoonshotModel(model) || !unit.includes("1m tokens")) {
+        continue;
       }
 
-      const input = parseUsdAmount(cells[2]);
-      const output = cells.length >= 6 ? parseUsdAmount(cells[4]) : parseUsdAmount(cells[3]);
-      if (!Number.isFinite(input) || !Number.isFinite(output)) {
-        return;
+      if (input === null || output === null) {
+        continue;
       }
 
       seen.add(model);
@@ -70,14 +72,18 @@ export function parseMoonshotHtml(html: string): PricingModel[] {
         currency: "USD",
         source: MOONSHOT_PRICING_SOURCE
       }));
-    });
+    }
   }
 
   return models;
 }
 
-function findMoonshotPricingTable($: ReturnType<typeof load>, heading: AnyNode) {
-  return findNextTable($, $(heading));
+export function findMoonshotAppScriptUrl(html: string): string | null {
+  return findScriptSrc(
+    html,
+    (src) => src.includes("/_next/static/chunks/pages/_app-") && src.endsWith(".js"),
+    MOONSHOT_PRICING_SOURCE
+  );
 }
 
 function shouldIncludeMoonshotModel(model: string): boolean {
@@ -90,7 +96,7 @@ export function getMoonshotManualFallback(): PricingModel[] {
       provider: "moonshot",
       model: "kimi-k2.5",
       type: "text",
-      input_price_per_million: 0.1,
+      input_price_per_million: 0.6,
       output_price_per_million: 3,
       currency: "USD",
       source: MOONSHOT_PRICING_SOURCE
@@ -99,7 +105,16 @@ export function getMoonshotManualFallback(): PricingModel[] {
       provider: "moonshot",
       model: "kimi-k2-0905-preview",
       type: "text",
-      input_price_per_million: 0.15,
+      input_price_per_million: 0.6,
+      output_price_per_million: 2.5,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "kimi-k2-0711-preview",
+      type: "text",
+      input_price_per_million: 0.6,
       output_price_per_million: 2.5,
       currency: "USD",
       source: MOONSHOT_PRICING_SOURCE
@@ -108,7 +123,25 @@ export function getMoonshotManualFallback(): PricingModel[] {
       provider: "moonshot",
       model: "kimi-k2-turbo-preview",
       type: "text",
-      input_price_per_million: 0.15,
+      input_price_per_million: 1.15,
+      output_price_per_million: 8,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "kimi-k2-thinking",
+      type: "text",
+      input_price_per_million: 0.6,
+      output_price_per_million: 2.5,
+      currency: "USD",
+      source: MOONSHOT_PRICING_SOURCE
+    },
+    {
+      provider: "moonshot",
+      model: "kimi-k2-thinking-turbo",
+      type: "text",
+      input_price_per_million: 1.15,
       output_price_per_million: 8,
       currency: "USD",
       source: MOONSHOT_PRICING_SOURCE

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-10T04:19:47.338Z",
+  "updated_at": "2026-03-10T04:57:24.127Z",
   "models": [
     {
       "provider": "openai",
@@ -2415,60 +2415,6 @@
     },
     {
       "provider": "moonshot",
-      "model": "kimi-k2.5",
-      "type": "text",
-      "input_price_per_million": 0.1,
-      "output_price_per_million": 3,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-k2-0905-preview",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 2.5,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-k2-0711-preview",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 2.5,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-k2-turbo-previewRecommended",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 8,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-k2-thinking",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 2.5,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-k2-thinking-turbo",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 8,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
       "model": "moonshot-v1-8k",
       "type": "text",
       "input_price_per_million": 0.2,
@@ -2491,6 +2437,60 @@
       "type": "text",
       "input_price_per_million": 2,
       "output_price_per_million": 5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-0905-preview",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-0711-preview",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-turbo-preview",
+      "type": "text",
+      "input_price_per_million": 1.15,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-thinking",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 2.5,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2-thinking-turbo",
+      "type": "text",
+      "input_price_per_million": 1.15,
+      "output_price_per_million": 8,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-k2.5",
+      "type": "text",
+      "input_price_per_million": 0.6,
+      "output_price_per_million": 3,
       "currency": "USD",
       "source": "https://platform.moonshot.ai/docs/pricing/chat"
     },

@@ -1,11 +1,16 @@
 import type { PricingModel } from "../schema.js";
-import { load } from "cheerio";
 import {
   createTextPricingModel,
+  extractBracketedValue,
+  fetchHtml,
   fetchProviderPricing,
-  fetchRenderedHtml,
+  fetchText,
+  findScriptSrc,
+  getJsStringArrayFirst,
+  getJsStringProperty,
   normalizeText,
-  parseCnyAmount
+  parseCnyAmount,
+  splitTopLevelObjects
 } from "./utils.js";
 import type { ProviderLogger } from "./types.js";
 
@@ -15,68 +20,92 @@ export async function fetchZhipuPricing(logger: ProviderLogger = () => {}): Prom
   return fetchProviderPricing({
     logger,
     fetchLive: async () => {
-      const html = await fetchRenderedHtml(ZHIPU_PRICING_SOURCE, {
-        validateHtml: (candidate) => parseZhipuHtml(candidate).length > 0
+      const html = await fetchHtml(ZHIPU_PRICING_SOURCE, {
+        validateHtml: (candidate) => candidate.includes("/js/app.") && candidate.includes("chunk-vendors")
       });
-      return parseZhipuHtml(html);
+      const appScriptUrl = findZhipuAppScriptUrl(html);
+      if (!appScriptUrl) {
+        throw new Error("Zhipu app script not found");
+      }
+
+      const appScript = await fetchText(appScriptUrl, {
+        accept: "application/javascript,text/javascript,*/*",
+        validateText: (candidate) => parseZhipuAppScript(candidate).length > 0
+      });
+      return parseZhipuAppScript(appScript);
     },
     getFallback: getZhipuManualFallback,
-    describeLive: (models) => `live rendered official pricing page (${models.length} models)`
+    describeLive: (models) => `live official app bundle (${models.length} models)`
   });
 }
 
-export function parseZhipuHtml(html: string): PricingModel[] {
-  const $ = load(html);
+export function parseZhipuAppScript(script: string): PricingModel[] {
+  const textModelArray = extractZhipuTextModelArray(script);
+  if (!textModelArray) {
+    return [];
+  }
+
   const models: PricingModel[] = [];
   const seen = new Set<string>();
+  let currentModel = "";
 
-  $("div.model-price-item-bottom.langue_model table.el-table__body tbody").each((_, tbody) => {
-    let currentModel = "";
+  for (const objectLiteral of splitTopLevelObjects(textModelArray)) {
+    const name = normalizeZhipuModel(getJsStringProperty(objectLiteral, "name") ?? "");
+    const rowModel = name || currentModel;
+    if (name) {
+      currentModel = name;
+    }
 
-    $(tbody)
-      .find("tr")
-      .each((_, row) => {
-        const cells = $(row).find("td");
-        if (!cells.length) {
-          return;
-        }
+    if (!rowModel || seen.has(rowModel) || !shouldIncludeZhipuModel(rowModel)) {
+      continue;
+    }
 
-        const firstCellText = normalizeZhipuModel(cells.eq(0).text());
-        const rowModel = cells.length >= 6 ? firstCellText : currentModel;
-        if (cells.length >= 6) {
-          currentModel = rowModel;
-        }
+    const input = parseCnyAmount(getJsStringArrayFirst(objectLiteral, "inPrice") ?? undefined);
+    const output = parseCnyAmount(getJsStringArrayFirst(objectLiteral, "outPrice") ?? undefined);
+    if (!Number.isFinite(input) || !Number.isFinite(output)) {
+      continue;
+    }
 
-        if (!rowModel || seen.has(rowModel) || !shouldIncludeZhipuModel(rowModel)) {
-          return;
-        }
-
-        const inputIndex = cells.length >= 6 ? 2 : 1;
-        const outputIndex = cells.length >= 6 ? 3 : 2;
-        const input = parseCnyAmount(cells.eq(inputIndex).text());
-        const output = parseCnyAmount(cells.eq(outputIndex).text());
-        if (!Number.isFinite(input) || !Number.isFinite(output)) {
-          return;
-        }
-
-        seen.add(rowModel);
-        models.push(createTextPricingModel({
-          provider: "zhipu",
-          model: rowModel,
-          input,
-          output,
-          currency: "CNY",
-          source: ZHIPU_PRICING_SOURCE
-        }));
-      });
-  });
+    seen.add(rowModel);
+    models.push(createTextPricingModel({
+      provider: "zhipu",
+      model: rowModel,
+      input,
+      output,
+      currency: "CNY",
+      source: ZHIPU_PRICING_SOURCE
+    }));
+  }
 
   return models;
 }
 
+export function findZhipuAppScriptUrl(html: string): string | null {
+  return findScriptSrc(
+    html,
+    (src) => /\/js\/app\.[^/]+\.js$/.test(src),
+    ZHIPU_PRICING_SOURCE
+  );
+}
+
+function extractZhipuTextModelArray(script: string): string | null {
+  const sectionIndex = script.indexOf('modelName:"Text model"');
+  if (sectionIndex < 0) {
+    return null;
+  }
+
+  const modelListIndex = script.indexOf("modelList:[", sectionIndex);
+  if (modelListIndex < 0) {
+    return null;
+  }
+
+  const openIndex = script.indexOf("[", modelListIndex);
+  return extractBracketedValue(script, openIndex, "[", "]");
+}
+
 function normalizeZhipuModel(value: string): string {
   return normalizeText(value)
-    .replace(/\s+(?:new|coming soon)$/i, "")
+    .replace(/\s+(?:new|coming soon|limited-time.*)$/i, "")
     .trim();
 }
 

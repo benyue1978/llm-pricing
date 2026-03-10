@@ -15,6 +15,11 @@ export interface FetchHtmlOptions {
   validateHtml?: (html: string) => boolean;
 }
 
+export interface FetchTextOptions {
+  accept?: string;
+  validateText?: (text: string) => boolean;
+}
+
 export interface FetchJsonOptions<T> {
   validateJson?: (data: T) => boolean;
 }
@@ -50,13 +55,21 @@ export async function fetchProviderPricing({
 }
 
 export async function fetchHtml(url: string, options: FetchHtmlOptions = {}): Promise<string> {
-  const validateHtml = options.validateHtml ?? (() => true);
+  return fetchText(url, {
+    accept: "text/html,application/xhtml+xml",
+    validateText: options.validateHtml
+  });
+}
+
+export async function fetchText(url: string, options: FetchTextOptions = {}): Promise<string> {
+  const accept = options.accept ?? "text/plain,*/*";
+  const validateText = options.validateText ?? (() => true);
 
   try {
     const response = await fetch(url, {
       headers: {
         "user-agent": DEFAULT_USER_AGENT,
-        accept: "text/html,application/xhtml+xml"
+        accept
       }
     });
 
@@ -64,15 +77,15 @@ export async function fetchHtml(url: string, options: FetchHtmlOptions = {}): Pr
       throw new Error(`HTTP ${response.status}`);
     }
 
-    const html = await response.text();
-    if (html.trim() && validateHtml(html)) {
-      return html;
+    const text = await response.text();
+    if (text.trim() && validateText(text)) {
+      return text;
     }
   } catch {
     // Fall back to curl for sites that block or timeout plain Node fetches.
   }
 
-  const outputPath = join(tmpdir(), `llm-pricing-${randomUUID()}.html`);
+  const outputPath = join(tmpdir(), `llm-pricing-${randomUUID()}.txt`);
   try {
     await execFileAsync("/usr/bin/curl", [
       "--http1.1",
@@ -85,13 +98,15 @@ export async function fetchHtml(url: string, options: FetchHtmlOptions = {}): Pr
       "--retry-all-errors",
       "-A",
       DEFAULT_USER_AGENT,
+      "-H",
+      `Accept: ${accept}`,
       "-o",
       outputPath,
       url
     ]);
     const stdout = await readFile(outputPath, "utf8");
 
-    if (stdout.trim() && validateHtml(stdout)) {
+    if (stdout.trim() && validateText(stdout)) {
       return stdout;
     }
 
