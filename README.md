@@ -504,6 +504,12 @@ That makes the repo suitable for:
 - Cloudflare Pages
 - any other static host that can serve the repo root
 
+Important deployment note:
+
+- data generation happens in GitHub Actions, not in the Vercel build
+- Vercel should only run `npm run build` and serve the committed `data/*.json` artifacts
+- this avoids provider-specific network differences between local, CI, and hosting environments
+
 ## Adding a provider
 
 At a high level:
