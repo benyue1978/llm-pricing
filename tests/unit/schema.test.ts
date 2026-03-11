@@ -1,5 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { createEmptyCurrencyRateRegistry, createEmptyOpsRegistry, createEmptyRegistry } from "../../src/schema.js";
+import {
+  createEmptyBenchmarkRegistry,
+  createEmptyCurrencyRateRegistry,
+  createEmptyModelCatalogRegistry,
+  createEmptyOpsRegistry,
+  createEmptyRegistry
+} from "../../src/schema.js";
 
 describe("schema", () => {
   test("createEmptyRegistry returns an empty registry with epoch timestamp", () => {
@@ -27,5 +33,20 @@ describe("schema", () => {
     expect(registry.updated_at).toBe("1970-01-01T00:00:00.000Z");
     expect(registry.base_currency).toBe("EUR");
     expect(registry.rates).toEqual({});
+  });
+
+  test("createEmptyModelCatalogRegistry returns an empty metadata registry", () => {
+    const registry = createEmptyModelCatalogRegistry();
+    expect(registry.updated_at).toBe("1970-01-01T00:00:00.000Z");
+    expect(registry.sources).toEqual([]);
+    expect(registry.models).toEqual([]);
+  });
+
+  test("createEmptyBenchmarkRegistry returns an empty benchmark registry", () => {
+    const registry = createEmptyBenchmarkRegistry();
+    expect(registry.updated_at).toBe("1970-01-01T00:00:00.000Z");
+    expect(registry.sources).toEqual([]);
+    expect(registry.benchmarks).toEqual([]);
+    expect(registry.results).toEqual([]);
   });
 });

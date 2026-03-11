@@ -39,6 +39,8 @@ If you compare model costs across OpenAI, Anthropic, Google, Qwen, Moonshot, Zhi
 - A unified pricing registry in [`data/pricing.json`](/Users/song.yue/git/llm-pricing/data/pricing.json).
 - An ops registry in [`data/ops.json`](/Users/song.yue/git/llm-pricing/data/ops.json) with provider run status, timestamps, durations, success/fallback/failure mode, and failure reason.
 - A currency registry in [`data/currency_rate.json`](/Users/song.yue/git/llm-pricing/data/currency_rate.json), sourced from the European Central Bank daily reference feed.
+- A model metadata registry in [`data/models.json`](/Users/song.yue/git/llm-pricing/data/models.json) for comparison buckets, access type, openness, lifecycle, and metadata sources.
+- A benchmark registry in [`data/benchmarks.json`](/Users/song.yue/git/llm-pricing/data/benchmarks.json) for trusted benchmark definitions plus live benchmark scores from official leaderboards.
 - A root-hosted static pricing dashboard in [`index.html`](/Users/song.yue/git/llm-pricing/index.html).
 - A root-hosted ops dashboard in [`ops.html`](/Users/song.yue/git/llm-pricing/ops.html).
 - A test suite that covers live fetches, parser drift, CLI output generation, and browser behavior.
@@ -73,6 +75,8 @@ This project intentionally keeps the moving parts small:
   - shared fetch, HTML, number parsing, and pricing helpers
 - `src/fx.ts`
   - fetches and parses official currency rates
+- `src/catalog.ts`
+  - builds source-backed model metadata and benchmark registries
 - `data/`
   - generated JSON artifacts committed to the repo
 - root static files
@@ -138,6 +142,8 @@ What it does:
   - `data/pricing.json`
   - `data/ops.json`
   - `data/currency_rate.json`
+  - `data/models.json`
+  - `data/benchmarks.json`
 
 Typical output looks like:
 
@@ -150,6 +156,8 @@ anthropic: live official pricing page (10 models)
 Updated data/pricing.json (288 models, updated_at=2026-03-10T04:19:47.338Z)
 Updated data/ops.json (9 providers, updated_at=2026-03-10T04:19:47.338Z)
 Updated data/currency_rate.json (30 currencies, updated_at=2026-03-09T00:00:00.000Z)
+Updated data/models.json (288 models, updated_at=2026-03-10T04:19:47.338Z)
+Updated data/benchmarks.json (5 benchmark definitions, updated_at=2026-03-10T13:32:14.298Z)
 ```
 
 ### `print`
@@ -263,6 +271,106 @@ Why ECB:
 - simple XML feed
 - enough coverage for the currencies currently used by this repo
 
+### `data/models.json`
+
+Source-backed model metadata for comparison-safe grouping:
+
+```json
+{
+  "updated_at": "2026-03-10T04:19:47.338Z",
+  "sources": [
+    {
+      "id": "openai-models-docs",
+      "name": "OpenAI models documentation",
+      "kind": "provider_docs",
+      "url": "https://platform.openai.com/docs/models",
+      "official": true,
+      "scope": "metadata"
+    }
+  ],
+  "models": [
+    {
+      "provider": "openai",
+      "model": "gpt-4.1-mini",
+      "family": "gpt-4.1",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": ["text"],
+      "comparison_buckets": ["low-cost", "text-models"],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.openai.com/docs/models",
+      "metadata_source_ids": ["openai-models-docs", "huggingface-model-cards"],
+      "pricing_source_url": "https://platform.openai.com/pricing",
+      "benchmark_ids": ["livebench_overall"],
+      "notes": [
+        "Do not compare this model globally by price alone."
+      ]
+    }
+  ]
+}
+```
+
+This file is meant to power:
+
+- bucketed model comparisons
+- metadata filters
+- future context/license/openness views
+
+### `data/benchmarks.json`
+
+Trusted benchmark definitions plus live score matches for price-efficiency analysis:
+
+```json
+{
+  "updated_at": "2026-03-10T04:19:47.338Z",
+  "sources": [
+    {
+      "id": "swe-bench-official",
+      "name": "SWE-bench official leaderboard",
+      "kind": "benchmark_official",
+      "url": "https://www.swebench.com/",
+      "official": true,
+      "scope": "benchmark"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "livebench_overall",
+      "name": "LiveBench Overall",
+      "category": "general",
+      "metric_name": "mean task score",
+      "score_direction": "higher_is_better",
+      "source_url": "https://livebench.ai/",
+      "suitable_for_normalized_price": true
+    }
+  ],
+  "results": [
+    {
+      "provider": "openai",
+      "model": "gpt-5.1-codex",
+      "benchmark_id": "livebench_overall",
+      "score": 72.14,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "notes": null
+    }
+  ]
+}
+```
+
+Current benchmark coverage includes:
+
+- `livebench_overall`
+- `livebench_coding`
+- `livebench_agentic_coding`
+- `livecodebench_pass1`
+- `swe_bench_bash_only`
+
 ## Web app
 
 The site is fully static and root-hosted.
@@ -280,12 +388,33 @@ Features:
 - search by provider, model, type, currency, or source
 - provider filter
 - type filter
+- bucket filter for comparison-safe cohorts such as `frontier`, `reasoning`, `low-cost`, and `agentic-coding`
+- specialized preset views for:
+  - general value
+  - frontier value
+  - coding value
+  - agentic coding
+  - strict code eval
+  - strict agent eval
 - sorting by provider, model, type, native currency, input price, or output price
+- benchmark-aware sorting by:
+  - benchmark score
+  - input price per benchmark point
+  - output price per benchmark point
+- benchmark traceability panel with:
+  - official leaderboard link
+  - methodology link
+  - benchmark metric description
+  - visible source-row coverage summary
 - display currency conversion:
   - select `USD` to convert all visible prices to USD
   - select `CNY` to convert all visible prices to CNY
 - converted price sorting using `currency_rate.json`
 - native currency still shown explicitly in the table for transparency
+- benchmark-specific comparison modes backed by official sources:
+  - LiveBench for broad capability
+  - LiveCodeBench for coding
+  - SWE-bench bash-only for agentic coding
 
 ### Ops page
 
@@ -304,6 +433,25 @@ Features:
 - last checked timestamp
 - final status message
 - failure reason, if any
+
+### Model detail page
+
+Files:
+
+- [`model.html`](/Users/song.yue/git/llm-pricing/model.html)
+- [`model.js`](/Users/song.yue/git/llm-pricing/model.js)
+
+Features:
+
+- per-model native and FX-converted pricing
+- comparison buckets and metadata context
+- benchmark cards with:
+  - score
+  - evaluation date
+  - exact matched benchmark row names
+  - official source link
+  - methodology link
+- provider ops status from `ops.json`
 
 ## Testing
 

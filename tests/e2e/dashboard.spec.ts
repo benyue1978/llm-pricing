@@ -5,16 +5,23 @@ test.describe("LLM Pricing Dashboard", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    const [pricingResponse, currencyRateResponse] = await Promise.all([
+    const [pricingResponse, currencyRateResponse, modelsResponse, benchmarksResponse] = await Promise.all([
       page.request.get("/data/pricing.json"),
-      page.request.get("/data/currency_rate.json")
+      page.request.get("/data/currency_rate.json"),
+      page.request.get("/data/models.json"),
+      page.request.get("/data/benchmarks.json")
     ]);
     expect(pricingResponse.ok()).toBe(true);
     expect(currencyRateResponse.ok()).toBe(true);
+    expect(modelsResponse.ok()).toBe(true);
+    expect(benchmarksResponse.ok()).toBe(true);
 
     const json = await pricingResponse.json();
+    const benchmarks = await benchmarksResponse.json();
     expect(Array.isArray(json.models)).toBe(true);
     expect(json.models.length).toBeGreaterThan(0);
+    expect(Array.isArray(benchmarks.results)).toBe(true);
+    expect(benchmarks.results.length).toBeGreaterThan(0);
 
     const providers = new Set(json.models.map((m: any) => m.provider));
     expect(providers.has("openai")).toBe(true);
@@ -33,18 +40,59 @@ test.describe("LLM Pricing Dashboard", () => {
     expect(modelTexts.length).toBeGreaterThan(0);
     expect(modelTexts.every((text) => text.toLowerCase().includes("gpt-4.1"))).toBe(true);
 
-    const firstPriceBefore = await page.locator("tbody tr td:nth-child(5)").first().textContent();
+    const firstPriceBefore = await page.locator('tbody tr td[data-label="Input"]').first().textContent();
     await page.locator("#currency-filter").selectOption("CNY");
-    const firstPriceAfter = await page.locator("tbody tr td:nth-child(5)").first().textContent();
+    const firstPriceAfter = await page.locator('tbody tr td[data-label="Input"]').first().textContent();
     expect(firstPriceAfter).toContain("CNY");
     expect(firstPriceAfter).not.toBe(firstPriceBefore);
 
     await page.locator("#sort-field").selectOption("input_price_per_million");
     await page.getByRole("button", { name: "Sort: ascending" }).click();
 
-    const inputPrices = await page.locator("tbody tr td:nth-child(5)").allTextContents();
+    const inputPrices = await page.locator('tbody tr td[data-label="Input"]').allTextContents();
     expect(inputPrices.length).toBeGreaterThan(1);
     expect(inputPrices[0]).not.toBe(inputPrices[inputPrices.length - 1]);
+
+    await page.locator("#reset-filters").click();
+    await page.locator("#comparison-view").selectOption("livebench_overall");
+    await expect(page.locator("thead")).toContainText("Score");
+    await expect(page.locator("#benchmark-panel")).toBeVisible();
+    await expect(page.locator("#benchmark-panel")).toContainText("LiveBench Overall");
+    await expect(page.locator("#benchmark-source-link")).toHaveAttribute("href", /livebench\.ai/);
+    const scoreTexts = await page.locator("tbody tr td").allTextContents();
+    expect(scoreTexts.some((text) => /\d/.test(text))).toBe(true);
+
+    await page.locator("#sort-field").selectOption("input_price_per_score");
+    const efficiencyCell = await page.locator('tbody tr td[data-label="Input / score"]').first().textContent();
+    expect(efficiencyCell).toContain("/ pt");
+
+    await page.getByRole("button", { name: /Coding value/i }).click();
+    await expect(page.locator("#comparison-view")).toHaveValue("livebench_coding");
+    await expect(page.locator("#bucket-filter")).toHaveValue("all");
+    await expect(page.locator("#sort-field")).toHaveValue("input_price_per_score");
+    await expect(page.locator(".preset-card.is-active")).toContainText("Coding value");
+    await expect(page).toHaveURL(/view=livebench_coding/);
+    await expect(page).toHaveURL(/sort=input_price_per_score/);
+
+    const statefulUrl = page.url();
+    await page.goto(statefulUrl);
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator("#comparison-view")).toHaveValue("livebench_coding");
+    await expect(page.locator("#sort-field")).toHaveValue("input_price_per_score");
+
+    await page.locator("#search-input").fill("gpt-5.1-codex");
+    await expect(page).toHaveURL(/q=gpt-5\.1-codex/);
+    const detailHref = await page.locator("tbody tr td[data-label='Model'] a").first().getAttribute("href");
+    expect(detailHref).toContain("/model.html#");
+    const traceHref = await page.locator("tbody tr td[data-label='Score'] a", { hasText: "Trace" }).first().getAttribute("href");
+    expect(traceHref).toContain("section=benchmark-trace");
+    await page.locator("tbody tr td[data-label='Score'] a", { hasText: "Trace" }).first().click();
+    await page.waitForLoadState("networkidle");
+    await expect(page.locator("#benchmark-trace")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Where each score comes from" })).toBeVisible();
+    await expect(page.locator("#benchmark-cards")).toContainText("Methodology");
+    await expect(page.locator("#source-grid")).toContainText("Open pricing source");
+    await expect(page.locator("#source-grid .detail-url")).toHaveCount(2);
   });
 
   test("pricing.json contains a recent updated_at timestamp", async ({ page }) => {

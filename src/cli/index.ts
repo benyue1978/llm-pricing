@@ -3,10 +3,14 @@
 import { writeFile, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import process from "node:process";
+import { buildModelCatalogRegistry } from "../catalog.js";
+import { fetchBenchmarkRegistry } from "../benchmarks.js";
 import { fetchAllProvidersDetailed } from "../providers/index.js";
 import { fetchCurrencyRateRegistry } from "../fx.js";
 import type {
+  BenchmarkRegistry,
   CurrencyRateRegistry,
+  ModelCatalogRegistry,
   OpsRegistry,
   PricingModel,
   PricingRegistry,
@@ -24,15 +28,20 @@ export interface RunUpdateOptions {
     providerStatuses: ProviderOpsStatus[];
   }>;
   fetchCurrencyRates?: () => Promise<CurrencyRateRegistry>;
+  fetchBenchmarks?: (models: PricingModel[], updatedAt: string) => Promise<BenchmarkRegistry>;
 }
 
 export interface RunUpdateResult {
   registry: PricingRegistry;
   opsRegistry: OpsRegistry;
   currencyRateRegistry: CurrencyRateRegistry;
+  modelCatalogRegistry: ModelCatalogRegistry;
+  benchmarkRegistry: BenchmarkRegistry;
   outputPath: string;
   opsOutputPath: string;
   currencyRateOutputPath: string;
+  modelCatalogOutputPath: string;
+  benchmarkOutputPath: string;
 }
 
 export async function runUpdate(options: RunUpdateOptions = {}): Promise<RunUpdateResult> {
@@ -54,30 +63,46 @@ export async function runUpdate(options: RunUpdateOptions = {}): Promise<RunUpda
     models
   };
   const opsRegistry = createOpsRegistry(updatedAt, detailedResult.providerStatuses, models.length);
+  const modelCatalogRegistry = buildModelCatalogRegistry(updatedAt, models);
+  const benchmarkRegistry = await (options.fetchBenchmarks ?? fetchBenchmarkRegistry)(models, updatedAt);
 
   const outputPath = resolve(cwd, "data/pricing.json");
   const opsOutputPath = resolve(cwd, "data/ops.json");
   const currencyRateOutputPath = resolve(cwd, "data/currency_rate.json");
+  const modelCatalogOutputPath = resolve(cwd, "data/models.json");
+  const benchmarkOutputPath = resolve(cwd, "data/benchmarks.json");
   const json = JSON.stringify(registry, null, 2) + "\n";
   const opsJson = JSON.stringify(opsRegistry, null, 2) + "\n";
   const currencyRateJson = JSON.stringify(currencyRateRegistry, null, 2) + "\n";
+  const modelCatalogJson = JSON.stringify(modelCatalogRegistry, null, 2) + "\n";
+  const benchmarkJson = JSON.stringify(benchmarkRegistry, null, 2) + "\n";
   await writeFile(outputPath, json, "utf8");
   await writeFile(opsOutputPath, opsJson, "utf8");
   await writeFile(currencyRateOutputPath, currencyRateJson, "utf8");
+  await writeFile(modelCatalogOutputPath, modelCatalogJson, "utf8");
+  await writeFile(benchmarkOutputPath, benchmarkJson, "utf8");
 
   logger(`Updated data/pricing.json (${registry.models.length} models, updated_at=${registry.updated_at})`);
   logger(`Updated data/ops.json (${opsRegistry.providers.length} providers, updated_at=${opsRegistry.updated_at})`);
   logger(
     `Updated data/currency_rate.json (${Object.keys(currencyRateRegistry.rates).length} currencies, updated_at=${currencyRateRegistry.updated_at})`
   );
+  logger(`Updated data/models.json (${modelCatalogRegistry.models.length} models, updated_at=${modelCatalogRegistry.updated_at})`);
+  logger(
+    `Updated data/benchmarks.json (${benchmarkRegistry.benchmarks.length} benchmark definitions, updated_at=${benchmarkRegistry.updated_at})`
+  );
 
   return {
     registry,
     opsRegistry,
     currencyRateRegistry,
+    modelCatalogRegistry,
+    benchmarkRegistry,
     outputPath,
     opsOutputPath,
-    currencyRateOutputPath
+    currencyRateOutputPath,
+    modelCatalogOutputPath,
+    benchmarkOutputPath
   };
 }
 

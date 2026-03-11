@@ -42,16 +42,25 @@
       </section>
 
       <section class="panel controls-panel" aria-label="Search and filters">
-        <div class="search-wrap">
-          <label class="field field-search">
-            <span>Search</span>
-            <input
-              id="search-input"
-              type="search"
-              placeholder="Model, provider, source URL…"
-              autocomplete="off"
-            />
-          </label>
+        <div class="controls-hero">
+          <div class="search-wrap">
+            <label class="field field-search">
+              <span>Search</span>
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Model, provider, source URL…"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="controls-footer">
+            <button id="sort-direction" class="toggle-button" type="button" aria-pressed="false">
+              Sort: ascending
+            </button>
+            <button id="reset-filters" class="ghost-button" type="button">Reset filters</button>
+          </div>
         </div>
 
         <div class="filter-grid">
@@ -66,6 +75,25 @@
             <span>Type</span>
             <select id="type-filter">
               <option value="all">All types</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Comparison view</span>
+            <select id="comparison-view">
+              <option value="raw">Raw pricing</option>
+              <option value="livebench_overall">General: LiveBench</option>
+              <option value="livebench_coding">Specialized: LiveBench Coding</option>
+              <option value="livebench_agentic_coding">Specialized: LiveBench Agentic Coding</option>
+              <option value="livecodebench_pass1">Specialized: LiveCodeBench</option>
+              <option value="swe_bench_bash_only">Specialized: SWE-bench Bash-only</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Bucket</span>
+            <select id="bucket-filter">
+              <option value="all">All buckets</option>
             </select>
           </label>
 
@@ -86,16 +114,53 @@
               <option value="currency">Currency</option>
               <option value="input_price_per_million">Input price</option>
               <option value="output_price_per_million">Output price</option>
+              <option value="benchmark_score">Benchmark score</option>
+              <option value="input_price_per_score">Input per score</option>
+              <option value="output_price_per_score">Output per score</option>
             </select>
           </label>
         </div>
+      </section>
 
-        <div class="controls-footer">
-          <button id="sort-direction" class="toggle-button" type="button" aria-pressed="false">
-            Sort: ascending
-          </button>
-          <button id="reset-filters" class="ghost-button" type="button">Reset filters</button>
-        </div>
+      <section class="context-grid" aria-label="Comparison context">
+        <section class="panel presets-panel" aria-label="Specialized comparison views">
+          <div class="table-header presets-header">
+            <div>
+              <p class="table-kicker">Specialized views</p>
+              <h2>Compare like with like.</h2>
+            </div>
+            <p class="table-note">
+              These presets apply a benchmark, a comparison bucket, and a sensible default sort so price-per-score stays tied to a real use case.
+            </p>
+          </div>
+          <div id="preset-grid" class="preset-grid"></div>
+        </section>
+
+        <section id="benchmark-panel" class="panel benchmark-panel" hidden aria-label="Benchmark traceability">
+          <div class="table-header benchmark-header">
+            <div>
+              <p class="table-kicker">Benchmark trace</p>
+              <h2 id="benchmark-title">Benchmark source</h2>
+            </div>
+            <p id="benchmark-summary" class="table-note"></p>
+          </div>
+          <div class="benchmark-grid">
+            <article class="benchmark-card">
+              <span class="meta-label">Metric</span>
+              <strong id="benchmark-metric">–</strong>
+              <p id="benchmark-notes"></p>
+            </article>
+            <article class="benchmark-card">
+              <span class="meta-label">Official source</span>
+              <strong id="benchmark-maintainer">–</strong>
+              <p id="benchmark-coverage"></p>
+              <div class="benchmark-links">
+                <a id="benchmark-source-link" class="source-link" href="#" target="_blank" rel="noreferrer">Leaderboard</a>
+                <a id="benchmark-docs-link" class="source-link" href="#" target="_blank" rel="noreferrer">Methodology</a>
+              </div>
+            </article>
+          </div>
+        </section>
       </section>
 
       <section id="stats-grid" class="stats-grid" aria-label="Registry summary"></section>
@@ -108,7 +173,7 @@
             <p class="table-kicker">Live registry view</p>
             <h2>Aggregated model prices</h2>
           </div>
-          <p class="table-note">Prices are listed per 1M tokens in each model’s native currency.</p>
+          <p id="table-note" class="table-note">Prices are listed per 1M tokens in each model’s native currency.</p>
         </div>
 
         <div id="empty-state" class="empty-state">Fetching latest model pricing…</div>

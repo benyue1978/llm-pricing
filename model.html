@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Model Detail · LLM Pricing Registry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <main class="shell">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="page-switch" href="/">Pricing</a>
+        <a class="page-switch" href="/ops.html">Ops</a>
+        <a class="page-switch" href="https://github.com/benyue1978/llm-pricing" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+
+      <section class="hero hero-detail">
+        <p class="eyebrow">Model traceability</p>
+        <a class="back-link" href="/">← Back to pricing</a>
+        <h1 id="detail-title">Loading model…</h1>
+        <p id="detail-subtitle" class="intro">Resolving pricing, metadata, benchmark provenance, and provider status.</p>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span class="meta-label">Provider</span>
+            <strong id="detail-provider">–</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Family</span>
+            <strong id="detail-family">–</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Last sync</span>
+            <strong id="detail-updated-at">–</strong>
+          </div>
+        </div>
+      </section>
+
+      <div id="detail-error" class="error-banner" role="alert" hidden></div>
+
+      <section class="detail-grid">
+        <section class="panel detail-panel">
+          <div class="table-header detail-header">
+            <div>
+              <p class="table-kicker">Pricing</p>
+              <h2>Native and converted cost</h2>
+            </div>
+          </div>
+          <div id="pricing-cards" class="detail-card-grid"></div>
+        </section>
+
+        <section class="panel detail-panel">
+          <div class="table-header detail-header">
+            <div>
+              <p class="table-kicker">Metadata</p>
+              <h2>Comparison context</h2>
+            </div>
+          </div>
+          <div id="metadata-grid" class="detail-card-grid"></div>
+        </section>
+      </section>
+
+      <section id="benchmark-trace" class="panel detail-panel">
+        <div class="table-header detail-header">
+          <div>
+            <p class="table-kicker">Benchmark trace</p>
+            <h2>Where each score comes from</h2>
+          </div>
+          <p class="table-note">Each card links back to the official benchmark source and shows the exact matched benchmark row names.</p>
+        </div>
+        <div id="benchmark-cards" class="detail-card-grid"></div>
+      </section>
+
+      <section class="panel detail-panel">
+        <div class="table-header detail-header">
+          <div>
+            <p class="table-kicker">Sources</p>
+            <h2>Pricing, metadata, and ops provenance</h2>
+          </div>
+        </div>
+        <div id="source-grid" class="detail-card-grid"></div>
+      </section>
+    </main>
+    <script src="/model.js" type="module"></script>
+  </body>
+</html>
