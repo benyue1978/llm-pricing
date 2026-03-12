@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-11T18:16:15.150Z",
+  "updated_at": "2026-03-12T00:12:38.964Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -617,7 +617,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (<272K context length)",
+      "model": "gpt-5.4",
       "benchmark_id": "livebench_agentic_coding",
       "score": 58.33,
       "score_unit": "points",
@@ -632,38 +632,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (>272K context length)",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 58.33,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.4-high",
-        "gpt-5.4-xhigh"
-      ],
-      "notes": "Averaged across 2 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (<272K context length)",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 56.11,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5-pro-2025-10-06",
-        "gpt-5.4-high",
-        "gpt-5.4-xhigh"
-      ],
-      "notes": "Averaged across 3 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (>272K context length)",
+      "model": "gpt-5.4-pro",
       "benchmark_id": "livebench_agentic_coding",
       "score": 56.11,
       "score_unit": "points",
@@ -1575,7 +1544,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (<272K context length)",
+      "model": "gpt-5.4",
       "benchmark_id": "livebench_coding",
       "score": 77.86,
       "score_unit": "points",
@@ -1590,38 +1559,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (>272K context length)",
-      "benchmark_id": "livebench_coding",
-      "score": 77.86,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.4-high",
-        "gpt-5.4-xhigh"
-      ],
-      "notes": "Averaged across 2 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (<272K context length)",
-      "benchmark_id": "livebench_coding",
-      "score": 75.94,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5-pro-2025-10-06",
-        "gpt-5.4-high",
-        "gpt-5.4-xhigh"
-      ],
-      "notes": "Averaged across 3 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (>272K context length)",
+      "model": "gpt-5.4-pro",
       "benchmark_id": "livebench_coding",
       "score": 75.94,
       "score_unit": "points",
@@ -2533,7 +2471,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (<272K context length)",
+      "model": "gpt-5.4",
       "benchmark_id": "livebench_overall",
       "score": 78.26,
       "score_unit": "points",
@@ -2548,38 +2486,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (>272K context length)",
-      "benchmark_id": "livebench_overall",
-      "score": 78.26,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.4-high",
-        "gpt-5.4-xhigh"
-      ],
-      "notes": "Averaged across 2 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (<272K context length)",
-      "benchmark_id": "livebench_overall",
-      "score": 75.93,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5-pro-2025-10-06",
-        "gpt-5.4-high",
-        "gpt-5.4-xhigh"
-      ],
-      "notes": "Averaged across 3 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (>272K context length)",
+      "model": "gpt-5.4-pro",
       "benchmark_id": "livebench_overall",
       "score": 75.93,
       "score_unit": "points",

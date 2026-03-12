@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-03-11T18:16:15.150Z",
+  "updated_at": "2026-03-12T00:12:38.964Z",
   "models": [
     {
       "provider": "openai",
-      "model": "gpt-5.4 (<272K context length)",
+      "model": "gpt-5.4",
       "type": "text",
       "input_price_per_million": 2.5,
       "output_price_per_million": 15,
@@ -12,28 +12,10 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.4 (>272K context length)",
-      "type": "text",
-      "input_price_per_million": 5,
-      "output_price_per_million": 22.5,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (<272K context length)",
+      "model": "gpt-5.4-pro",
       "type": "text",
       "input_price_per_million": 30,
       "output_price_per_million": 180,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.4-pro (>272K context length)",
-      "type": "text",
-      "input_price_per_million": 60,
-      "output_price_per_million": 270,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -678,15 +660,6 @@
     },
     {
       "provider": "mistral",
-      "model": "voxtral-mini-latest",
-      "type": "text",
-      "input_price_per_million": 0.003,
-      "output_price_per_million": 1,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
       "model": "mistral-medium-latest",
       "type": "text",
       "input_price_per_million": 0.4,
@@ -781,6 +754,15 @@
       "type": "text",
       "input_price_per_million": 0.2,
       "output_price_per_million": 0.2,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "voxtral-mini-latest",
+      "type": "text",
+      "input_price_per_million": 0.003,
+      "output_price_per_million": 0.006,
       "currency": "USD",
       "source": "https://mistral.ai/pricing"
     },
