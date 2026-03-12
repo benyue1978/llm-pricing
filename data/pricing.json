@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-12T06:15:59.006Z",
+  "updated_at": "2026-03-12T12:07:53.535Z",
   "models": [
     {
       "provider": "openai",
@@ -660,6 +660,15 @@
     },
     {
       "provider": "mistral",
+      "model": "voxtral-mini-latest",
+      "type": "text",
+      "input_price_per_million": 0.003,
+      "output_price_per_million": 0.5,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
       "model": "mistral-medium-latest",
       "type": "text",
       "input_price_per_million": 0.4,
@@ -754,15 +763,6 @@
       "type": "text",
       "input_price_per_million": 0.2,
       "output_price_per_million": 0.2,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
-      "model": "voxtral-mini-latest",
-      "type": "text",
-      "input_price_per_million": 0.003,
-      "output_price_per_million": 0.006,
       "currency": "USD",
       "source": "https://mistral.ai/pricing"
     },
