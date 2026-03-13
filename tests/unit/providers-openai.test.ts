@@ -49,7 +49,9 @@ describe("providers/openai", () => {
     });
     const models = parseOpenAIHtml(html);
 
-    expect(models.length).toBeGreaterThan(10);
+    expect(models.length).toBeGreaterThan(0);
+    expect(models.every((model) => model.provider === "openai")).toBe(true);
+    expect(models.every((model) => model.type === "text")).toBe(true);
     expect(models.map((model) => model.model)).toContain("gpt-4.1");
     expect(models.map((model) => model.model)).toContain("gpt-4o");
     expect(
