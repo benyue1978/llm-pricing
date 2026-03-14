@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-14T00:59:10.871Z",
+  "updated_at": "2026-03-14T06:13:38.551Z",
   "summary": {
     "provider_count": 9,
     "success_count": 9,
@@ -14,10 +14,10 @@
       "success": true,
       "mode": "live",
       "model_count": 44,
-      "started_at": "2026-03-14T00:59:00.493Z",
-      "finished_at": "2026-03-14T00:59:01.133Z",
-      "checked_at": "2026-03-14T00:59:01.133Z",
-      "duration_ms": 640,
+      "started_at": "2026-03-14T06:13:29.021Z",
+      "finished_at": "2026-03-14T06:13:29.376Z",
+      "checked_at": "2026-03-14T06:13:29.376Z",
+      "duration_ms": 355,
       "message": "live https://developers.openai.com/api/docs/pricing (44 models)",
       "messages": [
         "live https://developers.openai.com/api/docs/pricing (44 models)"
@@ -29,10 +29,10 @@
       "success": true,
       "mode": "live",
       "model_count": 10,
-      "started_at": "2026-03-14T00:59:01.134Z",
-      "finished_at": "2026-03-14T00:59:01.852Z",
-      "checked_at": "2026-03-14T00:59:01.852Z",
-      "duration_ms": 718,
+      "started_at": "2026-03-14T06:13:29.376Z",
+      "finished_at": "2026-03-14T06:13:30.159Z",
+      "checked_at": "2026-03-14T06:13:30.159Z",
+      "duration_ms": 783,
       "message": "live official pricing page (10 models)",
       "messages": [
         "live official pricing page (10 models)"
@@ -44,10 +44,10 @@
       "success": true,
       "mode": "live",
       "model_count": 17,
-      "started_at": "2026-03-14T00:59:01.852Z",
-      "finished_at": "2026-03-14T00:59:03.000Z",
-      "checked_at": "2026-03-14T00:59:03.000Z",
-      "duration_ms": 1148,
+      "started_at": "2026-03-14T06:13:30.159Z",
+      "finished_at": "2026-03-14T06:13:30.579Z",
+      "checked_at": "2026-03-14T06:13:30.579Z",
+      "duration_ms": 420,
       "message": "live official pricing page (17 models)",
       "messages": [
         "live official pricing page (17 models)"
@@ -59,10 +59,10 @@
       "success": true,
       "mode": "live",
       "model_count": 24,
-      "started_at": "2026-03-14T00:59:03.000Z",
-      "finished_at": "2026-03-14T00:59:03.564Z",
-      "checked_at": "2026-03-14T00:59:03.564Z",
-      "duration_ms": 564,
+      "started_at": "2026-03-14T06:13:30.579Z",
+      "finished_at": "2026-03-14T06:13:31.354Z",
+      "checked_at": "2026-03-14T06:13:31.354Z",
+      "duration_ms": 775,
       "message": "live official pricing page (24 models)",
       "messages": [
         "live official pricing page (24 models)"
@@ -74,10 +74,10 @@
       "success": true,
       "mode": "live",
       "model_count": 3,
-      "started_at": "2026-03-14T00:59:03.564Z",
-      "finished_at": "2026-03-14T00:59:04.300Z",
-      "checked_at": "2026-03-14T00:59:04.300Z",
-      "duration_ms": 736,
+      "started_at": "2026-03-14T06:13:31.354Z",
+      "finished_at": "2026-03-14T06:13:32.068Z",
+      "checked_at": "2026-03-14T06:13:32.068Z",
+      "duration_ms": 714,
       "message": "live official pricing page (3 models)",
       "messages": [
         "live official pricing page (3 models)"
@@ -89,10 +89,10 @@
       "success": true,
       "mode": "live",
       "model_count": 168,
-      "started_at": "2026-03-14T00:59:04.300Z",
-      "finished_at": "2026-03-14T00:59:07.067Z",
-      "checked_at": "2026-03-14T00:59:07.067Z",
-      "duration_ms": 2767,
+      "started_at": "2026-03-14T06:13:32.068Z",
+      "finished_at": "2026-03-14T06:13:34.742Z",
+      "checked_at": "2026-03-14T06:13:34.742Z",
+      "duration_ms": 2674,
       "message": "live official pricing page (168 models)",
       "messages": [
         "live official pricing page (168 models)"
@@ -104,10 +104,10 @@
       "success": true,
       "mode": "live",
       "model_count": 9,
-      "started_at": "2026-03-14T00:59:07.067Z",
-      "finished_at": "2026-03-14T00:59:07.898Z",
-      "checked_at": "2026-03-14T00:59:07.898Z",
-      "duration_ms": 831,
+      "started_at": "2026-03-14T06:13:34.742Z",
+      "finished_at": "2026-03-14T06:13:35.090Z",
+      "checked_at": "2026-03-14T06:13:35.090Z",
+      "duration_ms": 348,
       "message": "live official app bundle (9 models)",
       "messages": [
         "live official app bundle (9 models)"
@@ -119,10 +119,10 @@
       "success": true,
       "mode": "live",
       "model_count": 6,
-      "started_at": "2026-03-14T00:59:07.898Z",
-      "finished_at": "2026-03-14T00:59:08.265Z",
-      "checked_at": "2026-03-14T00:59:08.265Z",
-      "duration_ms": 367,
+      "started_at": "2026-03-14T06:13:35.091Z",
+      "finished_at": "2026-03-14T06:13:35.407Z",
+      "checked_at": "2026-03-14T06:13:35.407Z",
+      "duration_ms": 316,
       "message": "live official pricing page (6 models)",
       "messages": [
         "live official pricing page (6 models)"
@@ -134,10 +134,10 @@
       "success": true,
       "mode": "live",
       "model_count": 5,
-      "started_at": "2026-03-14T00:59:08.265Z",
-      "finished_at": "2026-03-14T00:59:10.024Z",
-      "checked_at": "2026-03-14T00:59:10.024Z",
-      "duration_ms": 1759,
+      "started_at": "2026-03-14T06:13:35.407Z",
+      "finished_at": "2026-03-14T06:13:37.857Z",
+      "checked_at": "2026-03-14T06:13:37.857Z",
+      "duration_ms": 2450,
       "message": "live official app bundle (5 models)",
       "messages": [
         "live official app bundle (5 models)"
