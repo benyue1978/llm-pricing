@@ -35,6 +35,14 @@ export async function fetchOpenAIPricing(logger: ProviderLogger = () => {}): Pro
 
 export function parseOpenAIHtml(html: string): PricingModel[] {
   const $ = load(html);
+  const models = new Map<string, PricingModel>();
+
+  for (const model of parseOpenAIAstroRows($)) {
+    if (!models.has(model.model)) {
+      models.set(model.model, model);
+    }
+  }
+
   const paneSelector =
     `[data-content-switcher-root][data-content-switcher-id="${OPENAI_TEXT_SWITCHER_ID}"] ` +
     `[data-content-switcher-pane][data-value="standard"]`;
@@ -42,33 +50,25 @@ export function parseOpenAIHtml(html: string): PricingModel[] {
     ...$(paneSelector).find("table").toArray(),
     ...findTextTokenTables($)
   ];
-  const models = new Map<string, PricingModel>();
 
   for (const table of tableCandidates) {
     $(table)
       .find("tbody tr")
       .each((_, row) => {
-        const cells = $(row)
+        const parsed = parseOpenAIRowCells($(row)
           .find("td")
           .toArray()
-          .map((cell) => normalizeText($(cell).text()));
+          .map((cell) => normalizeText($(cell).text())));
 
-        const [model, inputRaw, _cachedInputRaw, outputRaw] = cells;
-        if (!model || models.has(model) || !shouldIncludeOpenAITextModel(model)) {
+        if (!parsed || models.has(parsed.model)) {
           return;
         }
 
-        const input = parseUsdPrice(inputRaw);
-        const output = parseUsdPrice(outputRaw);
-        if (!Number.isFinite(input)) {
-          return;
-        }
-
-        models.set(model, createTextPricingModel({
+        models.set(parsed.model, createTextPricingModel({
           provider: "openai",
-          model,
-          input,
-          output: Number.isFinite(output) ? output : null,
+          model: parsed.model,
+          input: parsed.input,
+          output: parsed.output,
           currency: "USD",
           source: OPENAI_PRICING_URL
         }));
@@ -76,6 +76,80 @@ export function parseOpenAIHtml(html: string): PricingModel[] {
   }
 
   return [...models.values()];
+}
+
+function parseOpenAIRowCells(cells: string[]): {
+  model: string,
+  input: number,
+  output: number | null,
+} | null {
+  const [rawModel, inputRaw, _cachedInputRaw, outputRaw] = cells;
+  const model = normalizeOpenAIModelName(rawModel);
+  if (!model || !shouldIncludeOpenAITextModel(model)) {
+    return null;
+  }
+
+  const input = parseUsdPrice(inputRaw);
+  const output = parseUsdPrice(outputRaw);
+  if (!Number.isFinite(input)) {
+    return null;
+  }
+
+  return {
+    model,
+    input,
+    output: Number.isFinite(output) ? output : null
+  };
+}
+
+function parseOpenAIAstroRows($: ReturnType<typeof load>): PricingModel[] {
+  const paneSelector =
+    `[data-content-switcher-root][data-content-switcher-id="${OPENAI_TEXT_SWITCHER_ID}"] ` +
+    `[data-content-switcher-pane][data-value="standard"]`;
+
+  return $(paneSelector)
+    .find('astro-island[component-export="TextTokenPricingTables"]')
+    .toArray()
+    .flatMap((island) => {
+      const propsRaw = $(island).attr("props");
+      if (!propsRaw) {
+        return [];
+      }
+
+      const rows = parseOpenAIAstroRowsProp(propsRaw);
+      return rows.flatMap((cells) => {
+        const parsed = parseOpenAIRowCells(cells);
+        if (!parsed) {
+          return [];
+        }
+
+        return [createTextPricingModel({
+          provider: "openai",
+          model: parsed.model,
+          input: parsed.input,
+          output: parsed.output,
+          currency: "USD",
+          source: OPENAI_PRICING_URL
+        })];
+      });
+    });
+}
+
+function parseOpenAIAstroRowsProp(raw: string): string[][] {
+  try {
+    const decoded = decodeAstroValue(JSON.parse(raw)) as {
+      rows?: unknown
+    };
+    if (!Array.isArray(decoded.rows)) {
+      return [];
+    }
+
+    return decoded.rows
+      .filter((row): row is unknown[] => Array.isArray(row))
+      .map((row) => row.map((cell) => normalizeText(String(cell ?? ""))));
+  } catch {
+    return [];
+  }
 }
 
 function findTextTokenTables($: ReturnType<typeof load>): AnyNode[] {
@@ -108,15 +182,49 @@ function findTextTokenTables($: ReturnType<typeof load>): AnyNode[] {
   return tables;
 }
 
+function decodeAstroValue(value: unknown): unknown {
+  if (!Array.isArray(value) || value.length !== 2 || typeof value[0] !== "number") {
+    if (Array.isArray(value)) {
+      return value.map((entry) => decodeAstroValue(entry));
+    }
+
+    if (value && typeof value === "object") {
+      return Object.fromEntries(
+        Object.entries(value).map(([key, entry]) => [key, decodeAstroValue(entry)])
+      );
+    }
+
+    return value;
+  }
+
+  const [type, payload] = value;
+  switch (type) {
+    case 0:
+      return payload;
+    case 1:
+      return Array.isArray(payload) ? payload.map((entry) => decodeAstroValue(entry)) : payload;
+    default:
+      return payload;
+  }
+}
+
 function shouldIncludeOpenAITextModel(model: string): boolean {
   const normalized = model.toLowerCase();
   return !normalized.includes("image") && !normalized.includes("audio");
+}
+
+function normalizeOpenAIModelName(model: string | undefined): string {
+  return normalizeText(model ?? "").replace(/\s+\([^)]*\)$/, "");
 }
 
 function parseUsdPrice(raw: string | undefined): number {
   const normalized = raw?.trim();
   if (!normalized || normalized === "-" || normalized === "/") {
     return Number.NaN;
+  }
+
+  if (/^\d+(?:\.\d+)?$/.test(normalized)) {
+    return Number.parseFloat(normalized);
   }
 
   return parseUsdAmount(normalized);
