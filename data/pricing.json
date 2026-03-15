@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-15T12:06:15.382Z",
+  "updated_at": "2026-03-15T18:07:00.335Z",
   "models": [
     {
       "provider": "openai",
@@ -2541,19 +2541,19 @@
     },
     {
       "provider": "zhipu",
-      "model": "GLM-5",
+      "model": "GLM-5-Turbo",
       "type": "text",
-      "input_price_per_million": 4,
-      "output_price_per_million": 18,
+      "input_price_per_million": 5,
+      "output_price_per_million": 22,
       "currency": "CNY",
       "source": "https://open.bigmodel.cn/pricing"
     },
     {
       "provider": "zhipu",
-      "model": "GLM-5-Code",
+      "model": "GLM-5",
       "type": "text",
-      "input_price_per_million": 6,
-      "output_price_per_million": 28,
+      "input_price_per_million": 4,
+      "output_price_per_million": 18,
       "currency": "CNY",
       "source": "https://open.bigmodel.cn/pricing"
     },

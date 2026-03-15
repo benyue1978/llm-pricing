@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-15T12:06:15.382Z",
+  "updated_at": "2026-03-15T18:07:00.335Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -9421,7 +9421,7 @@
     },
     {
       "provider": "zhipu",
-      "model": "GLM-5-Code",
+      "model": "GLM-5-Turbo",
       "family": "glm-5",
       "access_type": "api",
       "openness": "closed",
@@ -9429,10 +9429,9 @@
         "text"
       ],
       "comparison_buckets": [
-        "agentic-coding",
-        "coding",
         "frontier",
         "general-purpose",
+        "low-cost",
         "reasoning",
         "text-models"
       ],
@@ -9448,11 +9447,7 @@
       ],
       "pricing_source_url": "https://open.bigmodel.cn/pricing",
       "benchmark_ids": [
-        "livebench_agentic_coding",
-        "livebench_coding",
-        "livebench_overall",
-        "livecodebench_pass1",
-        "swe_bench_bash_only"
+        "livebench_overall"
       ],
       "notes": [
         "Do not compare this model globally by price alone.",
