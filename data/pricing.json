@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-15T06:19:00.636Z",
+  "updated_at": "2026-03-15T12:06:15.382Z",
   "models": [
     {
       "provider": "openai",
@@ -1408,6 +1408,15 @@
     {
       "provider": "qwen",
       "model": "qwen3-vl-flash-us",
+      "type": "text",
+      "input_price_per_million": 0.05,
+      "output_price_per_million": 0.4,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3-vl-flash-2026-01-22-us",
       "type": "text",
       "input_price_per_million": 0.05,
       "output_price_per_million": 0.4,
