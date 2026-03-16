@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en": "LLM Pricing Registry",
+    "zh": "LLM 价格注册表"
+  },
+  "description": {
+    "en": "Official provider pricing pages, normalized into one searchable index. CLI-synced registry for model pricing and ops data.",
+    "zh": "官方供应商价格页归一为可搜索索引，通过 CLI 同步的模型价格与运维数据注册表"
+  },
+  "icon": "/favicon.svg",
+  "keywords": {
+    "en": ["LLM", "pricing", "registry", "API cost", "model pricing", "CLI"],
+    "zh": ["大语言模型", "价格", "注册表", "API 成本", "模型定价", "CLI"]
+  },
+  "features": {
+    "en": [
+      "CLI-synced pricing",
+      "Searchable index",
+      "Multi-provider support",
+      "Ops and benchmarks"
+    ],
+    "zh": [
+      "CLI 同步价格",
+      "可搜索索引",
+      "多供应商支持",
+      "运维与基准数据"
+    ]
+  }
+}
