@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-17T12:13:45.381Z",
+  "updated_at": "2026-03-17T18:17:26.256Z",
   "models": [
     {
       "provider": "openai",
@@ -16,6 +16,24 @@
       "type": "text",
       "input_price_per_million": 30,
       "output_price_per_million": 180,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.4-mini",
+      "type": "text",
+      "input_price_per_million": 0.75,
+      "output_price_per_million": 4.5,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.4-nano",
+      "type": "text",
+      "input_price_per_million": 0.2,
+      "output_price_per_million": 1.25,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
