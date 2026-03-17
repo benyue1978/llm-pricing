@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-16T18:18:44.945Z",
+  "updated_at": "2026-03-17T00:14:59.651Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -1403,6 +1403,38 @@
         "livebench_overall",
         "livecodebench_pass1",
         "swe_bench_bash_only"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "mistral",
+      "model": "labs-leanstral-2603",
+      "family": "labs-leanstral-2603",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
+      "metadata_source_ids": [
+        "mistral-models",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://mistral.ai/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
       ],
       "notes": [
         "Do not compare this model globally by price alone.",
