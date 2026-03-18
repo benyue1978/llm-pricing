@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-18T00:15:49.953Z",
+  "updated_at": "2026-03-18T13:46:22.725Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -1105,102 +1105,6 @@
     },
     {
       "provider": "minimax",
-      "model": "MiniMax-M2",
-      "family": "MiniMax-M2",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://www.minimax.io/platform/document/Price",
-      "metadata_source_ids": [
-        "minimax-pricing",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.minimax.io/docs/guides/pricing-paygo",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "minimax",
-      "model": "MiniMax-M2.1",
-      "family": "MiniMax-M2.1",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://www.minimax.io/platform/document/Price",
-      "metadata_source_ids": [
-        "minimax-pricing",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.minimax.io/docs/guides/pricing-paygo",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "minimax",
-      "model": "MiniMax-M2.1-highspeed",
-      "family": "MiniMax-M2.1-highspeed",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://www.minimax.io/platform/document/Price",
-      "metadata_source_ids": [
-        "minimax-pricing",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.minimax.io/docs/guides/pricing-paygo",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "minimax",
       "model": "MiniMax-M2.5",
       "family": "MiniMax-M2.5",
       "access_type": "api",
@@ -1244,6 +1148,70 @@
       "comparison_buckets": [
         "frontier",
         "general-purpose",
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://www.minimax.io/platform/document/Price",
+      "metadata_source_ids": [
+        "minimax-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-M2.7",
+      "family": "MiniMax-M2.7",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://www.minimax.io/platform/document/Price",
+      "metadata_source_ids": [
+        "minimax-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-M2.7-highspeed",
+      "family": "MiniMax-M2.7-highspeed",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
         "low-cost",
         "text-models"
       ],
