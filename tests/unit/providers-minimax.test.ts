@@ -24,7 +24,14 @@ describe("providers/minimax", () => {
 
   test("getMinimaxManualFallback returns current official text models", () => {
     const fallback = getMinimaxManualFallback();
-    expect(fallback.map((model) => model.model)).toContain("MiniMax-M2.5");
+    expect(fallback).toHaveLength(5);
+    expect(fallback.map((model) => model.model)).toEqual([
+      "MiniMax-M2.7",
+      "MiniMax-M2.7-highspeed",
+      "MiniMax-M2.5",
+      "MiniMax-M2.5-highspeed",
+      "M2-her"
+    ]);
     expect(fallback.every((model) => model.type === "text")).toBe(true);
   });
 
@@ -34,7 +41,8 @@ describe("providers/minimax", () => {
     });
     const models = parseMinimaxHtml(html);
 
-    expect(models.length).toBeGreaterThanOrEqual(6);
+    expect(models.length).toBeGreaterThanOrEqual(5);
+    expect(models.map((model) => model.model)).toContain("MiniMax-M2.7");
     expect(models.map((model) => model.model)).toContain("MiniMax-M2.5");
     expect(
       models.find((model) => model.model === "MiniMax-M2.5")

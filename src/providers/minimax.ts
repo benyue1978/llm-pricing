@@ -62,6 +62,24 @@ export function getMinimaxManualFallback(): PricingModel[] {
   return [
     {
       provider: "minimax",
+      model: "MiniMax-M2.7",
+      type: "text",
+      input_price_per_million: 0.3,
+      output_price_per_million: 1.2,
+      currency: "USD",
+      source: MINIMAX_PRICING_SOURCE
+    },
+    {
+      provider: "minimax",
+      model: "MiniMax-M2.7-highspeed",
+      type: "text",
+      input_price_per_million: 0.6,
+      output_price_per_million: 2.4,
+      currency: "USD",
+      source: MINIMAX_PRICING_SOURCE
+    },
+    {
+      provider: "minimax",
       model: "MiniMax-M2.5",
       type: "text",
       input_price_per_million: 0.3,
@@ -75,33 +93,6 @@ export function getMinimaxManualFallback(): PricingModel[] {
       type: "text",
       input_price_per_million: 0.6,
       output_price_per_million: 2.4,
-      currency: "USD",
-      source: MINIMAX_PRICING_SOURCE
-    },
-    {
-      provider: "minimax",
-      model: "MiniMax-M2.1",
-      type: "text",
-      input_price_per_million: 0.3,
-      output_price_per_million: 1.2,
-      currency: "USD",
-      source: MINIMAX_PRICING_SOURCE
-    },
-    {
-      provider: "minimax",
-      model: "MiniMax-M2.1-highspeed",
-      type: "text",
-      input_price_per_million: 0.6,
-      output_price_per_million: 2.4,
-      currency: "USD",
-      source: MINIMAX_PRICING_SOURCE
-    },
-    {
-      provider: "minimax",
-      model: "MiniMax-M2",
-      type: "text",
-      input_price_per_million: 0.3,
-      output_price_per_million: 1.2,
       currency: "USD",
       source: MINIMAX_PRICING_SOURCE
     },
