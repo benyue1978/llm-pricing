@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-19T00:15:16.233Z",
+  "updated_at": "2026-03-20T01:05:44.490Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -477,66 +477,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.1-chat-latest",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 43.75,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.1-2025-11-13-high",
-        "gpt-5.1-2025-11-13-low",
-        "gpt-5.1-2025-11-13-medium",
-        "gpt-5.1-2025-11-13-nothinking"
-      ],
-      "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 53.33,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.1-codex",
-      "matched_benchmark_models": [
-        "gpt-5.1-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex-max",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 55,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.1-codex-max",
-        "gpt-5.1-codex-max-high"
-      ],
-      "notes": "Averaged across 2 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex-mini",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 53.33,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.1-codex",
-      "matched_benchmark_models": [
-        "gpt-5.1-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
       "model": "gpt-5.2",
       "benchmark_id": "livebench_agentic_coding",
       "score": 48.33,
@@ -554,37 +494,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.2-chat-latest",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 48.33,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.2-2025-12-11-high",
-        "gpt-5.2-2025-12-11-low",
-        "gpt-5.2-2025-12-11-medium",
-        "gpt-5.2-2025-12-11-nothinking"
-      ],
-      "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.2-codex",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 51.67,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.2-codex",
-      "matched_benchmark_models": [
-        "gpt-5.2-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
       "model": "gpt-5.2-pro",
       "benchmark_id": "livebench_agentic_coding",
       "score": 48.33,
@@ -599,21 +508,6 @@
         "gpt-5.2-2025-12-11-nothinking"
       ],
       "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.3-codex",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 60.83,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.3-codex-high",
-        "gpt-5.3-codex-xhigh"
-      ],
-      "notes": "Averaged across 2 matched official variants."
     },
     {
       "provider": "openai",
@@ -1434,66 +1328,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.1-chat-latest",
-      "benchmark_id": "livebench_coding",
-      "score": 76.49,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.1-2025-11-13-high",
-        "gpt-5.1-2025-11-13-low",
-        "gpt-5.1-2025-11-13-medium",
-        "gpt-5.1-2025-11-13-nothinking"
-      ],
-      "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex",
-      "benchmark_id": "livebench_coding",
-      "score": 71.78,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.1-codex",
-      "matched_benchmark_models": [
-        "gpt-5.1-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex-max",
-      "benchmark_id": "livebench_coding",
-      "score": 81.03,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.1-codex-max",
-        "gpt-5.1-codex-max-high"
-      ],
-      "notes": "Averaged across 2 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex-mini",
-      "benchmark_id": "livebench_coding",
-      "score": 71.78,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.1-codex",
-      "matched_benchmark_models": [
-        "gpt-5.1-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
       "model": "gpt-5.2",
       "benchmark_id": "livebench_coding",
       "score": 74.63,
@@ -1511,37 +1345,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.2-chat-latest",
-      "benchmark_id": "livebench_coding",
-      "score": 74.63,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.2-2025-12-11-high",
-        "gpt-5.2-2025-12-11-low",
-        "gpt-5.2-2025-12-11-medium",
-        "gpt-5.2-2025-12-11-nothinking"
-      ],
-      "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.2-codex",
-      "benchmark_id": "livebench_coding",
-      "score": 83.62,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.2-codex",
-      "matched_benchmark_models": [
-        "gpt-5.2-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
       "model": "gpt-5.2-pro",
       "benchmark_id": "livebench_coding",
       "score": 74.63,
@@ -1556,21 +1359,6 @@
         "gpt-5.2-2025-12-11-nothinking"
       ],
       "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.3-codex",
-      "benchmark_id": "livebench_coding",
-      "score": 77.83,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.3-codex-high",
-        "gpt-5.3-codex-xhigh"
-      ],
-      "notes": "Averaged across 2 matched official variants."
     },
     {
       "provider": "openai",
@@ -2391,66 +2179,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.1-chat-latest",
-      "benchmark_id": "livebench_overall",
-      "score": 60.08,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.1-2025-11-13-high",
-        "gpt-5.1-2025-11-13-low",
-        "gpt-5.1-2025-11-13-medium",
-        "gpt-5.1-2025-11-13-nothinking"
-      ],
-      "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex",
-      "benchmark_id": "livebench_overall",
-      "score": 69.31,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.1-codex",
-      "matched_benchmark_models": [
-        "gpt-5.1-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex-max",
-      "benchmark_id": "livebench_overall",
-      "score": 73.37,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.1-codex-max",
-        "gpt-5.1-codex-max-high"
-      ],
-      "notes": "Averaged across 2 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.1-codex-mini",
-      "benchmark_id": "livebench_overall",
-      "score": 69.31,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.1-codex",
-      "matched_benchmark_models": [
-        "gpt-5.1-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
       "model": "gpt-5.2",
       "benchmark_id": "livebench_overall",
       "score": 65.12,
@@ -2468,37 +2196,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-5.2-chat-latest",
-      "benchmark_id": "livebench_overall",
-      "score": 65.12,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.2-2025-12-11-high",
-        "gpt-5.2-2025-12-11-low",
-        "gpt-5.2-2025-12-11-medium",
-        "gpt-5.2-2025-12-11-nothinking"
-      ],
-      "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.2-codex",
-      "benchmark_id": "livebench_overall",
-      "score": 74.33,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gpt-5.2-codex",
-      "matched_benchmark_models": [
-        "gpt-5.2-codex"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "openai",
       "model": "gpt-5.2-pro",
       "benchmark_id": "livebench_overall",
       "score": 65.12,
@@ -2513,21 +2210,6 @@
         "gpt-5.2-2025-12-11-nothinking"
       ],
       "notes": "Averaged across 4 matched official variants."
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.3-codex",
-      "benchmark_id": "livebench_overall",
-      "score": 72.58,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "gpt-5.3-codex-high",
-        "gpt-5.3-codex-xhigh"
-      ],
-      "notes": "Averaged across 2 matched official variants."
     },
     {
       "provider": "openai",
@@ -3369,21 +3051,6 @@
         "GPT-5 Mini"
       ],
       "notes": null
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-5.2-codex",
-      "benchmark_id": "swe_bench_bash_only",
-      "score": 72.8,
-      "score_unit": "points",
-      "evaluated_at": "2026-02-19",
-      "source_url": "https://platform.openai.com/docs/models/gpt-5",
-      "benchmark_model": null,
-      "matched_benchmark_models": [
-        "GPT 5.2 Codex",
-        "GPT-5-2 Codex"
-      ],
-      "notes": "Averaged across 2 matched official variants."
     },
     {
       "provider": "zhipu",
