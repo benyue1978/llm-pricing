@@ -80,9 +80,18 @@ test.describe("LLM Pricing Dashboard", () => {
     await expect(page.locator("#comparison-view")).toHaveValue("livebench_coding");
     await expect(page.locator("#sort-field")).toHaveValue("input_price_per_score");
 
-    await page.locator("#search-input").fill("gpt-5.1-codex");
-    await expect(page).toHaveURL(/q=gpt-5\.1-codex/);
-    const detailHref = await page.locator("tbody tr td[data-label='Model'] a").first().getAttribute("href");
+    const traceableRow = page.locator("tbody tr").filter({
+      has: page.locator("td[data-label='Score'] a", { hasText: "Trace" })
+    }).first();
+    const traceableModel = (await traceableRow.locator("td[data-label='Model'] a").textContent())?.trim();
+    expect(traceableModel).toBeTruthy();
+
+    await page.locator("#search-input").fill(traceableModel ?? "");
+    await expect.poll(() => page.url()).toContain(`q=${encodeURIComponent(traceableModel ?? "")}`);
+
+    const modelLink = page.locator("tbody tr td[data-label='Model'] a").first();
+    await expect(modelLink).toHaveText(traceableModel ?? "");
+    const detailHref = await modelLink.getAttribute("href");
     expect(detailHref).toContain("/model.html#");
     const traceHref = await page.locator("tbody tr td[data-label='Score'] a", { hasText: "Trace" }).first().getAttribute("href");
     expect(traceHref).toContain("section=benchmark-trace");
