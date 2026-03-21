@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-20T06:16:24.044Z",
+  "updated_at": "2026-03-21T01:07:28.255Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -2232,6 +2232,134 @@
         "text-models"
       ],
       "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.moonshot.ai/docs/guide",
+      "metadata_source_ids": [
+        "moonshot-platform-docs",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-latest-128k",
+      "family": "kimi-latest-128k",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "long-context",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.moonshot.ai/docs/guide",
+      "metadata_source_ids": [
+        "moonshot-platform-docs",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-latest-32k",
+      "family": "kimi-latest-32k",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "long-context",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.moonshot.ai/docs/guide",
+      "metadata_source_ids": [
+        "moonshot-platform-docs",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-latest-8k",
+      "family": "kimi-latest-8k",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.moonshot.ai/docs/guide",
+      "metadata_source_ids": [
+        "moonshot-platform-docs",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "moonshot",
+      "model": "kimi-thinking-preview",
+      "family": "kimi",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "reasoning",
+        "text-models"
+      ],
+      "release_stage": "preview",
       "context_window_tokens": null,
       "max_output_tokens": null,
       "parameter_count_billions": null,
