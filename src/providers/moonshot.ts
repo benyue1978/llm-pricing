@@ -1,8 +1,7 @@
 import type { PricingModel } from "../schema.js";
 import {
+  extractBracketedValue,
   createTextPricingModel,
-  extractAssignedArray,
-  extractConditionalAssignedArray,
   fetchHtml,
   fetchProviderPricing,
   fetchText,
@@ -39,11 +38,7 @@ export async function fetchMoonshotPricing(logger: ProviderLogger = () => {}): P
 }
 
 export function parseMoonshotAppScript(script: string): PricingModel[] {
-  const modelArrays = [
-    extractAssignedArray(script, "ev="),
-    extractConditionalAssignedArray(script, "ez=ei.lJ?", "truthy"),
-    extractConditionalAssignedArray(script, "eE=ei.lJ?", "truthy")
-  ].filter((value): value is string => Boolean(value));
+  const modelArrays = extractMoonshotModelArrays(script);
 
   const models: PricingModel[] = [];
   const seen = new Set<string>();
@@ -76,6 +71,22 @@ export function parseMoonshotAppScript(script: string): PricingModel[] {
   }
 
   return models;
+}
+
+function extractMoonshotModelArrays(script: string): string[] {
+  const arrays: string[] = [];
+
+  for (const match of script.matchAll(/(?:^|[;,]|\b(?:let|var|const)\s+)([A-Za-z_$][A-Za-z0-9_$]*)=(?:[^?;:{}[\]]+\?)?\[/g)) {
+    const openIndex = match.index !== undefined ? match.index + match[0].lastIndexOf("[") : -1;
+    const arrayLiteral = extractBracketedValue(script, openIndex, "[", "]");
+    if (!arrayLiteral || !arrayLiteral.includes('model_id:"')) {
+      continue;
+    }
+
+    arrays.push(arrayLiteral);
+  }
+
+  return arrays;
 }
 
 export function findMoonshotAppScriptUrl(html: string): string | null {
