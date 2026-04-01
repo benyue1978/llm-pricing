@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-01T06:32:38.154Z",
+  "updated_at": "2026-04-01T12:16:14.372Z",
   "models": [
     {
       "provider": "openai",
@@ -624,16 +624,7 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-small-latest",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 0.6,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
-      "model": "mistral-medium-latest",
+      "model": "devstral-medium-latest",
       "type": "text",
       "input_price_per_million": 0.4,
       "output_price_per_million": 2,
@@ -645,13 +636,22 @@
       "model": "mistral-ocr-latest",
       "type": "text",
       "input_price_per_million": 2,
-      "output_price_per_million": 0.4,
+      "output_price_per_million": 3,
       "currency": "USD",
       "source": "https://mistral.ai/pricing"
     },
     {
       "provider": "mistral",
-      "model": "devstral-medium-latest",
+      "model": "mistral-small-latest",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 0.6,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "mistral-medium-latest",
       "type": "text",
       "input_price_per_million": 0.4,
       "output_price_per_million": 2,
@@ -759,7 +759,7 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-moderation-latest",
+      "model": "mistral-moderation-2603",
       "type": "text",
       "input_price_per_million": 0.1,
       "output_price_per_million": 1,

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-01T06:32:38.154Z",
+  "updated_at": "2026-04-01T12:16:14.372Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -1701,8 +1701,8 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-moderation-latest",
-      "family": "mistral-moderation-latest",
+      "model": "mistral-moderation-2603",
+      "family": "mistral-moderation-2603",
       "access_type": "api",
       "openness": "closed",
       "modalities": [
