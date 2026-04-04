@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-03T18:10:22.847Z",
+  "updated_at": "2026-04-04T00:16:16.321Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -109,6 +109,51 @@
   "results": [
     {
       "provider": "anthropic",
+      "model": "claude-haiku-4.5",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 37.5,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-haiku-4-5-20251001",
+        "claude-haiku-4-5-20251001-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 50.83,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-1-opus-20250805-base",
+        "claude-4-1-opus-20250805-thinking-32k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.1",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 50.83,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-1-opus-20250805-base",
+        "claude-4-1-opus-20250805-thinking-32k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
       "model": "claude-opus-4.5",
       "benchmark_id": "livebench_agentic_coding",
       "score": 58.33,
@@ -136,6 +181,52 @@
         "claude-opus-4-6-thinking-auto-high-effort"
       ],
       "notes": null
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 39.17,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-sonnet-20250514-base",
+        "claude-4-sonnet-20250514-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.5",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 50.83,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-sonnet-4-5-20250929",
+        "claude-sonnet-4-5-20250929-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 60,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-sonnet-4-6-thinking-auto-high-effort",
+        "claude-sonnet-4-6-thinking-auto-low-effort",
+        "claude-sonnet-4-6-thinking-auto-medium-effort"
+      ],
+      "notes": "Averaged across 3 matched official variants."
     },
     {
       "provider": "deepseek",
@@ -869,6 +960,51 @@
     },
     {
       "provider": "anthropic",
+      "model": "claude-haiku-4.5",
+      "benchmark_id": "livebench_coding",
+      "score": 72.49,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-haiku-4-5-20251001",
+        "claude-haiku-4-5-20251001-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4",
+      "benchmark_id": "livebench_coding",
+      "score": 75.37,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-1-opus-20250805-base",
+        "claude-4-1-opus-20250805-thinking-32k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.1",
+      "benchmark_id": "livebench_coding",
+      "score": 75.37,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-1-opus-20250805-base",
+        "claude-4-1-opus-20250805-thinking-32k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
       "model": "claude-opus-4.5",
       "benchmark_id": "livebench_coding",
       "score": 78.16,
@@ -896,6 +1032,52 @@
         "claude-opus-4-6-thinking-auto-high-effort"
       ],
       "notes": null
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "benchmark_id": "livebench_coding",
+      "score": 79.11,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-sonnet-20250514-base",
+        "claude-4-sonnet-20250514-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.5",
+      "benchmark_id": "livebench_coding",
+      "score": 78.22,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-sonnet-4-5-20250929",
+        "claude-sonnet-4-5-20250929-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "benchmark_id": "livebench_coding",
+      "score": 77.84,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-sonnet-4-6-thinking-auto-high-effort",
+        "claude-sonnet-4-6-thinking-auto-low-effort",
+        "claude-sonnet-4-6-thinking-auto-medium-effort"
+      ],
+      "notes": "Averaged across 3 matched official variants."
     },
     {
       "provider": "deepseek",
@@ -1629,6 +1811,51 @@
     },
     {
       "provider": "anthropic",
+      "model": "claude-haiku-4.5",
+      "benchmark_id": "livebench_overall",
+      "score": 52.03,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-haiku-4-5-20251001",
+        "claude-haiku-4-5-20251001-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4",
+      "benchmark_id": "livebench_overall",
+      "score": 56.7,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-1-opus-20250805-base",
+        "claude-4-1-opus-20250805-thinking-32k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.1",
+      "benchmark_id": "livebench_overall",
+      "score": 56.7,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-1-opus-20250805-base",
+        "claude-4-1-opus-20250805-thinking-32k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
       "model": "claude-opus-4.5",
       "benchmark_id": "livebench_overall",
       "score": 55.72,
@@ -1656,6 +1883,52 @@
         "claude-opus-4-6-thinking-auto-high-effort"
       ],
       "notes": null
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "benchmark_id": "livebench_overall",
+      "score": 54.47,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-4-sonnet-20250514-base",
+        "claude-4-sonnet-20250514-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.5",
+      "benchmark_id": "livebench_overall",
+      "score": 59.61,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-sonnet-4-5-20250929",
+        "claude-sonnet-4-5-20250929-thinking-64k"
+      ],
+      "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "benchmark_id": "livebench_overall",
+      "score": 73.82,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": null,
+      "matched_benchmark_models": [
+        "claude-sonnet-4-6-thinking-auto-high-effort",
+        "claude-sonnet-4-6-thinking-auto-low-effort",
+        "claude-sonnet-4-6-thinking-auto-medium-effort"
+      ],
+      "notes": "Averaged across 3 matched official variants."
     },
     {
       "provider": "deepseek",
@@ -2384,6 +2657,34 @@
       "benchmark_model": "glm-5",
       "matched_benchmark_models": [
         "glm-5"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-3",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 22.53,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://www.anthropic.com/index/claude-3",
+      "benchmark_model": "Claude-3-Haiku",
+      "matched_benchmark_models": [
+        "Claude-3-Haiku"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-3.5",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 48.74,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://www.anthropic.com/news/claude-3-5-sonnet",
+      "benchmark_model": "Claude-3.5-Sonnet-20241022",
+      "matched_benchmark_models": [
+        "Claude-3.5-Sonnet-20241022"
       ],
       "notes": null
     },
