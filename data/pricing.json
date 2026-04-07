@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-07T12:16:29.360Z",
+  "updated_at": "2026-04-07T18:17:47.816Z",
   "models": [
     {
       "provider": "openai",
@@ -2547,6 +2547,15 @@
       "output_price_per_million": 1.2,
       "currency": "USD",
       "source": "https://platform.minimax.io/docs/guides/pricing-paygo"
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-5.1",
+      "type": "text",
+      "input_price_per_million": 6,
+      "output_price_per_million": 24,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
     },
     {
       "provider": "zhipu",

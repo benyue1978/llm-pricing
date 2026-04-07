@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-07T12:16:29.360Z",
+  "updated_at": "2026-04-07T18:17:47.816Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -9394,6 +9394,40 @@
         "frontier",
         "general-purpose",
         "low-cost",
+        "reasoning",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.bigmodel.cn/cn/guide/start/model-overview",
+      "metadata_source_ids": [
+        "zhipu-model-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://open.bigmodel.cn/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-5.1",
+      "family": "glm-5",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
         "reasoning",
         "text-models"
       ],
