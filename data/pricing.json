@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-08T06:30:01.344Z",
+  "updated_at": "2026-04-09T01:06:01.425Z",
   "models": [
     {
       "provider": "openai",
@@ -2388,64 +2388,10 @@
     },
     {
       "provider": "moonshot",
-      "model": "moonshot-v1-8k",
+      "model": "kimi-k2.5",
       "type": "text",
-      "input_price_per_million": 0.2,
-      "output_price_per_million": 2,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "moonshot-v1-32k",
-      "type": "text",
-      "input_price_per_million": 1,
+      "input_price_per_million": 0.6,
       "output_price_per_million": 3,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "moonshot-v1-128k",
-      "type": "text",
-      "input_price_per_million": 2,
-      "output_price_per_million": 5,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-latest-8k",
-      "type": "text",
-      "input_price_per_million": 0.2,
-      "output_price_per_million": 2,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-latest-32k",
-      "type": "text",
-      "input_price_per_million": 1,
-      "output_price_per_million": 3,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-latest-128k",
-      "type": "text",
-      "input_price_per_million": 2,
-      "output_price_per_million": 5,
-      "currency": "USD",
-      "source": "https://platform.moonshot.ai/docs/pricing/chat"
-    },
-    {
-      "provider": "moonshot",
-      "model": "kimi-thinking-preview",
-      "type": "text",
-      "input_price_per_million": 30,
-      "output_price_per_million": 30,
       "currency": "USD",
       "source": "https://platform.moonshot.ai/docs/pricing/chat"
     },
@@ -2496,10 +2442,28 @@
     },
     {
       "provider": "moonshot",
-      "model": "kimi-k2.5",
+      "model": "moonshot-v1-8k",
       "type": "text",
-      "input_price_per_million": 0.6,
+      "input_price_per_million": 0.2,
+      "output_price_per_million": 2,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "moonshot-v1-32k",
+      "type": "text",
+      "input_price_per_million": 1,
       "output_price_per_million": 3,
+      "currency": "USD",
+      "source": "https://platform.moonshot.ai/docs/pricing/chat"
+    },
+    {
+      "provider": "moonshot",
+      "model": "moonshot-v1-128k",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 5,
       "currency": "USD",
       "source": "https://platform.moonshot.ai/docs/pricing/chat"
     },
@@ -2550,28 +2514,19 @@
     },
     {
       "provider": "zhipu",
-      "model": "GLM-5.1",
-      "type": "text",
-      "input_price_per_million": 6,
-      "output_price_per_million": 24,
-      "currency": "CNY",
-      "source": "https://open.bigmodel.cn/pricing"
-    },
-    {
-      "provider": "zhipu",
-      "model": "GLM-5-Turbo",
-      "type": "text",
-      "input_price_per_million": 5,
-      "output_price_per_million": 22,
-      "currency": "CNY",
-      "source": "https://open.bigmodel.cn/pricing"
-    },
-    {
-      "provider": "zhipu",
       "model": "GLM-5",
       "type": "text",
       "input_price_per_million": 4,
       "output_price_per_million": 18,
+      "currency": "CNY",
+      "source": "https://open.bigmodel.cn/pricing"
+    },
+    {
+      "provider": "zhipu",
+      "model": "GLM-5-Code",
+      "type": "text",
+      "input_price_per_million": 6,
+      "output_price_per_million": 28,
       "currency": "CNY",
       "source": "https://open.bigmodel.cn/pricing"
     },

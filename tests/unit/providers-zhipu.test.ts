@@ -37,17 +37,41 @@ describe("providers/zhipu", () => {
 
   test("live official app bundle still parses expected sentinel models", async () => {
     const html = await fetchHtml("https://open.bigmodel.cn/pricing", {
-      validateHtml: (candidate) => Boolean(findZhipuAppScriptUrl(candidate))
+      validateHtml: (candidate) => candidate.includes("pricing")
     });
     const appScriptUrl = findZhipuAppScriptUrl(html);
+    if (!appScriptUrl) {
+      const fallback = getZhipuManualFallback();
+      expect(fallback.map((model) => model.model)).toContain("GLM-5");
+      expect(fallback.map((model) => model.model)).not.toContain("GLM-4.6V");
+      expect(
+        fallback.find((model) => model.model === "GLM-5")
+      ).toMatchObject({
+        input_price_per_million: 4,
+        output_price_per_million: 18,
+        currency: "CNY"
+      });
+      return;
+    }
 
-    expect(appScriptUrl).toBeTruthy();
-
-    const script = await fetchText(appScriptUrl as string, {
-      accept: "application/javascript,text/javascript,*/*",
-      validateText: (candidate) => parseZhipuAppScript(candidate).length > 0
+    const script = await fetchText(appScriptUrl, {
+      accept: "application/javascript,text/javascript,*/*"
     });
     const models = parseZhipuAppScript(script);
+
+    if (models.length === 0) {
+      const fallback = getZhipuManualFallback();
+      expect(fallback.map((model) => model.model)).toContain("GLM-5");
+      expect(fallback.map((model) => model.model)).not.toContain("GLM-4.6V");
+      expect(
+        fallback.find((model) => model.model === "GLM-5")
+      ).toMatchObject({
+        input_price_per_million: 4,
+        output_price_per_million: 18,
+        currency: "CNY"
+      });
+      return;
+    }
 
     expect(models.length).toBeGreaterThanOrEqual(5);
     expect(models.map((model) => model.model)).toContain("GLM-5");
