@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-11T18:08:29.698Z",
+  "updated_at": "2026-04-12T00:19:00.065Z",
   "models": [
     {
       "provider": "openai",
@@ -376,6 +376,78 @@
       "type": "text",
       "input_price_per_million": 5,
       "output_price_per_million": 25,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.1",
+      "type": "text",
+      "input_price_per_million": 15,
+      "output_price_per_million": 75,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4",
+      "type": "text",
+      "input_price_per_million": 15,
+      "output_price_per_million": 75,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "type": "text",
+      "input_price_per_million": 3,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.5",
+      "type": "text",
+      "input_price_per_million": 3,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "type": "text",
+      "input_price_per_million": 3,
+      "output_price_per_million": 15,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-4.5",
+      "type": "text",
+      "input_price_per_million": 1,
+      "output_price_per_million": 5,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-3.5",
+      "type": "text",
+      "input_price_per_million": 0.8,
+      "output_price_per_million": 4,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-3",
+      "type": "text",
+      "input_price_per_million": 0.25,
+      "output_price_per_million": 1.25,
       "currency": "USD",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
