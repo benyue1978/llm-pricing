@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-15T12:18:25.150Z",
+  "updated_at": "2026-04-15T18:23:07.867Z",
   "models": [
     {
       "provider": "openai",
@@ -489,6 +489,15 @@
     },
     {
       "provider": "google",
+      "model": "gemini-3.1-flash-tts-preview",
+      "type": "text",
+      "input_price_per_million": 1,
+      "output_price_per_million": 20,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    {
+      "provider": "google",
       "model": "gemini-3-flash-preview",
       "type": "text",
       "input_price_per_million": 0.5,
@@ -633,16 +642,7 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-small-latest",
-      "type": "text",
-      "input_price_per_million": 0.15,
-      "output_price_per_million": 0.6,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
-      "model": "mistral-medium-latest",
+      "model": "devstral-medium-latest",
       "type": "text",
       "input_price_per_million": 0.4,
       "output_price_per_million": 2,
@@ -654,13 +654,22 @@
       "model": "mistral-ocr-latest",
       "type": "text",
       "input_price_per_million": 2,
-      "output_price_per_million": 0.4,
+      "output_price_per_million": 3,
       "currency": "USD",
       "source": "https://mistral.ai/pricing"
     },
     {
       "provider": "mistral",
-      "model": "devstral-medium-latest",
+      "model": "mistral-small-latest",
+      "type": "text",
+      "input_price_per_million": 0.15,
+      "output_price_per_million": 0.6,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "mistral-medium-latest",
       "type": "text",
       "input_price_per_million": 0.4,
       "output_price_per_million": 2,
