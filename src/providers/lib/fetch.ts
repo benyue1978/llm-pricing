@@ -61,6 +61,32 @@ export async function fetchHtml(url: string, options: FetchHtmlOptions = {}): Pr
   });
 }
 
+export function ensureValidatedText(
+  text: string,
+  validateText: (text: string) => boolean
+): string {
+  if (!text.trim()) {
+    throw new Error("Fetched text was empty");
+  }
+
+  if (!validateText(text)) {
+    throw new Error("Fetched text did not pass validation");
+  }
+
+  return text;
+}
+
+export function ensureValidatedJson<T>(
+  data: T,
+  validateJson: (data: T) => boolean
+): T {
+  if (!validateJson(data)) {
+    throw new Error("Fetched JSON did not pass validation");
+  }
+
+  return data;
+}
+
 export async function fetchText(url: string, options: FetchTextOptions = {}): Promise<string> {
   const accept = options.accept ?? "text/plain,*/*";
   const validateText = options.validateText ?? (() => true);
@@ -77,10 +103,7 @@ export async function fetchText(url: string, options: FetchTextOptions = {}): Pr
       throw new Error(`HTTP ${response.status}`);
     }
 
-    const text = await response.text();
-    if (text.trim() && validateText(text)) {
-      return text;
-    }
+    return ensureValidatedText(await response.text(), validateText);
   } catch {
     // Fall back to curl for sites that block or timeout plain Node fetches.
   }
@@ -104,13 +127,7 @@ export async function fetchText(url: string, options: FetchTextOptions = {}): Pr
       outputPath,
       url
     ]);
-    const stdout = await readFile(outputPath, "utf8");
-
-    if (stdout.trim() && validateText(stdout)) {
-      return stdout;
-    }
-
-    return stdout;
+    return ensureValidatedText(await readFile(outputPath, "utf8"), validateText);
   } finally {
     await rm(outputPath, { force: true });
   }
@@ -131,10 +148,7 @@ export async function fetchJson<T>(url: string, options: FetchJsonOptions<T> = {
       throw new Error(`HTTP ${response.status}`);
     }
 
-    const data = (await response.json()) as T;
-    if (validateJson(data)) {
-      return data;
-    }
+    return ensureValidatedJson((await response.json()) as T, validateJson);
   } catch {
     // Fall back to curl for sites that block or timeout plain Node fetches.
   }
@@ -158,14 +172,7 @@ export async function fetchJson<T>(url: string, options: FetchJsonOptions<T> = {
       outputPath,
       url
     ]);
-    const raw = await readFile(outputPath, "utf8");
-    const data = JSON.parse(raw) as T;
-
-    if (validateJson(data)) {
-      return data;
-    }
-
-    return data;
+    return ensureValidatedJson(JSON.parse(await readFile(outputPath, "utf8")) as T, validateJson);
   } finally {
     await rm(outputPath, { force: true });
   }

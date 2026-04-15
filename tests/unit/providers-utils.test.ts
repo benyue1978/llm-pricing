@@ -19,6 +19,10 @@ import {
   splitTopLevelObjects,
   extractConditionalAssignedArray
 } from "../../src/providers/utils.js";
+import {
+  ensureValidatedJson,
+  ensureValidatedText
+} from "../../src/providers/lib/fetch.js";
 
 describe("providers/utils", () => {
   test("normalizeText collapses whitespace and trims empty input", () => {
@@ -177,5 +181,17 @@ describe("providers/utils", () => {
 
     expect(models).toEqual(fallbackModels);
     expect(logger).toHaveBeenCalledWith("fallback 1");
+  });
+
+  test("ensureValidatedText rejects invalid provider HTML instead of leaking it downstream", () => {
+    expect(() =>
+      ensureValidatedText("<html>challenge page</html>", (text) => text.includes("pricing table"))
+    ).toThrowError("Fetched text did not pass validation");
+  });
+
+  test("ensureValidatedJson rejects invalid JSON payloads instead of silently returning them", () => {
+    expect(() =>
+      ensureValidatedJson({ status: "stale" }, (payload) => payload.status === "ok")
+    ).toThrowError("Fetched JSON did not pass validation");
   });
 });
