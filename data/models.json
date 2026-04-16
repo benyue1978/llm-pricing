@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-16T12:20:13.173Z",
+  "updated_at": "2026-04-16T18:23:37.717Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -291,6 +291,39 @@
     {
       "provider": "anthropic",
       "model": "claude-opus-4.6",
+      "family": "claude-opus-4",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.anthropic.com/en/docs/models-overview",
+      "metadata_source_ids": [
+        "anthropic-models-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.7",
       "family": "claude-opus-4",
       "access_type": "api",
       "openness": "closed",
