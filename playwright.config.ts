@@ -1,6 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const loopbackNoProxy = "127.0.0.1,localhost";
+const e2ePort = process.env.PLAYWRIGHT_TEST_PORT ?? "41731";
+const e2eBaseUrl = `http://127.0.0.1:${e2ePort}`;
+
 process.env.NO_PROXY = process.env.NO_PROXY
   ? `${process.env.NO_PROXY},${loopbackNoProxy}`
   : loopbackNoProxy;
@@ -16,14 +19,14 @@ export default defineConfig({
   workers: 1,
   reporter: "html",
   use: {
-    baseURL: "http://127.0.0.1:4173",
+    baseURL: e2eBaseUrl,
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "npm run web:dev",
-    url: "http://127.0.0.1:4173/",
-    reuseExistingServer: !process.env.CI,
+    command: `npx serve . -l tcp://127.0.0.1:${e2ePort}`,
+    url: `${e2eBaseUrl}/`,
+    reuseExistingServer: false,
     timeout: 120000,
   },
 });
