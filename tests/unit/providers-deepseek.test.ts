@@ -50,8 +50,8 @@ describe("providers/deepseek", () => {
     expect(
       models.find((model) => model.model === "deepseek-chat")
     ).toMatchObject({
-      input_price_per_million: 0.28,
-      output_price_per_million: 0.42
+      input_price_per_million: 1.74,
+      output_price_per_million: 3.48
     });
   }, 30000);
 });
