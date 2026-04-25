@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-24T18:13:46.032Z",
+  "updated_at": "2026-04-25T00:21:00.616Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -3517,6 +3517,72 @@
     {
       "provider": "openai",
       "model": "gpt-5.4-pro",
+      "family": "gpt-5",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.openai.com/docs/models",
+      "metadata_source_ids": [
+        "openai-models-docs",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.openai.com/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.5",
+      "family": "gpt-5",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://platform.openai.com/docs/models",
+      "metadata_source_ids": [
+        "openai-models-docs",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.openai.com/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.5-pro",
       "family": "gpt-5",
       "access_type": "api",
       "openness": "closed",
