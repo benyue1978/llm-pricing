@@ -36,74 +36,108 @@ export function parseDeepseekHtml(html: string): PricingModel[] {
     .toArray()
     .map((row) => getCellTexts($, row));
 
-  const cacheHitRow = pricingRows.find((row) => row.includes("1M INPUT TOKENS (CACHE HIT)"));
-  const cacheMissRow = pricingRows.find((row) => row.includes("1M INPUT TOKENS (CACHE MISS)"));
-  const outputRow = pricingRows.find((row) => row.includes("1M OUTPUT TOKENS"));
-  if (!cacheMissRow || !outputRow) {
+  const modelRow = pricingRows.find((row) => row.at(0) === "MODEL");
+  const modelNames = modelRow
+    ?.slice(1)
+    .map(normalizeDeepseekModelName)
+    .filter((model) => model.startsWith("deepseek-"));
+  const cacheHitRow = findPricingRow(pricingRows, "1M INPUT TOKENS (CACHE HIT)");
+  const cacheMissRow = findPricingRow(pricingRows, "1M INPUT TOKENS (CACHE MISS)");
+  const outputRow = findPricingRow(pricingRows, "1M OUTPUT TOKENS");
+  if (!modelNames?.length || !cacheMissRow || !outputRow) {
     return [];
   }
 
-  const cacheHit = parseUsdAmount(cacheHitRow?.at(-1));
-  const cacheMiss = parseUsdAmount(cacheMissRow.at(-1));
-  const output = parseUsdAmount(outputRow.at(-1));
-  if (!Number.isFinite(cacheMiss) || !Number.isFinite(output)) {
-    return [];
+  const models: PricingModel[] = [];
+
+  for (const [index, model] of modelNames.entries()) {
+    const cacheHit = parseUsdAmount(getModelPriceCell(cacheHitRow, index));
+    const cacheMiss = parseUsdAmount(getModelPriceCell(cacheMissRow, index));
+    const output = parseUsdAmount(getModelPriceCell(outputRow, index));
+    if (!Number.isFinite(cacheMiss) || !Number.isFinite(output)) {
+      continue;
+    }
+
+    models.push(
+      createTextPricingModel({
+        provider: "deepseek",
+        model,
+        input: cacheMiss,
+        output,
+        currency: "USD",
+        source: DEEPSEEK_PRICING_SOURCE
+      })
+    );
+
+    if (Number.isFinite(cacheHit) && cacheHit !== cacheMiss) {
+      models.push(
+        createTextPricingModel({
+          provider: "deepseek",
+          model: `${model}-cached`,
+          input: cacheHit,
+          output,
+          currency: "USD",
+          source: DEEPSEEK_PRICING_SOURCE
+        })
+      );
+    }
   }
 
-  return [
-    createTextPricingModel({
-      provider: "deepseek",
-      model: "deepseek-chat",
-      input: cacheMiss,
-      output,
-      currency: "USD",
-      source: DEEPSEEK_PRICING_SOURCE
-    }),
-    createTextPricingModel({
-      provider: "deepseek",
-      model: "deepseek-chat-cached",
-      input: Number.isFinite(cacheHit) ? cacheHit : cacheMiss,
-      output,
-      currency: "USD",
-      source: DEEPSEEK_PRICING_SOURCE
-    }),
-    createTextPricingModel({
-      provider: "deepseek",
-      model: "deepseek-reasoner",
-      input: cacheMiss,
-      output,
-      currency: "USD",
-      source: DEEPSEEK_PRICING_SOURCE
-    })
-  ];
+  return models;
+}
+
+function normalizeDeepseekModelName(value: string): string {
+  return value.replace(/\(\d+\)$/u, "").trim();
+}
+
+function findPricingRow(rows: string[][], label: string): string[] | undefined {
+  return rows.find((row) => row.some((cell) => cell.includes(label)));
+}
+
+function getModelPriceCell(row: string[] | undefined, modelIndex: number): string | undefined {
+  if (!row) {
+    return undefined;
+  }
+  const labelIndex = row.findIndex((cell) => cell.includes("1M ") && cell.includes("TOKENS"));
+  const priceStartIndex = labelIndex >= 0 ? labelIndex + 1 : 1;
+  return row[priceStartIndex + modelIndex] ?? row.at(-1);
 }
 
 export function getDeepseekManualFallback(): PricingModel[] {
   return [
     {
       provider: "deepseek",
-      model: "deepseek-chat",
+      model: "deepseek-v4-flash",
       type: "text",
-      input_price_per_million: 1.74,
-      output_price_per_million: 3.48,
+      input_price_per_million: 0.14,
+      output_price_per_million: 0.28,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
     },
     {
       provider: "deepseek",
-      model: "deepseek-chat-cached",
+      model: "deepseek-v4-flash-cached",
       type: "text",
-      input_price_per_million: 0.145,
-      output_price_per_million: 3.48,
+      input_price_per_million: 0.0028,
+      output_price_per_million: 0.28,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
     },
     {
       provider: "deepseek",
-      model: "deepseek-reasoner",
+      model: "deepseek-v4-pro",
       type: "text",
-      input_price_per_million: 1.74,
-      output_price_per_million: 3.48,
+      input_price_per_million: 0.435,
+      output_price_per_million: 0.87,
+      currency: "USD",
+      source: DEEPSEEK_PRICING_SOURCE
+    },
+    {
+      provider: "deepseek",
+      model: "deepseek-v4-pro-cached",
+      type: "text",
+      input_price_per_million: 0.003625,
+      output_price_per_million: 0.87,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
     }

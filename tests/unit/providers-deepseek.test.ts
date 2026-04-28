@@ -26,13 +26,23 @@ describe("providers/deepseek", () => {
         model: "deepseek-reasoner",
         input_price_per_million: 0.28,
         output_price_per_million: 0.42
+      }),
+      expect.objectContaining({
+        model: "deepseek-reasoner-cached",
+        input_price_per_million: 0.028,
+        output_price_per_million: 0.42
       })
     ]);
   });
 
   test("getDeepseekManualFallback returns official fallback entries", () => {
     const fallback = getDeepseekManualFallback();
-    expect(fallback).toHaveLength(3);
+    expect(fallback.map((model) => model.model)).toEqual([
+      "deepseek-v4-flash",
+      "deepseek-v4-flash-cached",
+      "deepseek-v4-pro",
+      "deepseek-v4-pro-cached"
+    ]);
     expect(fallback.every((model) => model.type === "text")).toBe(true);
   });
 
@@ -43,15 +53,25 @@ describe("providers/deepseek", () => {
     const models = parseDeepseekHtml(html);
 
     expect(models.map((model) => model.model)).toEqual([
-      "deepseek-chat",
-      "deepseek-chat-cached",
-      "deepseek-reasoner"
+      "deepseek-v4-flash",
+      "deepseek-v4-flash-cached",
+      "deepseek-v4-pro",
+      "deepseek-v4-pro-cached"
     ]);
     expect(
-      models.find((model) => model.model === "deepseek-chat")
-    ).toMatchObject({
-      input_price_per_million: 1.74,
-      output_price_per_million: 3.48
-    });
+      models.every(
+        (model) =>
+          Number.isFinite(model.input_price_per_million) &&
+          model.input_price_per_million > 0 &&
+          Number.isFinite(model.output_price_per_million) &&
+          Number(model.output_price_per_million) > 0
+      )
+    ).toBe(true);
+    const flash = models.find((model) => model.model === "deepseek-v4-flash");
+    const flashCached = models.find((model) => model.model === "deepseek-v4-flash-cached");
+    const pro = models.find((model) => model.model === "deepseek-v4-pro");
+    const proCached = models.find((model) => model.model === "deepseek-v4-pro-cached");
+    expect(flashCached?.input_price_per_million).toBeLessThan(flash?.input_price_per_million ?? 0);
+    expect(proCached?.input_price_per_million).toBeLessThan(pro?.input_price_per_million ?? 0);
   }, 30000);
 });
