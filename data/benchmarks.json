@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-25T12:11:12.999Z",
+  "updated_at": "2026-04-28T07:10:38.642Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -227,48 +227,6 @@
         "claude-sonnet-4-6-thinking-auto-medium-effort"
       ],
       "notes": "Averaged across 3 matched official variants."
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-chat",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 46.67,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2",
-      "matched_benchmark_models": [
-        "deepseek-v3.2"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-chat-cached",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 46.67,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2",
-      "matched_benchmark_models": [
-        "deepseek-v3.2"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-reasoner",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 40,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2-thinking",
-      "matched_benchmark_models": [
-        "deepseek-v3.2-thinking"
-      ],
-      "notes": null
     },
     {
       "provider": "google",
@@ -1080,48 +1038,6 @@
       "notes": "Averaged across 3 matched official variants."
     },
     {
-      "provider": "deepseek",
-      "model": "deepseek-chat",
-      "benchmark_id": "livebench_coding",
-      "score": 75.69,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2",
-      "matched_benchmark_models": [
-        "deepseek-v3.2"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-chat-cached",
-      "benchmark_id": "livebench_coding",
-      "score": 75.69,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2",
-      "matched_benchmark_models": [
-        "deepseek-v3.2"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-reasoner",
-      "benchmark_id": "livebench_coding",
-      "score": 64.62,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2-thinking",
-      "matched_benchmark_models": [
-        "deepseek-v3.2-thinking"
-      ],
-      "notes": null
-    },
-    {
       "provider": "google",
       "model": "gemini-2.5-flash",
       "benchmark_id": "livebench_coding",
@@ -1931,48 +1847,6 @@
       "notes": "Averaged across 3 matched official variants."
     },
     {
-      "provider": "deepseek",
-      "model": "deepseek-chat",
-      "benchmark_id": "livebench_overall",
-      "score": 49.75,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2",
-      "matched_benchmark_models": [
-        "deepseek-v3.2"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-chat-cached",
-      "benchmark_id": "livebench_overall",
-      "score": 49.75,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2",
-      "matched_benchmark_models": [
-        "deepseek-v3.2"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-reasoner",
-      "benchmark_id": "livebench_overall",
-      "score": 63.13,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "deepseek-v3.2-thinking",
-      "matched_benchmark_models": [
-        "deepseek-v3.2-thinking"
-      ],
-      "notes": null
-    },
-    {
       "provider": "google",
       "model": "gemini-2.5-flash",
       "benchmark_id": "livebench_overall",
@@ -2685,48 +2559,6 @@
       "benchmark_model": "Claude-3.5-Sonnet-20241022",
       "matched_benchmark_models": [
         "Claude-3.5-Sonnet-20241022"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-chat",
-      "benchmark_id": "livecodebench_pass1",
-      "score": 49.55,
-      "score_unit": "points",
-      "evaluated_at": null,
-      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
-      "benchmark_model": "DeepSeek-V3",
-      "matched_benchmark_models": [
-        "DeepSeek-V3"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-chat-cached",
-      "benchmark_id": "livecodebench_pass1",
-      "score": 49.55,
-      "score_unit": "points",
-      "evaluated_at": null,
-      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
-      "benchmark_model": "DeepSeek-V3",
-      "matched_benchmark_models": [
-        "DeepSeek-V3"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-reasoner",
-      "benchmark_id": "livecodebench_pass1",
-      "score": 84.36,
-      "score_unit": "points",
-      "evaluated_at": null,
-      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
-      "benchmark_model": "DeepSeek-R1-0528",
-      "matched_benchmark_models": [
-        "DeepSeek-R1-0528"
       ],
       "notes": null
     },

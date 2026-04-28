@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-25T12:11:12.999Z",
+  "updated_at": "2026-04-28T07:10:38.642Z",
   "models": [
     {
       "provider": "openai",
@@ -885,28 +885,37 @@
     },
     {
       "provider": "deepseek",
-      "model": "deepseek-chat",
+      "model": "deepseek-v4-flash",
       "type": "text",
-      "input_price_per_million": 1.74,
-      "output_price_per_million": 3.48,
+      "input_price_per_million": 0.14,
+      "output_price_per_million": 0.28,
       "currency": "USD",
       "source": "https://api-docs.deepseek.com/quick_start/pricing"
     },
     {
       "provider": "deepseek",
-      "model": "deepseek-chat-cached",
+      "model": "deepseek-v4-flash-cached",
       "type": "text",
-      "input_price_per_million": 0.145,
-      "output_price_per_million": 3.48,
+      "input_price_per_million": 0.0028,
+      "output_price_per_million": 0.28,
       "currency": "USD",
       "source": "https://api-docs.deepseek.com/quick_start/pricing"
     },
     {
       "provider": "deepseek",
-      "model": "deepseek-reasoner",
+      "model": "deepseek-v4-pro",
       "type": "text",
-      "input_price_per_million": 1.74,
-      "output_price_per_million": 3.48,
+      "input_price_per_million": 0.435,
+      "output_price_per_million": 0.87,
+      "currency": "USD",
+      "source": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-v4-pro-cached",
+      "type": "text",
+      "input_price_per_million": 0.003625,
+      "output_price_per_million": 0.87,
       "currency": "USD",
       "source": "https://api-docs.deepseek.com/quick_start/pricing"
     },

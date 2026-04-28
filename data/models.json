@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-25T12:11:12.999Z",
+  "updated_at": "2026-04-28T07:10:38.642Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -452,7 +452,7 @@
     },
     {
       "provider": "deepseek",
-      "model": "deepseek-chat",
+      "model": "deepseek-v4-flash",
       "family": "deepseek",
       "access_type": "api",
       "openness": "closed",
@@ -460,6 +460,71 @@
         "text"
       ],
       "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "metadata_source_ids": [
+        "deepseek-api-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash-cached",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "metadata_source_ids": [
+        "deepseek-api-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-v4-pro",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
         "general-purpose",
         "text-models"
       ],
@@ -484,7 +549,7 @@
     },
     {
       "provider": "deepseek",
-      "model": "deepseek-chat-cached",
+      "model": "deepseek-v4-pro-cached",
       "family": "deepseek",
       "access_type": "api",
       "openness": "closed",
@@ -492,39 +557,8 @@
         "text"
       ],
       "comparison_buckets": [
+        "frontier",
         "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://api-docs.deepseek.com/quick_start/pricing",
-      "metadata_source_ids": [
-        "deepseek-api-pricing",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://api-docs.deepseek.com/quick_start/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "deepseek",
-      "model": "deepseek-reasoner",
-      "family": "deepseek",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "reasoning",
         "text-models"
       ],
       "release_stage": "stable",
