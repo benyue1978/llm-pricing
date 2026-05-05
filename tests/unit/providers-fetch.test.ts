@@ -20,7 +20,7 @@ describe("provider fetchers", () => {
     const models = await fetchOpenAIPricing();
     assertValidPricingModels(models);
     expect(models.every((model) => model.type === "text")).toBe(true);
-  });
+  }, 30000);
 
   test("anthropic returns valid pricing models", async () => {
     const models = await fetchAnthropicPricing();
