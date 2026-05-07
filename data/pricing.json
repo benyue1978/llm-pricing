@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-07T12:34:39.271Z",
+  "updated_at": "2026-05-07T18:35:58.848Z",
   "models": [
     {
       "provider": "openai",
@@ -477,6 +477,15 @@
       "output_price_per_million": 1.25,
       "currency": "USD",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-3.1-flash-lite",
+      "type": "text",
+      "input_price_per_million": 0.25,
+      "output_price_per_million": 1.5,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
     {
       "provider": "google",

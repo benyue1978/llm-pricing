@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-07T12:34:39.271Z",
+  "updated_at": "2026-05-07T18:35:58.848Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -284,6 +284,20 @@
         "gemini-3-flash-preview-minimal"
       ],
       "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "google",
+      "model": "gemini-3.1-flash-lite",
+      "benchmark_id": "livebench_agentic_coding",
+      "score": 33.33,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": "gemini-3.1-flash-lite-preview-high",
+      "matched_benchmark_models": [
+        "gemini-3.1-flash-lite-preview-high"
+      ],
+      "notes": null
     },
     {
       "provider": "google",
@@ -1096,6 +1110,20 @@
     },
     {
       "provider": "google",
+      "model": "gemini-3.1-flash-lite",
+      "benchmark_id": "livebench_coding",
+      "score": 68.52,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": "gemini-3.1-flash-lite-preview-high",
+      "matched_benchmark_models": [
+        "gemini-3.1-flash-lite-preview-high"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "google",
       "model": "gemini-3.1-flash-lite-preview",
       "benchmark_id": "livebench_coding",
       "score": 68.52,
@@ -1902,6 +1930,20 @@
         "gemini-3-flash-preview-minimal"
       ],
       "notes": "Averaged across 2 matched official variants."
+    },
+    {
+      "provider": "google",
+      "model": "gemini-3.1-flash-lite",
+      "benchmark_id": "livebench_overall",
+      "score": 62.11,
+      "score_unit": "points",
+      "evaluated_at": "2026-01-08",
+      "source_url": "https://livebench.ai/table_2026_01_08.csv",
+      "benchmark_model": "gemini-3.1-flash-lite-preview-high",
+      "matched_benchmark_models": [
+        "gemini-3.1-flash-lite-preview-high"
+      ],
+      "notes": null
     },
     {
       "provider": "google",

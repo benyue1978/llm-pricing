@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-07T12:34:39.271Z",
+  "updated_at": "2026-05-07T18:35:58.848Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -1023,6 +1023,38 @@
         "text-models"
       ],
       "release_stage": "preview",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://ai.google.dev/gemini-api/docs/models",
+      "metadata_source_ids": [
+        "google-gemini-models",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "google",
+      "model": "gemini-3.1-flash-lite",
+      "family": "gemini-3.1",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
       "context_window_tokens": null,
       "max_output_tokens": null,
       "parameter_count_billions": null,
