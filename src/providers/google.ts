@@ -17,7 +17,8 @@ export async function fetchGooglePricing(logger: ProviderLogger = () => {}): Pro
     logger,
     fetchLive: async () => {
       const html = await fetchHtml(GOOGLE_PRICING_SOURCE, {
-        validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0
+        validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0,
+        timeoutMs: 10000
       });
       return parseGoogleHtml(html);
     },

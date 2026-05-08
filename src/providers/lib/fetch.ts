@@ -11,17 +11,36 @@ import type { ProviderLogger } from "../types.js";
 const execFileAsync = promisify(execFile);
 const DEFAULT_USER_AGENT = "Mozilla/5.0";
 
+function getCurlRetryArgs(timeoutMs: number | undefined): string[] {
+  if (timeoutMs !== undefined) {
+    return [];
+  }
+
+  return [
+    "--retry",
+    "3",
+    "--retry-all-errors"
+  ];
+}
+
+function getCurlTimeoutArgs(timeoutMs: number | undefined): string[] {
+  return timeoutMs === undefined ? [] : ["--max-time", (timeoutMs / 1000).toString()];
+}
+
 export interface FetchHtmlOptions {
   validateHtml?: (html: string) => boolean;
+  timeoutMs?: number;
 }
 
 export interface FetchTextOptions {
   accept?: string;
   validateText?: (text: string) => boolean;
+  timeoutMs?: number;
 }
 
 export interface FetchJsonOptions<T> {
   validateJson?: (data: T) => boolean;
+  timeoutMs?: number;
 }
 
 export interface FetchProviderPricingOptions {
@@ -57,7 +76,8 @@ export async function fetchProviderPricing({
 export async function fetchHtml(url: string, options: FetchHtmlOptions = {}): Promise<string> {
   return fetchText(url, {
     accept: "text/html,application/xhtml+xml",
-    validateText: options.validateHtml
+    validateText: options.validateHtml,
+    timeoutMs: options.timeoutMs
   });
 }
 
@@ -90,13 +110,15 @@ export function ensureValidatedJson<T>(
 export async function fetchText(url: string, options: FetchTextOptions = {}): Promise<string> {
   const accept = options.accept ?? "text/plain,*/*";
   const validateText = options.validateText ?? (() => true);
+  const timeoutMs = options.timeoutMs;
 
   try {
     const response = await fetch(url, {
       headers: {
         "user-agent": DEFAULT_USER_AGENT,
         accept
-      }
+      },
+      signal: timeoutMs === undefined ? undefined : AbortSignal.timeout(timeoutMs)
     });
 
     if (!response.ok) {
@@ -116,9 +138,8 @@ export async function fetchText(url: string, options: FetchTextOptions = {}): Pr
       "--fail",
       "--silent",
       "--show-error",
-      "--retry",
-      "3",
-      "--retry-all-errors",
+      ...getCurlRetryArgs(timeoutMs),
+      ...getCurlTimeoutArgs(timeoutMs),
       "-A",
       DEFAULT_USER_AGENT,
       "-H",
@@ -135,13 +156,15 @@ export async function fetchText(url: string, options: FetchTextOptions = {}): Pr
 
 export async function fetchJson<T>(url: string, options: FetchJsonOptions<T> = {}): Promise<T> {
   const validateJson = options.validateJson ?? (() => true);
+  const timeoutMs = options.timeoutMs;
 
   try {
     const response = await fetch(url, {
       headers: {
         "user-agent": DEFAULT_USER_AGENT,
         accept: "application/json,text/plain"
-      }
+      },
+      signal: timeoutMs === undefined ? undefined : AbortSignal.timeout(timeoutMs)
     });
 
     if (!response.ok) {
@@ -161,9 +184,8 @@ export async function fetchJson<T>(url: string, options: FetchJsonOptions<T> = {
       "--fail",
       "--silent",
       "--show-error",
-      "--retry",
-      "3",
-      "--retry-all-errors",
+      ...getCurlRetryArgs(timeoutMs),
+      ...getCurlTimeoutArgs(timeoutMs),
       "-A",
       DEFAULT_USER_AGENT,
       "-H",

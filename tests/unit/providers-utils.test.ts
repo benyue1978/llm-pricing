@@ -1,9 +1,11 @@
 import { describe, expect, test, vi } from "vitest";
 import { load } from "cheerio";
+import { createServer } from "node:http";
 import {
   extractAssignedArray,
   extractBracketedValue,
   fetchProviderPricing,
+  fetchText,
   findNextTable,
   findScriptSrc,
   findTableByHeaders,
@@ -182,6 +184,39 @@ describe("providers/utils", () => {
     expect(models).toEqual(fallbackModels);
     expect(logger).toHaveBeenCalledWith("fallback 1");
   });
+
+  test("fetchText respects a request timeout", async () => {
+    const server = createServer((_, response) => {
+      setTimeout(() => {
+        response.end("late response");
+      }, 2000);
+    });
+    await new Promise<void>((resolve, reject) => {
+      server.once("error", reject);
+      server.listen(0, "127.0.0.1", resolve);
+    });
+
+    try {
+      const address = server.address();
+      if (!address || typeof address === "string") {
+        throw new Error("Expected TCP test server address");
+      }
+
+      await expect(
+        fetchText(`http://127.0.0.1:${address.port}/slow`, { timeoutMs: 50 })
+      ).rejects.toThrow();
+    } finally {
+      await new Promise<void>((resolve, reject) => {
+        server.close((error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          resolve();
+        });
+      });
+    }
+  }, 1000);
 
   test("ensureValidatedText rejects invalid provider HTML instead of leaking it downstream", () => {
     expect(() =>

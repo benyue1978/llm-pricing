@@ -42,7 +42,8 @@ describe("providers/google", () => {
 
   test("live pricing page still parses target Gemini sections", async () => {
     const html = await fetchHtml("https://ai.google.dev/gemini-api/docs/pricing", {
-      validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0
+      validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0,
+      timeoutMs: 25000
     });
     const models = parseGoogleHtml(html);
 
@@ -55,5 +56,5 @@ describe("providers/google", () => {
       input_price_per_million: 1.25,
       output_price_per_million: 10
     });
-  }, 30000);
+  }, 60000);
 });
