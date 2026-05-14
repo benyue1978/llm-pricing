@@ -99,15 +99,18 @@ const DEFINITIONS: BenchmarkDefinition[] = [
   }
 ];
 
+const BENCHMARK_FETCH_TIMEOUT_MS = 20000;
+
 export async function fetchBenchmarkRegistry(
   pricingModels: PricingModel[],
   updatedAt = new Date().toISOString()
 ): Promise<BenchmarkRegistry> {
-  const allScores = [
-    ...(await fetchLiveBenchScores(pricingModels)),
-    ...(await fetchLiveCodeBenchScores(pricingModels)),
-    ...(await fetchSweBenchScores(pricingModels))
-  ];
+  const scoreGroups = await Promise.allSettled([
+    fetchLiveBenchScores(pricingModels),
+    fetchLiveCodeBenchScores(pricingModels),
+    fetchSweBenchScores(pricingModels)
+  ]);
+  const allScores = scoreGroups.flatMap((result) => result.status === "fulfilled" ? result.value : []);
 
   return {
     updated_at: updatedAt,
@@ -208,11 +211,13 @@ async function fetchLiveBenchScores(pricingModels: PricingModel[]): Promise<Benc
   const [csv, categoriesRaw] = await Promise.all([
     fetchText(`https://livebench.ai/table_${release}.csv`, {
       accept: "text/csv,text/plain,*/*",
-      validateText: (candidate) => candidate.startsWith("model,")
+      validateText: (candidate) => candidate.startsWith("model,"),
+      timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
     }),
     fetchText(`https://livebench.ai/categories_${release}.json`, {
       accept: "application/json,text/plain,*/*",
-      validateText: (candidate) => candidate.includes("Coding")
+      validateText: (candidate) => candidate.includes("Coding"),
+      timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
     })
   ]);
   const categories = JSON.parse(categoriesRaw) as Record<string, string[]>;
@@ -232,7 +237,8 @@ async function fetchLiveBenchScores(pricingModels: PricingModel[]): Promise<Benc
 async function discoverLiveBenchRelease(): Promise<string> {
   const manifestRaw = await fetchText("https://livebench.ai/asset-manifest.json", {
     accept: "application/json,text/plain,*/*",
-    validateText: (candidate) => candidate.includes("main.js")
+    validateText: (candidate) => candidate.includes("main.js"),
+    timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
   });
   const manifest = JSON.parse(manifestRaw) as { files?: Record<string, string> };
   const mainJsPath = manifest.files?.["main.js"];
@@ -242,7 +248,8 @@ async function discoverLiveBenchRelease(): Promise<string> {
 
   const mainJs = await fetchText(new URL(mainJsPath, "https://livebench.ai/").toString(), {
     accept: "application/javascript,text/javascript,*/*",
-    validateText: (candidate) => candidate.includes("table_${r}.csv")
+    validateText: (candidate) => candidate.includes("table_${r}.csv"),
+    timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
   });
   const candidates = [...new Set([...mainJs.matchAll(/20\d\d-\d\d-\d\d/g)].map((match) => match[0].replace(/-/g, "_")))]
     .sort()
@@ -268,13 +275,15 @@ async function discoverLiveBenchRelease(): Promise<string> {
 
 async function fetchLiveCodeBenchScores(pricingModels: PricingModel[]): Promise<BenchmarkScore[]> {
   const html = await fetchHtml("https://livecodebench.github.io/leaderboard.html", {
-    validateHtml: (candidate) => candidate.includes("performances_generation.json")
+    validateHtml: (candidate) => candidate.includes("performances_generation.json"),
+    timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
   });
   const datasetMatch = html.match(/const DEFAULT_DATASET = '([^']+\.json)'/);
   const datasetPath = datasetMatch?.[1] ?? "performances_generation.json";
   const raw = await fetchText(new URL(datasetPath, "https://livecodebench.github.io/").toString(), {
     accept: "application/json,text/plain,*/*",
-    validateText: (candidate) => candidate.includes("\"performances\"") && candidate.includes("\"models\"")
+    validateText: (candidate) => candidate.includes("\"performances\"") && candidate.includes("\"models\""),
+    timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
   });
   const rows = parseLiveCodeBenchData(JSON.parse(raw));
 
@@ -289,7 +298,8 @@ async function fetchLiveCodeBenchScores(pricingModels: PricingModel[]): Promise<
 
 async function fetchSweBenchScores(pricingModels: PricingModel[]): Promise<BenchmarkScore[]> {
   const html = await fetchHtml("https://www.swebench.com/", {
-    validateHtml: (candidate) => candidate.includes("leaderboard-data")
+    validateHtml: (candidate) => candidate.includes("leaderboard-data"),
+    timeoutMs: BENCHMARK_FETCH_TIMEOUT_MS
   });
   const rows = parseSweBenchHtml(html);
 
