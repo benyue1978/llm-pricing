@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-15T07:03:39.174Z",
+  "updated_at": "2026-05-15T12:34:47.214Z",
   "models": [
     {
       "provider": "openai",
@@ -633,33 +633,6 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-medium-latest",
-      "type": "text",
-      "input_price_per_million": 1.5,
-      "output_price_per_million": 7.5,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
-      "model": "voxtral-mini-tts-2603",
-      "type": "text",
-      "input_price_per_million": 0.016,
-      "output_price_per_million": 2,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
-      "model": "mistral-ocr-latest",
-      "type": "text",
-      "input_price_per_million": 2,
-      "output_price_per_million": 3,
-      "currency": "USD",
-      "source": "https://mistral.ai/pricing"
-    },
-    {
-      "provider": "mistral",
       "model": "mistral-large-latest",
       "type": "text",
       "input_price_per_million": 0.5,
@@ -669,10 +642,28 @@
     },
     {
       "provider": "mistral",
+      "model": "mistral-medium-latest",
+      "type": "text",
+      "input_price_per_million": 1.5,
+      "output_price_per_million": 7.5,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
       "model": "mistral-small-latest",
       "type": "text",
       "input_price_per_million": 0.15,
       "output_price_per_million": 0.6,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "mistral-ocr-latest",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 0.4,
       "currency": "USD",
       "source": "https://mistral.ai/pricing"
     },
@@ -754,6 +745,15 @@
       "type": "text",
       "input_price_per_million": 0.2,
       "output_price_per_million": 0.2,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing"
+    },
+    {
+      "provider": "mistral",
+      "model": "voxtral-mini-tts-2603",
+      "type": "text",
+      "input_price_per_million": 0.016,
+      "output_price_per_million": 0.003,
       "currency": "USD",
       "source": "https://mistral.ai/pricing"
     },
