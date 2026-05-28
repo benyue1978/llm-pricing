@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-27T20:02:45.472Z",
+  "updated_at": "2026-05-28T02:25:24.453Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -258,20 +258,6 @@
     {
       "provider": "google",
       "model": "gemini-3.1-flash-lite",
-      "benchmark_id": "livebench_agentic_coding",
-      "score": 33.33,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gemini-3.1-flash-lite-preview-high",
-      "matched_benchmark_models": [
-        "gemini-3.1-flash-lite-preview-high"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "google",
-      "model": "gemini-3.1-flash-lite-preview",
       "benchmark_id": "livebench_agentic_coding",
       "score": 33.33,
       "score_unit": "points",
@@ -1064,20 +1050,6 @@
     },
     {
       "provider": "google",
-      "model": "gemini-3.1-flash-lite-preview",
-      "benchmark_id": "livebench_coding",
-      "score": 68.52,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gemini-3.1-flash-lite-preview-high",
-      "matched_benchmark_models": [
-        "gemini-3.1-flash-lite-preview-high"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "google",
       "model": "gemini-3.1-pro-preview",
       "benchmark_id": "livebench_coding",
       "score": 76.45,
@@ -1844,20 +1816,6 @@
     {
       "provider": "google",
       "model": "gemini-3.1-flash-lite",
-      "benchmark_id": "livebench_overall",
-      "score": 62.11,
-      "score_unit": "points",
-      "evaluated_at": "2026-01-08",
-      "source_url": "https://livebench.ai/table_2026_01_08.csv",
-      "benchmark_model": "gemini-3.1-flash-lite-preview-high",
-      "matched_benchmark_models": [
-        "gemini-3.1-flash-lite-preview-high"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "google",
-      "model": "gemini-3.1-flash-lite-preview",
       "benchmark_id": "livebench_overall",
       "score": 62.11,
       "score_unit": "points",
