@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-28T02:25:24.453Z",
+  "updated_at": "2026-05-29T01:07:25.246Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -259,6 +259,39 @@
     {
       "provider": "anthropic",
       "model": "claude-opus-4.7",
+      "family": "claude-opus-4",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.anthropic.com/en/docs/models-overview",
+      "metadata_source_ids": [
+        "anthropic-models-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4.8",
       "family": "claude-opus-4",
       "access_type": "api",
       "openness": "closed",
@@ -879,7 +912,7 @@
     },
     {
       "provider": "google",
-      "model": "gemini-3-pro-image-preview",
+      "model": "gemini-3-pro-image",
       "family": "gemini-3-pro-image",
       "access_type": "api",
       "openness": "closed",
@@ -892,7 +925,7 @@
         "multimodal",
         "text-models"
       ],
-      "release_stage": "preview",
+      "release_stage": "stable",
       "context_window_tokens": null,
       "max_output_tokens": null,
       "parameter_count_billions": null,
@@ -913,7 +946,7 @@
     },
     {
       "provider": "google",
-      "model": "gemini-3.1-flash-image-preview",
+      "model": "gemini-3.1-flash-image",
       "family": "gemini-3.1",
       "access_type": "api",
       "openness": "closed",
@@ -925,7 +958,7 @@
         "multimodal",
         "text-models"
       ],
-      "release_stage": "preview",
+      "release_stage": "stable",
       "context_window_tokens": null,
       "max_output_tokens": null,
       "parameter_count_billions": null,
@@ -1302,40 +1335,6 @@
     },
     {
       "provider": "mistral",
-      "model": "codestral-embed-2505",
-      "family": "codestral",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "coding",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_coding",
-        "livebench_overall",
-        "livecodebench_pass1"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
       "model": "codestral-latest",
       "family": "codestral",
       "access_type": "api",
@@ -1362,178 +1361,6 @@
         "livebench_coding",
         "livebench_overall",
         "livecodebench_pass1"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "devstral-medium-latest",
-      "family": "devstral-medium-latest",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "agentic-coding",
-        "coding",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_agentic_coding",
-        "livebench_coding",
-        "livebench_overall",
-        "livecodebench_pass1",
-        "swe_bench_bash_only"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "devstral-small-latest",
-      "family": "devstral-small-latest",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "agentic-coding",
-        "coding",
-        "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_agentic_coding",
-        "livebench_coding",
-        "livebench_overall",
-        "livecodebench_pass1",
-        "swe_bench_bash_only"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "labs-leanstral-2603",
-      "family": "labs-leanstral-2603",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "magistral-medium-latest",
-      "family": "magistral-medium-latest",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "reasoning",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "magistral-small-latest",
-      "family": "magistral-small-latest",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "reasoning",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
       ],
       "notes": [
         "Do not compare this model globally by price alone.",
@@ -1574,38 +1401,6 @@
     },
     {
       "provider": "mistral",
-      "model": "ministral-3b-latest",
-      "family": "ministral",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
       "model": "ministral-8b-latest",
       "family": "ministral",
       "access_type": "api",
@@ -1615,38 +1410,6 @@
       ],
       "comparison_buckets": [
         "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "mistral-embed",
-      "family": "mistral-embed",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
         "text-models"
       ],
       "release_stage": "stable",
@@ -1735,70 +1498,6 @@
     },
     {
       "provider": "mistral",
-      "model": "mistral-moderation-2603",
-      "family": "mistral-moderation-2603",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "mistral-ocr-latest",
-      "family": "mistral-ocr-latest",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "multimodal",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
       "model": "mistral-small-latest",
       "family": "mistral-text",
       "access_type": "api",
@@ -1808,137 +1507,6 @@
       ],
       "comparison_buckets": [
         "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "open-mistral-nemo",
-      "family": "open-mistral-nemo",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "voxtral-mini-latest",
-      "family": "voxtral",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "multimodal",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "voxtral-mini-tts-2603",
-      "family": "voxtral",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "multimodal",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://docs.mistral.ai/getting-started/models/",
-      "metadata_source_ids": [
-        "mistral-models",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://mistral.ai/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "mistral",
-      "model": "voxtral-small-latest",
-      "family": "voxtral-small-latest",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "multimodal",
         "text-models"
       ],
       "release_stage": "stable",
