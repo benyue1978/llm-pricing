@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { getMistralManualFallback, parseMistralHtml } from "../../src/providers/mistral.js";
-import { fetchHtml } from "../../src/providers/utils.js";
+import { fetchOptionalLiveHtml } from "../helpers/live-html.js";
 
 describe("providers/mistral", () => {
   test("parseMistralHtml parses the embedded official pricing payload", async () => {
@@ -29,9 +29,14 @@ describe("providers/mistral", () => {
   });
 
   test("live pricing page still parses expected sentinel payloads", async () => {
-    const html = await fetchHtml("https://mistral.ai/pricing", {
-      validateHtml: (candidate) => parseMistralHtml(candidate).length > 0
+    const html = await fetchOptionalLiveHtml("https://mistral.ai/pricing", {
+      validateHtml: (candidate) => parseMistralHtml(candidate).length > 0,
+      timeoutMs: 10000
     });
+    if (!html) {
+      return;
+    }
+
     const models = parseMistralHtml(html);
 
     expect(models.length).toBeGreaterThanOrEqual(6);
