@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { fetchHtml, fetchText } from "../../src/providers/utils.js";
+import { fetchOptionalLiveHtml, fetchOptionalLiveText } from "../helpers/live-html.js";
 import {
   findMoonshotAppScriptUrl,
   getMoonshotManualFallback,
@@ -53,9 +53,14 @@ describe("providers/moonshot", () => {
   });
 
   test("live official page-backed app bundle still parses expected sentinel rows", async () => {
-    const html = await fetchHtml("https://platform.moonshot.ai/docs/pricing/chat", {
-      validateHtml: (candidate) => candidate.includes("pricing")
+    const html = await fetchOptionalLiveHtml("https://platform.moonshot.ai/docs/pricing/chat", {
+      validateHtml: (candidate) => candidate.includes("pricing"),
+      timeoutMs: 10000
     });
+    if (!html) {
+      return;
+    }
+
     const appScriptUrl = findMoonshotAppScriptUrl(html);
     if (!appScriptUrl) {
       const fallback = getMoonshotManualFallback();
@@ -69,9 +74,14 @@ describe("providers/moonshot", () => {
       return;
     }
 
-    const script = await fetchText(appScriptUrl, {
-      accept: "application/javascript,text/javascript,*/*"
+    const script = await fetchOptionalLiveText(appScriptUrl, {
+      accept: "application/javascript,text/javascript,*/*",
+      timeoutMs: 10000
     });
+    if (!script) {
+      return;
+    }
+
     const models = parseMoonshotAppScript(script);
 
     if (models.length === 0) {

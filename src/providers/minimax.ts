@@ -4,7 +4,7 @@ import {
   createTextPricingModel,
   fetchHtml,
   fetchProviderPricing,
-  findTableByHeaders,
+  findTablesByHeaders,
   normalizeText,
   parseUsdAmount
 } from "./utils.js";
@@ -29,9 +29,9 @@ export function parseMinimaxHtml(html: string): PricingModel[] {
   const $ = load(html);
   const models: PricingModel[] = [];
   const seen = new Set<string>();
-  const table = findTableByHeaders($, ["model", "prompt caching read", "prompt caching write"]);
+  const tables = findTablesByHeaders($, ["model", "prompt caching read", "prompt caching write"]);
 
-  table.find("tbody tr").each((_, row) => {
+  tables.find("tbody tr").each((_, row) => {
     const cells = $(row).find("td");
     const model = normalizeText(cells.eq(0).text());
     if (!model || seen.has(model)) {

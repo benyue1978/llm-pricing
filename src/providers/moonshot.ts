@@ -19,7 +19,8 @@ export async function fetchMoonshotPricing(logger: ProviderLogger = () => {}): P
     logger,
     fetchLive: async () => {
       const html = await fetchHtml(MOONSHOT_PRICING_SOURCE, {
-        validateHtml: (candidate) => candidate.includes("_app-") && candidate.includes("/_next/static/chunks/pages/")
+        validateHtml: (candidate) => candidate.includes("_app-") && candidate.includes("/_next/static/chunks/pages/"),
+        timeoutMs: 10000
       });
       const appScriptUrl = findMoonshotAppScriptUrl(html);
       if (!appScriptUrl) {
@@ -28,7 +29,8 @@ export async function fetchMoonshotPricing(logger: ProviderLogger = () => {}): P
 
       const appScript = await fetchText(appScriptUrl, {
         accept: "application/javascript,text/javascript,*/*",
-        validateText: (candidate) => parseMoonshotAppScript(candidate).length > 0
+        validateText: (candidate) => parseMoonshotAppScript(candidate).length > 0,
+        timeoutMs: 10000
       });
       return parseMoonshotAppScript(appScript);
     },

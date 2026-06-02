@@ -30,6 +30,14 @@ export function findTableByHeaders(
   requiredHeaders: string[],
   options: FindTableByHeadersOptions = {}
 ): Cheerio<AnyNode> {
+  return findTablesByHeaders($, requiredHeaders, options).first();
+}
+
+export function findTablesByHeaders(
+  $: CheerioAPI,
+  requiredHeaders: string[],
+  options: FindTableByHeadersOptions = {}
+): Cheerio<AnyNode> {
   const headerSelector = options.headerSelector ?? "th";
   const expectedHeaders = requiredHeaders.map((header) => header.toLowerCase());
 
@@ -47,8 +55,7 @@ export function findTableByHeaders(
       return expectedHeaders.every((header) =>
         headers.some((value) => value.includes(header))
       );
-    })
-    .first();
+    });
 }
 
 export function findNextTable(
