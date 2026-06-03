@@ -4,12 +4,12 @@ import { readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
-import { fetch } from "undici";
 import type { PricingModel } from "../../schema.js";
 import type { ProviderLogger } from "../types.js";
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_USER_AGENT = "Mozilla/5.0";
+const DEFAULT_TIMEOUT_MS = 15000;
 
 function getCurlRetryArgs(timeoutMs: number | undefined): string[] {
   if (timeoutMs !== undefined) {
@@ -25,6 +25,10 @@ function getCurlRetryArgs(timeoutMs: number | undefined): string[] {
 
 function getCurlTimeoutArgs(timeoutMs: number | undefined): string[] {
   return timeoutMs === undefined ? [] : ["--max-time", (timeoutMs / 1000).toString()];
+}
+
+function getCurlAlarmSeconds(timeoutMs: number): string {
+  return Math.ceil(timeoutMs / 1000 + 1).toString();
 }
 
 export interface FetchHtmlOptions {
@@ -110,29 +114,15 @@ export function ensureValidatedJson<T>(
 export async function fetchText(url: string, options: FetchTextOptions = {}): Promise<string> {
   const accept = options.accept ?? "text/plain,*/*";
   const validateText = options.validateText ?? (() => true);
-  const timeoutMs = options.timeoutMs;
-
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "user-agent": DEFAULT_USER_AGENT,
-        accept
-      },
-      signal: timeoutMs === undefined ? undefined : AbortSignal.timeout(timeoutMs)
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    return ensureValidatedText(await response.text(), validateText);
-  } catch {
-    // Fall back to curl for sites that block or timeout plain Node fetches.
-  }
+  const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
 
   const outputPath = join(tmpdir(), `llm-pricing-${randomUUID()}.txt`);
   try {
-    await execFileAsync("/usr/bin/curl", [
+    await execFileAsync("/usr/bin/perl", [
+      "-e",
+      "alarm shift; exec @ARGV",
+      getCurlAlarmSeconds(timeoutMs),
+      "/usr/bin/curl",
       "--http1.1",
       "-L",
       "--fail",
@@ -147,7 +137,7 @@ export async function fetchText(url: string, options: FetchTextOptions = {}): Pr
       "-o",
       outputPath,
       url
-    ]);
+    ], { timeout: timeoutMs + 1000 });
     return ensureValidatedText(await readFile(outputPath, "utf8"), validateText);
   } finally {
     await rm(outputPath, { force: true });
@@ -156,29 +146,15 @@ export async function fetchText(url: string, options: FetchTextOptions = {}): Pr
 
 export async function fetchJson<T>(url: string, options: FetchJsonOptions<T> = {}): Promise<T> {
   const validateJson = options.validateJson ?? (() => true);
-  const timeoutMs = options.timeoutMs;
-
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "user-agent": DEFAULT_USER_AGENT,
-        accept: "application/json,text/plain"
-      },
-      signal: timeoutMs === undefined ? undefined : AbortSignal.timeout(timeoutMs)
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    return ensureValidatedJson((await response.json()) as T, validateJson);
-  } catch {
-    // Fall back to curl for sites that block or timeout plain Node fetches.
-  }
+  const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
 
   const outputPath = join(tmpdir(), `llm-pricing-${randomUUID()}.json`);
   try {
-    await execFileAsync("/usr/bin/curl", [
+    await execFileAsync("/usr/bin/perl", [
+      "-e",
+      "alarm shift; exec @ARGV",
+      getCurlAlarmSeconds(timeoutMs),
+      "/usr/bin/curl",
       "--http1.1",
       "-L",
       "--fail",
@@ -193,7 +169,7 @@ export async function fetchJson<T>(url: string, options: FetchJsonOptions<T> = {
       "-o",
       outputPath,
       url
-    ]);
+    ], { timeout: timeoutMs + 1000 });
     return ensureValidatedJson(JSON.parse(await readFile(outputPath, "utf8")) as T, validateJson);
   } finally {
     await rm(outputPath, { force: true });
