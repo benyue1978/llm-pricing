@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-05T18:37:36.898Z",
+  "updated_at": "2026-06-06T00:33:17.526Z",
   "models": [
     {
       "provider": "openai",
@@ -412,15 +412,6 @@
       "type": "text",
       "input_price_per_million": 5,
       "output_price_per_million": 25,
-      "currency": "USD",
-      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
-    },
-    {
-      "provider": "anthropic",
-      "model": "claude-opus-4.1",
-      "type": "text",
-      "input_price_per_million": 15,
-      "output_price_per_million": 75,
       "currency": "USD",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
