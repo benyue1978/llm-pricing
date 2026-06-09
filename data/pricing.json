@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-09T12:56:23.406Z",
+  "updated_at": "2026-06-09T18:41:49.106Z",
   "models": [
     {
       "provider": "openai",
@@ -381,6 +381,24 @@
     },
     {
       "provider": "anthropic",
+      "model": "claude-fable-5",
+      "type": "text",
+      "input_price_per_million": 10,
+      "output_price_per_million": 50,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-mythos-5-(limited-availability)",
+      "type": "text",
+      "input_price_per_million": 10,
+      "output_price_per_million": 50,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
       "model": "claude-opus-4.8",
       "type": "text",
       "input_price_per_million": 5,
@@ -457,6 +475,15 @@
       "type": "text",
       "input_price_per_million": 1.5,
       "output_price_per_million": 9,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-3.5-live-translate-preview",
+      "type": "text",
+      "input_price_per_million": 3.5,
+      "output_price_per_million": 21,
       "currency": "USD",
       "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
