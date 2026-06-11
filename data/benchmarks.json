@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-11T00:38:07.708Z",
+  "updated_at": "2026-06-11T07:36:21.240Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -2396,6 +2396,216 @@
       "benchmark_model": "glm-5",
       "matched_benchmark_models": [
         "glm-5"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "google",
+      "model": "gemini-2.5-flash",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 76.21,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://developers.googleblog.com/en/start-building-with-gemini-25-flash/",
+      "benchmark_model": "Gemini-2.5-Flash-05-20",
+      "matched_benchmark_models": [
+        "Gemini-2.5-Flash-05-20"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "google",
+      "model": "gemini-2.5-pro",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 82.75,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/#advanced-coding",
+      "benchmark_model": "Gemini-2.5-Pro-05-06",
+      "matched_benchmark_models": [
+        "Gemini-2.5-Pro-05-06"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "google",
+      "model": "gemini-2.5-pro-preview-tts",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 82.75,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/#advanced-coding",
+      "benchmark_model": "Gemini-2.5-Pro-05-06",
+      "matched_benchmark_models": [
+        "Gemini-2.5-Pro-05-06"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 38.3,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://openai.com/index/spring-update",
+      "benchmark_model": "GPT-4O-2024-08-06",
+      "matched_benchmark_models": [
+        "GPT-4O-2024-08-06"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 35.52,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://openai.com/index/spring-update",
+      "benchmark_model": "GPT-4O-mini-2024-07-18",
+      "matched_benchmark_models": [
+        "GPT-4O-mini-2024-07-18"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "openai",
+      "model": "o3",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 84.74,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://platform.openai.com/docs/api-reference/chat/create#chat-create-reasoning_effort",
+      "benchmark_model": "O3 (High)",
+      "matched_benchmark_models": [
+        "O3 (High)"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "openai",
+      "model": "o4-mini",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 87.3,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://platform.openai.com/docs/api-reference/chat/create#chat-create-reasoning_effort",
+      "benchmark_model": "O4-Mini (High)",
+      "matched_benchmark_models": [
+        "O4-Mini (High)"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-max",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-max-2024-09-19",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-max-2025-01-25",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen-max-latest",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3-max",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3-max-2025-09-23",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3-max-2026-01-23",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
+      ],
+      "notes": null
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3-max-preview",
+      "benchmark_id": "livecodebench_pass1",
+      "score": 80.38,
+      "score_unit": "points",
+      "evaluated_at": null,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "benchmark_model": "Qwen3-235B-A22B",
+      "matched_benchmark_models": [
+        "Qwen3-235B-A22B"
       ],
       "notes": null
     },
