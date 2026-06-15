@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-15T14:03:59.465Z",
+  "updated_at": "2026-06-15T19:17:35.047Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -223,6 +223,39 @@
     },
     {
       "provider": "anthropic",
+      "model": "claude-opus-4-(retired,-except-on-vertex-ai)",
+      "family": "claude-opus-4",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.anthropic.com/en/docs/models-overview",
+      "metadata_source_ids": [
+        "anthropic-models-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "anthropic",
       "model": "claude-opus-4.5",
       "family": "claude-opus-4",
       "access_type": "api",
@@ -331,6 +364,38 @@
       ],
       "comparison_buckets": [
         "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.anthropic.com/en/docs/models-overview",
+      "metadata_source_ids": [
+        "anthropic-models-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-(retired,-except-on-bedrock-and-vertex-ai)",
+      "family": "claude-sonnet-4",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
         "general-purpose",
         "text-models"
       ],
