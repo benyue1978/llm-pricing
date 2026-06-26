@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-25T18:42:28.064Z",
+  "updated_at": "2026-06-26T00:35:48.969Z",
   "models": [
     {
       "provider": "openai",
@@ -435,7 +435,7 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-opus-4-(retired,-except-on-vertex-ai)",
+      "model": "claude-opus-4-(retired,-except-on-google-cloud)",
       "type": "text",
       "input_price_per_million": 15,
       "output_price_per_million": 75,
@@ -462,7 +462,7 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-sonnet-4-(retired,-except-on-bedrock-and-vertex-ai)",
+      "model": "claude-sonnet-4-(retired,-except-on-bedrock-and-google-cloud)",
       "type": "text",
       "input_price_per_million": 3,
       "output_price_per_million": 15,
@@ -480,7 +480,7 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-haiku-3.5-(retired,-except-on-bedrock-and-vertex-ai)",
+      "model": "claude-haiku-3.5-(retired,-except-on-bedrock-and-google-cloud)",
       "type": "text",
       "input_price_per_million": 0.8,
       "output_price_per_million": 4,

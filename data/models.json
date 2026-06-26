@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-25T18:42:28.064Z",
+  "updated_at": "2026-06-26T00:35:48.969Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -127,8 +127,8 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-haiku-3.5-(retired,-except-on-bedrock-and-vertex-ai)",
-      "family": "claude-haiku-3.5-(retired,-except-on-bedrock-and-vertex-ai)",
+      "model": "claude-haiku-3.5-(retired,-except-on-bedrock-and-google-cloud)",
+      "family": "claude-haiku-3.5-(retired,-except-on-bedrock-and-google-cloud)",
       "access_type": "api",
       "openness": "closed",
       "modalities": [
@@ -223,7 +223,7 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-opus-4-(retired,-except-on-vertex-ai)",
+      "model": "claude-opus-4-(retired,-except-on-google-cloud)",
       "family": "claude-opus-4",
       "access_type": "api",
       "openness": "closed",
@@ -388,7 +388,7 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-sonnet-4-(retired,-except-on-bedrock-and-vertex-ai)",
+      "model": "claude-sonnet-4-(retired,-except-on-bedrock-and-google-cloud)",
       "family": "claude-sonnet-4",
       "access_type": "api",
       "openness": "closed",
