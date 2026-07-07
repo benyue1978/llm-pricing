@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-06T19:44:20.513Z",
+  "updated_at": "2026-07-07T02:12:55.317Z",
   "summary": {
     "provider_count": 9,
     "success_count": 9,
@@ -14,10 +14,10 @@
       "success": true,
       "mode": "live",
       "model_count": 42,
-      "started_at": "2026-07-06T19:44:05.918Z",
-      "finished_at": "2026-07-06T19:44:06.368Z",
-      "checked_at": "2026-07-06T19:44:06.368Z",
-      "duration_ms": 450,
+      "started_at": "2026-07-07T02:12:35.066Z",
+      "finished_at": "2026-07-07T02:12:35.439Z",
+      "checked_at": "2026-07-07T02:12:35.439Z",
+      "duration_ms": 373,
       "message": "live https://developers.openai.com/api/docs/pricing (42 models)",
       "messages": [
         "live https://developers.openai.com/api/docs/pricing (42 models)"
@@ -29,10 +29,10 @@
       "success": true,
       "mode": "live",
       "model_count": 14,
-      "started_at": "2026-07-06T19:44:06.369Z",
-      "finished_at": "2026-07-06T19:44:07.140Z",
-      "checked_at": "2026-07-06T19:44:07.140Z",
-      "duration_ms": 771,
+      "started_at": "2026-07-07T02:12:35.440Z",
+      "finished_at": "2026-07-07T02:12:36.011Z",
+      "checked_at": "2026-07-07T02:12:36.011Z",
+      "duration_ms": 571,
       "message": "live official pricing page (14 models)",
       "messages": [
         "live official pricing page (14 models)"
@@ -44,10 +44,10 @@
       "success": true,
       "mode": "live",
       "model_count": 23,
-      "started_at": "2026-07-06T19:44:07.140Z",
-      "finished_at": "2026-07-06T19:44:07.494Z",
-      "checked_at": "2026-07-06T19:44:07.494Z",
-      "duration_ms": 354,
+      "started_at": "2026-07-07T02:12:36.011Z",
+      "finished_at": "2026-07-07T02:12:36.509Z",
+      "checked_at": "2026-07-07T02:12:36.509Z",
+      "duration_ms": 498,
       "message": "live official pricing page (23 models)",
       "messages": [
         "live official pricing page (23 models)"
@@ -59,10 +59,10 @@
       "success": true,
       "mode": "fallback",
       "model_count": 6,
-      "started_at": "2026-07-06T19:44:07.494Z",
-      "finished_at": "2026-07-06T19:44:07.796Z",
-      "checked_at": "2026-07-06T19:44:07.796Z",
-      "duration_ms": 302,
+      "started_at": "2026-07-07T02:12:36.509Z",
+      "finished_at": "2026-07-07T02:12:36.810Z",
+      "checked_at": "2026-07-07T02:12:36.810Z",
+      "duration_ms": 301,
       "message": "fallback manual values (6 models)",
       "messages": [
         "fallback manual values (6 models)"
@@ -74,10 +74,10 @@
       "success": true,
       "mode": "live",
       "model_count": 4,
-      "started_at": "2026-07-06T19:44:07.796Z",
-      "finished_at": "2026-07-06T19:44:09.200Z",
-      "checked_at": "2026-07-06T19:44:09.200Z",
-      "duration_ms": 1404,
+      "started_at": "2026-07-07T02:12:36.810Z",
+      "finished_at": "2026-07-07T02:12:38.498Z",
+      "checked_at": "2026-07-07T02:12:38.498Z",
+      "duration_ms": 1688,
       "message": "live official pricing page (4 models)",
       "messages": [
         "live official pricing page (4 models)"
@@ -89,10 +89,10 @@
       "success": true,
       "mode": "live",
       "model_count": 148,
-      "started_at": "2026-07-06T19:44:09.200Z",
-      "finished_at": "2026-07-06T19:44:16.545Z",
-      "checked_at": "2026-07-06T19:44:16.545Z",
-      "duration_ms": 7345,
+      "started_at": "2026-07-07T02:12:38.498Z",
+      "finished_at": "2026-07-07T02:12:46.962Z",
+      "checked_at": "2026-07-07T02:12:46.962Z",
+      "duration_ms": 8464,
       "message": "live official pricing page (148 models)",
       "messages": [
         "live official pricing page (148 models)"
@@ -104,10 +104,10 @@
       "success": true,
       "mode": "fallback",
       "model_count": 9,
-      "started_at": "2026-07-06T19:44:16.545Z",
-      "finished_at": "2026-07-06T19:44:18.237Z",
-      "checked_at": "2026-07-06T19:44:18.237Z",
-      "duration_ms": 1692,
+      "started_at": "2026-07-07T02:12:46.962Z",
+      "finished_at": "2026-07-07T02:12:48.605Z",
+      "checked_at": "2026-07-07T02:12:48.605Z",
+      "duration_ms": 1643,
       "message": "fallback manual values (9 models)",
       "messages": [
         "fallback manual values (9 models)"
@@ -119,10 +119,10 @@
       "success": true,
       "mode": "live",
       "model_count": 7,
-      "started_at": "2026-07-06T19:44:18.237Z",
-      "finished_at": "2026-07-06T19:44:18.676Z",
-      "checked_at": "2026-07-06T19:44:18.676Z",
-      "duration_ms": 439,
+      "started_at": "2026-07-07T02:12:48.605Z",
+      "finished_at": "2026-07-07T02:12:48.925Z",
+      "checked_at": "2026-07-07T02:12:48.925Z",
+      "duration_ms": 320,
       "message": "live official pricing page (7 models)",
       "messages": [
         "live official pricing page (7 models)"
@@ -134,10 +134,10 @@
       "success": true,
       "mode": "fallback",
       "model_count": 5,
-      "started_at": "2026-07-06T19:44:18.676Z",
-      "finished_at": "2026-07-06T19:44:20.090Z",
-      "checked_at": "2026-07-06T19:44:20.090Z",
-      "duration_ms": 1414,
+      "started_at": "2026-07-07T02:12:48.925Z",
+      "finished_at": "2026-07-07T02:12:50.302Z",
+      "checked_at": "2026-07-07T02:12:50.302Z",
+      "duration_ms": 1377,
       "message": "fallback manual values (5 models)",
       "messages": [
         "fallback manual values (5 models)"
