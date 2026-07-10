@@ -1,12 +1,39 @@
 {
-  "updated_at": "2026-07-09T02:06:29.331Z",
+  "updated_at": "2026-07-10T01:20:16.118Z",
   "models": [
+    {
+      "provider": "openai",
+      "model": "gpt-5.6-sol",
+      "type": "text",
+      "input_price_per_million": 5,
+      "output_price_per_million": 6.25,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.6-terra",
+      "type": "text",
+      "input_price_per_million": 2.5,
+      "output_price_per_million": 3.125,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-5.6-luna",
+      "type": "text",
+      "input_price_per_million": 1,
+      "output_price_per_million": 1.25,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
     {
       "provider": "openai",
       "model": "gpt-5.5",
       "type": "text",
       "input_price_per_million": 5,
-      "output_price_per_million": 30,
+      "output_price_per_million": null,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -15,7 +42,7 @@
       "model": "gpt-5.5-pro",
       "type": "text",
       "input_price_per_million": 30,
-      "output_price_per_million": 180,
+      "output_price_per_million": null,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -24,7 +51,7 @@
       "model": "gpt-5.4",
       "type": "text",
       "input_price_per_million": 2.5,
-      "output_price_per_million": 15,
+      "output_price_per_million": null,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -33,7 +60,7 @@
       "model": "gpt-5.4-mini",
       "type": "text",
       "input_price_per_million": 0.75,
-      "output_price_per_million": 4.5,
+      "output_price_per_million": null,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -42,7 +69,7 @@
       "model": "gpt-5.4-nano",
       "type": "text",
       "input_price_per_million": 0.2,
-      "output_price_per_million": 1.25,
+      "output_price_per_million": null,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -51,7 +78,7 @@
       "model": "gpt-5.4-pro",
       "type": "text",
       "input_price_per_million": 30,
-      "output_price_per_million": 180,
+      "output_price_per_million": null,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
