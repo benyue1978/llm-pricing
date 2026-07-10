@@ -7,10 +7,10 @@ describe("benchmarks", () => {
     const pricingModels: PricingModel[] = [
       {
         provider: "openai",
-        model: "gpt-5.1-codex",
+        model: "gpt-4.1",
         type: "text",
-        input_price_per_million: 1.5,
-        output_price_per_million: 6,
+        input_price_per_million: 2,
+        output_price_per_million: 8,
         currency: "USD",
         source: "https://platform.openai.com/pricing"
       },
@@ -39,7 +39,7 @@ describe("benchmarks", () => {
     expect(registry.benchmarks.map((entry) => entry.id)).toContain("livebench_overall");
     expect(registry.results.length).toBeGreaterThan(0);
     expect(
-      registry.results.some((entry) => entry.provider === "openai" && entry.model === "gpt-5.1-codex")
+      registry.results.some((entry) => entry.provider === "openai" && entry.model === "gpt-4.1")
     ).toBe(true);
     expect(
       registry.results.some((entry) => entry.provider === "zhipu" && entry.model === "GLM-5")
