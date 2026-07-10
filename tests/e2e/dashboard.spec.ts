@@ -22,6 +22,9 @@ test.describe("LLM Pricing Dashboard", () => {
     expect(json.models.length).toBeGreaterThan(0);
     expect(Array.isArray(benchmarks.results)).toBe(true);
     expect(benchmarks.results.length).toBeGreaterThan(0);
+    const benchmarkWithResults = benchmarks.results[0];
+    const benchmarkDefinition = benchmarks.benchmarks.find((entry: any) => entry.id === benchmarkWithResults.benchmark_id);
+    expect(benchmarkDefinition).toBeTruthy();
 
     const providers = new Set(json.models.map((m: any) => m.provider));
     expect(providers.has("openai")).toBe(true);
@@ -54,11 +57,11 @@ test.describe("LLM Pricing Dashboard", () => {
     expect(inputPrices[0]).not.toBe(inputPrices[inputPrices.length - 1]);
 
     await page.locator("#reset-filters").click();
-    await page.locator("#comparison-view").selectOption("livebench_overall");
+    await page.locator("#comparison-view").selectOption(benchmarkWithResults.benchmark_id);
     await expect(page.locator("thead")).toContainText("Score");
     await expect(page.locator("#benchmark-panel")).toBeVisible();
-    await expect(page.locator("#benchmark-panel")).toContainText("LiveBench Overall");
-    await expect(page.locator("#benchmark-source-link")).toHaveAttribute("href", /livebench\.ai/);
+    await expect(page.locator("#benchmark-panel")).toContainText(benchmarkDefinition.name);
+    await expect(page.locator("#benchmark-source-link")).toHaveAttribute("href", benchmarkDefinition.source_url);
     const scoreTexts = await page.locator("tbody tr td").allTextContents();
     expect(scoreTexts.some((text) => /\d/.test(text))).toBe(true);
 
@@ -80,6 +83,8 @@ test.describe("LLM Pricing Dashboard", () => {
     await expect(page.locator("#comparison-view")).toHaveValue("livebench_coding");
     await expect(page.locator("#sort-field")).toHaveValue("input_price_per_score");
 
+    await page.locator("#comparison-view").selectOption(benchmarkWithResults.benchmark_id);
+    await page.locator("#sort-field").selectOption("input_price_per_score");
     const traceableRow = page.locator("tbody tr").filter({
       has: page.locator("td[data-label='Score'] a", { hasText: "Trace" })
     }).first();
