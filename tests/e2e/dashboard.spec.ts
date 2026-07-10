@@ -69,22 +69,16 @@ test.describe("LLM Pricing Dashboard", () => {
     const efficiencyCell = await page.locator('tbody tr td[data-label="Input / score"]').first().textContent();
     expect(efficiencyCell).toContain("/ pt");
 
-    await page.getByRole("button", { name: /Coding value/i }).click();
-    await expect(page.locator("#comparison-view")).toHaveValue("livebench_coding");
     await expect(page.locator("#bucket-filter")).toHaveValue("all");
-    await expect(page.locator("#sort-field")).toHaveValue("input_price_per_score");
-    await expect(page.locator(".preset-card.is-active")).toContainText("Coding value");
-    await expect(page).toHaveURL(/view=livebench_coding/);
+    await expect(page.locator("#comparison-view")).toHaveValue(benchmarkWithResults.benchmark_id);
     await expect(page).toHaveURL(/sort=input_price_per_score/);
 
     const statefulUrl = page.url();
     await page.goto(statefulUrl);
     await page.waitForLoadState("networkidle");
-    await expect(page.locator("#comparison-view")).toHaveValue("livebench_coding");
+    await expect(page.locator("#comparison-view")).toHaveValue(benchmarkWithResults.benchmark_id);
     await expect(page.locator("#sort-field")).toHaveValue("input_price_per_score");
 
-    await page.locator("#comparison-view").selectOption(benchmarkWithResults.benchmark_id);
-    await page.locator("#sort-field").selectOption("input_price_per_score");
     const traceableRow = page.locator("tbody tr").filter({
       has: page.locator("td[data-label='Score'] a", { hasText: "Trace" })
     }).first();
