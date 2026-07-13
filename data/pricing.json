@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-13T01:57:06.256Z",
+  "updated_at": "2026-07-13T08:51:46.371Z",
   "models": [
     {
       "provider": "openai",
@@ -1992,7 +1992,7 @@
     },
     {
       "provider": "qwen",
-      "model": "glm-5.1",
+      "model": "glm-5.2",
       "type": "text",
       "input_price_per_million": 1.4,
       "output_price_per_million": 4.4,
@@ -2001,10 +2001,19 @@
     },
     {
       "provider": "qwen",
-      "model": "glm-5.2",
+      "model": "glm-5.2-fast-preview",
       "type": "text",
-      "input_price_per_million": 1.1,
-      "output_price_per_million": 3.851,
+      "input_price_per_million": 3.5,
+      "output_price_per_million": 11,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "glm-5.1",
+      "type": "text",
+      "input_price_per_million": 1.4,
+      "output_price_per_million": 4.4,
       "currency": "USD",
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
