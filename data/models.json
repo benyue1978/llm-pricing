@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-15T07:52:13.082Z",
+  "updated_at": "2026-07-15T13:16:21.018Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -4141,6 +4141,40 @@
         "text-models"
       ],
       "release_stage": "preview",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "glm-5.2-us",
+      "family": "glm-5",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "reasoning",
+        "text-models"
+      ],
+      "release_stage": "stable",
       "context_window_tokens": null,
       "max_output_tokens": null,
       "parameter_count_billions": null,
