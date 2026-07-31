@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-31T01:59:31.182Z",
+  "updated_at": "2026-07-31T08:36:28.462Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -2366,38 +2366,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-3.5-0301",
-      "family": "gpt-3.5-0301",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
       "model": "gpt-3.5-turbo",
       "family": "gpt-3.5",
       "access_type": "api",
@@ -2462,71 +2430,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-3.5-turbo-0613",
-      "family": "gpt-3.5",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
       "model": "gpt-3.5-turbo-1106",
-      "family": "gpt-3.5",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-3.5-turbo-16k-0613",
       "family": "gpt-3.5",
       "access_type": "api",
       "openness": "closed",
@@ -2590,70 +2494,6 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-4-0125-preview",
-      "family": "gpt-4-0125",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "preview",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-0314",
-      "family": "gpt-4-0314",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
       "model": "gpt-4-0613",
       "family": "gpt-4-0613",
       "access_type": "api",
@@ -2663,102 +2503,6 @@
       ],
       "comparison_buckets": [
         "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-1106-preview",
-      "family": "gpt-4-1106",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "preview",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-1106-vision-preview",
-      "family": "gpt-4-1106-vision",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "general-purpose",
-        "text-models"
-      ],
-      "release_stage": "preview",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-32k",
-      "family": "gpt-4-32k",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "long-context",
         "text-models"
       ],
       "release_stage": "stable",
@@ -3546,39 +3290,6 @@
         "text"
       ],
       "comparison_buckets": [
-        "reasoning",
-        "text-models"
-      ],
-      "release_stage": "stable",
-      "context_window_tokens": null,
-      "max_output_tokens": null,
-      "parameter_count_billions": null,
-      "license": null,
-      "model_page_url": "https://platform.openai.com/docs/models",
-      "metadata_source_ids": [
-        "openai-models-docs",
-        "huggingface-model-cards"
-      ],
-      "pricing_source_url": "https://platform.openai.com/pricing",
-      "benchmark_ids": [
-        "livebench_overall"
-      ],
-      "notes": [
-        "Do not compare this model globally by price alone.",
-        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
-      ]
-    },
-    {
-      "provider": "openai",
-      "model": "o1-mini",
-      "family": "openai-reasoning",
-      "access_type": "api",
-      "openness": "closed",
-      "modalities": [
-        "text"
-      ],
-      "comparison_buckets": [
-        "low-cost",
         "reasoning",
         "text-models"
       ],

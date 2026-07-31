@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-31T01:59:31.182Z",
+  "updated_at": "2026-07-31T08:36:28.462Z",
   "models": [
     {
       "provider": "openai",
@@ -255,43 +255,7 @@
     },
     {
       "provider": "openai",
-      "model": "o1-mini",
-      "type": "text",
-      "input_price_per_million": 1.1,
-      "output_price_per_million": 4.4,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
       "model": "gpt-4-turbo-2024-04-09",
-      "type": "text",
-      "input_price_per_million": 10,
-      "output_price_per_million": 30,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-0125-preview",
-      "type": "text",
-      "input_price_per_million": 10,
-      "output_price_per_million": 30,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-1106-preview",
-      "type": "text",
-      "input_price_per_million": 10,
-      "output_price_per_million": 30,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-1106-vision-preview",
       "type": "text",
       "input_price_per_million": 10,
       "output_price_per_million": 30,
@@ -304,24 +268,6 @@
       "type": "text",
       "input_price_per_million": 30,
       "output_price_per_million": 60,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-0314",
-      "type": "text",
-      "input_price_per_million": 30,
-      "output_price_per_million": 60,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-4-32k",
-      "type": "text",
-      "input_price_per_million": 60,
-      "output_price_per_million": 120,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
@@ -354,37 +300,10 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-3.5-turbo-0613",
-      "type": "text",
-      "input_price_per_million": 1.5,
-      "output_price_per_million": 2,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-3.5-0301",
-      "type": "text",
-      "input_price_per_million": 1.5,
-      "output_price_per_million": 2,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
       "model": "gpt-3.5-turbo-instruct",
       "type": "text",
       "input_price_per_million": 1.5,
       "output_price_per_million": 2,
-      "currency": "USD",
-      "source": "https://platform.openai.com/pricing"
-    },
-    {
-      "provider": "openai",
-      "model": "gpt-3.5-turbo-16k-0613",
-      "type": "text",
-      "input_price_per_million": 3,
-      "output_price_per_million": 4,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
