@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T06:39:57.659Z",
+  "updated_at": "2026-08-12T01:03:25.963Z",
   "models": [
     {
       "provider": "openai",
@@ -408,19 +408,10 @@
     },
     {
       "provider": "anthropic",
-      "model": "claude-sonnet-5through-august-31,-2026",
+      "model": "claude-sonnet-5",
       "type": "text",
       "input_price_per_million": 2,
       "output_price_per_million": 10,
-      "currency": "USD",
-      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
-    },
-    {
-      "provider": "anthropic",
-      "model": "claude-sonnet-5starting-september-1,-2026",
-      "type": "text",
-      "input_price_per_million": 3,
-      "output_price_per_million": 15,
       "currency": "USD",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
