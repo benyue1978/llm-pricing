@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { getDeepseekManualFallback, parseDeepseekHtml } from "../../src/providers/deepseek.js";
-import { fetchHtml } from "../../src/providers/utils.js";
+import { fetchOptionalLiveHtml } from "../helpers/live-html.js";
 
 describe("providers/deepseek", () => {
   test("parseDeepseekHtml parses the official pricing matrix", async () => {
@@ -47,9 +47,13 @@ describe("providers/deepseek", () => {
   });
 
   test("live pricing page still parses the expected matrix rows", async () => {
-    const html = await fetchHtml("https://api-docs.deepseek.com/quick_start/pricing", {
+    const html = await fetchOptionalLiveHtml("https://api-docs.deepseek.com/quick_start/pricing", {
       validateHtml: (candidate) => parseDeepseekHtml(candidate).length > 0
     });
+    if (!html) {
+      return;
+    }
+
     const models = parseDeepseekHtml(html);
 
     expect(models.map((model) => model.model)).toEqual([

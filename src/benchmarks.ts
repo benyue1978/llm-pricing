@@ -467,7 +467,7 @@ export function buildBenchmarkAliases(model: PricingModel): string[] {
   }
 
   if (model.provider === "zhipu") {
-    if (value === "glm-5") add("glm-5", "glm-5highreasoning");
+    if (value === "glm-5") add("glm-5", "glm-5highreasoning", "glm-5 (high)");
     if (value === "glm-4.7") add("glm-4.7");
   }
 
