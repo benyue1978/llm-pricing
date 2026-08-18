@@ -107,28 +107,10 @@ export function getDeepseekManualFallback(): PricingModel[] {
   return [
     {
       provider: "deepseek",
-      model: "deepseek-v4-flash",
-      type: "text",
-      input_price_per_million: 0.14,
-      output_price_per_million: 0.28,
-      currency: "USD",
-      source: DEEPSEEK_PRICING_SOURCE
-    },
-    {
-      provider: "deepseek",
-      model: "deepseek-v4-flash-cached",
-      type: "text",
-      input_price_per_million: 0.0028,
-      output_price_per_million: 0.28,
-      currency: "USD",
-      source: DEEPSEEK_PRICING_SOURCE
-    },
-    {
-      provider: "deepseek",
       model: "deepseek-v4-pro",
       type: "text",
-      input_price_per_million: 0.435,
-      output_price_per_million: 0.87,
+      input_price_per_million: 0.22,
+      output_price_per_million: 0.66,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
     },
@@ -136,8 +118,8 @@ export function getDeepseekManualFallback(): PricingModel[] {
       provider: "deepseek",
       model: "deepseek-v4-pro-cached",
       type: "text",
-      input_price_per_million: 0.003625,
-      output_price_per_million: 0.87,
+      input_price_per_million: 0.007,
+      output_price_per_million: 0.66,
       currency: "USD",
       source: DEEPSEEK_PRICING_SOURCE
     }

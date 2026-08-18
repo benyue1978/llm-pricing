@@ -37,11 +37,17 @@ describe("providers/deepseek", () => {
 
   test("getDeepseekManualFallback returns official fallback entries", () => {
     const fallback = getDeepseekManualFallback();
-    expect(fallback.map((model) => model.model)).toEqual([
-      "deepseek-v4-flash",
-      "deepseek-v4-flash-cached",
-      "deepseek-v4-pro",
-      "deepseek-v4-pro-cached"
+    expect(fallback).toEqual([
+      expect.objectContaining({
+        model: "deepseek-v4-pro",
+        input_price_per_million: 0.22,
+        output_price_per_million: 0.66
+      }),
+      expect.objectContaining({
+        model: "deepseek-v4-pro-cached",
+        input_price_per_million: 0.007,
+        output_price_per_million: 0.66
+      })
     ]);
     expect(fallback.every((model) => model.type === "text")).toBe(true);
   });
@@ -57,8 +63,6 @@ describe("providers/deepseek", () => {
     const models = parseDeepseekHtml(html);
 
     expect(models.map((model) => model.model)).toEqual([
-      "deepseek-v4-flash",
-      "deepseek-v4-flash-cached",
       "deepseek-v4-pro",
       "deepseek-v4-pro-cached"
     ]);
@@ -71,11 +75,8 @@ describe("providers/deepseek", () => {
           Number(model.output_price_per_million) > 0
       )
     ).toBe(true);
-    const flash = models.find((model) => model.model === "deepseek-v4-flash");
-    const flashCached = models.find((model) => model.model === "deepseek-v4-flash-cached");
     const pro = models.find((model) => model.model === "deepseek-v4-pro");
     const proCached = models.find((model) => model.model === "deepseek-v4-pro-cached");
-    expect(flashCached?.input_price_per_million).toBeLessThan(flash?.input_price_per_million ?? 0);
     expect(proCached?.input_price_per_million).toBeLessThan(pro?.input_price_per_million ?? 0);
   }, 30000);
 });
