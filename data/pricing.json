@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-08-21T18:24:01.227Z",
+  "updated_at": "2026-08-22T00:43:45.860Z",
   "models": [
     {
       "provider": "openai",
       "model": "gpt-5.6-sol",
       "type": "text",
-      "input_price_per_million": 5,
-      "output_price_per_million": 6.25,
+      "input_price_per_million": 4,
+      "output_price_per_million": 5,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
