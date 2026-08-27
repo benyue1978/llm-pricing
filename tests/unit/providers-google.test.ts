@@ -49,7 +49,7 @@ describe("providers/google", () => {
 
     expect(models.length).toBeGreaterThan(6);
     expect(models.map((model) => model.model)).toContain("gemini-2.5-pro");
-    expect(models.map((model) => model.model)).toContain("gemini-2.0-flash");
+    expect(models.map((model) => model.model)).toContain("gemini-2.5-flash");
     expect(
       models.find((model) => model.model === "gemini-2.5-pro")
     ).toMatchObject({
