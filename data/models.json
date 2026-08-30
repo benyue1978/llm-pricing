@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28T01:34:44.917Z",
+  "updated_at": "2026-08-30T04:24:03.841Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -3769,7 +3769,169 @@
     },
     {
       "provider": "qwen",
+      "model": "deepseek-v4-flash-0731",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "deepseek-v4-flash-0731-us",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "deepseek-v4-flash-us",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
       "model": "deepseek-v4-pro",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "deepseek-v4-pro-0813",
+      "family": "deepseek",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "deepseek-v4-pro-us",
       "family": "deepseek",
       "access_type": "api",
       "openness": "closed",
@@ -4159,6 +4321,38 @@
         "livebench_coding",
         "livebench_overall",
         "livecodebench_pass1"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "kimi-k3",
+      "family": "kimi-k3",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
       ],
       "notes": [
         "Do not compare this model globally by price alone.",
@@ -7836,6 +8030,38 @@
     },
     {
       "provider": "qwen",
+      "model": "qwen3.6-flash-us",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
       "model": "qwen3.6-max-preview",
       "family": "qwen",
       "access_type": "api",
@@ -7910,6 +8136,70 @@
       ],
       "comparison_buckets": [
         "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.7-flash",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.7-flash-2026-07-15",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
         "text-models"
       ],
       "release_stage": "stable",
@@ -8203,6 +8493,135 @@
         "text"
       ],
       "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.8-2.4t-a95b",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.8-27b",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.8-flash",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "low-cost",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.8-max",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
         "general-purpose",
         "text-models"
       ],
