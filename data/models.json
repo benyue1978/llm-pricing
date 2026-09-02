@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-01T02:47:33.206Z",
+  "updated_at": "2026-09-02T01:07:41.649Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -127,6 +127,38 @@
     },
     {
       "provider": "anthropic",
+      "model": "claude-fable-5.1",
+      "family": "claude-fable-5.1",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.anthropic.com/en/docs/models-overview",
+      "metadata_source_ids": [
+        "anthropic-models-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "anthropic",
       "model": "claude-haiku-3.5-(retired,-except-on-bedrock-and-google-cloud)",
       "family": "claude-haiku-3.5-(retired,-except-on-bedrock-and-google-cloud)",
       "access_type": "api",
@@ -193,6 +225,38 @@
       "provider": "anthropic",
       "model": "claude-mythos-5-(limited-availability)",
       "family": "claude-mythos-5-(limited-availability)",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://docs.anthropic.com/en/docs/models-overview",
+      "metadata_source_ids": [
+        "anthropic-models-overview",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-mythos-5.1-(limited-availability)",
+      "family": "claude-mythos-5.1-(limited-availability)",
       "access_type": "api",
       "openness": "closed",
       "modalities": [
