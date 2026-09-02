@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-01T02:47:33.206Z",
+  "updated_at": "2026-09-02T01:07:41.649Z",
   "models": [
     {
       "provider": "openai",
@@ -324,6 +324,24 @@
       "output_price_per_million": 0.4,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-fable-5.1",
+      "type": "text",
+      "input_price_per_million": 10,
+      "output_price_per_million": 50,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-mythos-5.1-(limited-availability)",
+      "type": "text",
+      "input_price_per_million": 10,
+      "output_price_per_million": 50,
+      "currency": "USD",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
     {
       "provider": "anthropic",

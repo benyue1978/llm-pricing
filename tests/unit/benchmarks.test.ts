@@ -7,10 +7,10 @@ describe("benchmarks", () => {
     const pricingModels: PricingModel[] = [
       {
         provider: "openai",
-        model: "gpt-4.1",
+        model: "gpt-4o",
         type: "text",
-        input_price_per_million: 2,
-        output_price_per_million: 8,
+        input_price_per_million: 2.5,
+        output_price_per_million: 10,
         currency: "USD",
         source: "https://platform.openai.com/pricing"
       },
@@ -24,13 +24,13 @@ describe("benchmarks", () => {
         source: "https://ai.google.dev/pricing"
       },
       {
-        provider: "zhipu",
-        model: "GLM-5",
+        provider: "qwen",
+        model: "qwen-max",
         type: "text",
-        input_price_per_million: 4,
-        output_price_per_million: 18,
+        input_price_per_million: 2.4,
+        output_price_per_million: 9.6,
         currency: "CNY",
-        source: "https://open.bigmodel.cn/pricing"
+        source: "https://help.aliyun.com"
       }
     ];
 
@@ -39,10 +39,10 @@ describe("benchmarks", () => {
     expect(registry.benchmarks.map((entry) => entry.id)).toContain("livebench_overall");
     expect(registry.results.length).toBeGreaterThan(0);
     expect(
-      registry.results.some((entry) => entry.provider === "openai" && entry.model === "gpt-4.1")
+      registry.results.some((entry) => entry.provider === "openai" && entry.model === "gpt-4o")
     ).toBe(true);
     expect(
-      registry.results.some((entry) => entry.provider === "zhipu" && entry.model === "GLM-5")
+      registry.results.some((entry) => entry.provider === "qwen" && entry.model === "qwen-max")
     ).toBe(true);
   }, 60000);
 });
