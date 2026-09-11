@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T15:35:23.407Z",
+  "updated_at": "2026-09-11T20:14:48.177Z",
   "models": [
     {
       "provider": "openai",
@@ -723,28 +723,10 @@
     },
     {
       "provider": "google",
-      "model": "gemini-robotics-er-2-streaming",
-      "type": "text",
-      "input_price_per_million": 1,
-      "output_price_per_million": 5,
-      "currency": "USD",
-      "source": "https://ai.google.dev/gemini-api/docs/pricing"
-    },
-    {
-      "provider": "google",
-      "model": "gemini-robotics-er",
-      "type": "text",
-      "input_price_per_million": 1,
-      "output_price_per_million": 5,
-      "currency": "USD",
-      "source": "https://ai.google.dev/gemini-api/docs/pricing"
-    },
-    {
-      "provider": "google",
       "model": "gemini-2.5-computer-use-preview-10-2025",
       "type": "text",
-      "input_price_per_million": 1.25,
-      "output_price_per_million": 10,
+      "input_price_per_million": 1,
+      "output_price_per_million": 5,
       "currency": "USD",
       "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
