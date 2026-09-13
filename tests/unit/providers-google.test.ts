@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { getGoogleManualFallback, parseGoogleHtml } from "../../src/providers/google.js";
-import { fetchHtml } from "../../src/providers/utils.js";
+import { fetchOptionalLiveHtml } from "../helpers/live-html.js";
 
 describe("providers/google", () => {
   test("parseGoogleHtml parses target Gemini text model sections", async () => {
@@ -41,10 +41,14 @@ describe("providers/google", () => {
   });
 
   test("live pricing page still parses target Gemini sections", async () => {
-    const html = await fetchHtml("https://ai.google.dev/gemini-api/docs/pricing", {
+    const html = await fetchOptionalLiveHtml("https://ai.google.dev/gemini-api/docs/pricing", {
       validateHtml: (candidate) => parseGoogleHtml(candidate).length > 0,
       timeoutMs: 25000
     });
+    if (!html) {
+      return;
+    }
+
     const models = parseGoogleHtml(html);
 
     expect(models.length).toBeGreaterThan(6);
