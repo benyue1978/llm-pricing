@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15T02:38:11.165Z",
+  "updated_at": "2026-09-15T10:44:01.345Z",
   "models": [
     {
       "provider": "openai",
@@ -2095,6 +2095,15 @@
       "type": "text",
       "input_price_per_million": 0.304,
       "output_price_per_million": 1.213,
+      "currency": "USD",
+      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+    },
+    {
+      "provider": "qwen",
+      "model": "glm-5.3",
+      "type": "text",
+      "input_price_per_million": 1.4,
+      "output_price_per_million": 4.4,
       "currency": "USD",
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
