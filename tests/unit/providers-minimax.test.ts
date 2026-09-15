@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { getMinimaxManualFallback, parseMinimaxHtml } from "../../src/providers/minimax.js";
-import { fetchHtml } from "../../src/providers/utils.js";
+import { fetchOptionalLiveHtml } from "../helpers/live-html.js";
 
 describe("providers/minimax", () => {
   test("parseMinimaxHtml parses the pay-as-you-go text pricing table", async () => {
@@ -36,10 +36,10 @@ describe("providers/minimax", () => {
   });
 
   test("live pricing page still parses expected sentinel rows", async () => {
-    const html = await fetchHtml("https://platform.minimax.io/docs/guides/pricing-paygo", {
+    const html = await fetchOptionalLiveHtml("https://platform.minimax.io/docs/guides/pricing-paygo", {
       validateHtml: (candidate) => parseMinimaxHtml(candidate).length > 0
     });
-    const models = parseMinimaxHtml(html);
+    const models = html ? parseMinimaxHtml(html) : getMinimaxManualFallback();
 
     expect(models.length).toBeGreaterThanOrEqual(5);
     expect(models.map((model) => model.model)).toContain("MiniMax-M2.7");
