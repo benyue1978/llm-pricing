@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-21T17:30:28.020Z",
+  "updated_at": "2026-09-21T21:27:52.576Z",
   "sources": [
     {
       "id": "openai-models-docs",
@@ -8326,6 +8326,39 @@
     {
       "provider": "qwen",
       "model": "qwen3.8-max-0902",
+      "family": "qwen",
+      "access_type": "api",
+      "openness": "closed",
+      "modalities": [
+        "text"
+      ],
+      "comparison_buckets": [
+        "frontier",
+        "general-purpose",
+        "text-models"
+      ],
+      "release_stage": "stable",
+      "context_window_tokens": null,
+      "max_output_tokens": null,
+      "parameter_count_billions": null,
+      "license": null,
+      "model_page_url": "https://help.aliyun.com/zh/model-studio/models",
+      "metadata_source_ids": [
+        "qwen-pricing",
+        "huggingface-model-cards"
+      ],
+      "pricing_source_url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "benchmark_ids": [
+        "livebench_overall"
+      ],
+      "notes": [
+        "Do not compare this model globally by price alone.",
+        "Use comparison buckets and benchmark-specific views for normalized cost analysis."
+      ]
+    },
+    {
+      "provider": "qwen",
+      "model": "qwen3.8-max-prime",
       "family": "qwen",
       "access_type": "api",
       "openness": "closed",
