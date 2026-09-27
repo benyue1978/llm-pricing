@@ -40,7 +40,7 @@ describe("provider fetchers", () => {
   test("deepseek returns valid pricing models", async () => {
     const models = await fetchDeepseekPricing();
     assertValidPricingModels(models);
-  });
+  }, 30000);
 
   test("qwen returns valid pricing models", async () => {
     const models = await fetchQwenPricing();
