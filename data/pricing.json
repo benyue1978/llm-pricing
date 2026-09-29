@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29T11:51:20.767Z",
+  "updated_at": "2026-09-29T17:20:27.659Z",
   "models": [
     {
       "provider": "openai",
@@ -12,7 +12,7 @@
     },
     {
       "provider": "openai",
-      "model": "gpt-6-sol",
+      "model": "gpt-6.1-sol",
       "type": "text",
       "input_price_per_million": 2,
       "output_price_per_million": 2.5,
@@ -25,6 +25,15 @@
       "type": "text",
       "input_price_per_million": 0.1,
       "output_price_per_million": 0.125,
+      "currency": "USD",
+      "source": "https://platform.openai.com/pricing"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6-sol",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 2.5,
       "currency": "USD",
       "source": "https://platform.openai.com/pricing"
     },
