@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-30T21:41:52.731Z",
+  "updated_at": "2026-10-01T03:17:27.932Z",
   "models": [
     {
       "provider": "openai",
@@ -646,15 +646,6 @@
       "type": "text",
       "input_price_per_million": 1,
       "output_price_per_million": 5,
-      "currency": "USD",
-      "source": "https://ai.google.dev/gemini-api/docs/pricing"
-    },
-    {
-      "provider": "google",
-      "model": "gemini-2.5-computer-use-preview-10-2025",
-      "type": "text",
-      "input_price_per_million": 1.25,
-      "output_price_per_million": 10,
       "currency": "USD",
       "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
