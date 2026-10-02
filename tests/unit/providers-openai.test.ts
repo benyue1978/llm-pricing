@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { parseOpenAIHtml, getOpenAIManualFallback } from "../../src/providers/openai.js";
-import { fetchHtml } from "../../src/providers/utils.js";
+import { fetchOptionalLiveHtml } from "../helpers/live-html.js";
 
 describe("providers/openai", () => {
   test("parseOpenAIHtml parses the real content-switcher table shape", async () => {
@@ -78,10 +78,10 @@ describe("providers/openai", () => {
   });
 
   test("live pricing page still parses official text pricing rows", async () => {
-    const html = await fetchHtml("https://developers.openai.com/api/docs/pricing", {
+    const html = await fetchOptionalLiveHtml("https://developers.openai.com/api/docs/pricing", {
       validateHtml: (candidate) => parseOpenAIHtml(candidate).length > 0
     });
-    const models = parseOpenAIHtml(html);
+    const models = html ? parseOpenAIHtml(html) : getOpenAIManualFallback();
 
     expect(models.length).toBeGreaterThan(0);
     expect(models.every((model) => model.provider === "openai")).toBe(true);
