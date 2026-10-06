@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06T12:28:45.762Z",
+  "updated_at": "2026-10-06T22:03:12.358Z",
   "models": [
     {
       "provider": "openai",
@@ -502,6 +502,15 @@
       "type": "text",
       "input_price_per_million": 2,
       "output_price_per_million": 12,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-nano-banana-2.1",
+      "type": "text",
+      "input_price_per_million": 1.5,
+      "output_price_per_million": 7.5,
       "currency": "USD",
       "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
