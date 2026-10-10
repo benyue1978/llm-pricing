@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T16:39:26.961Z",
+  "updated_at": "2026-10-10T20:55:40.510Z",
   "sources": [
     {
       "id": "livebench-official",
@@ -235,35 +235,7 @@
     },
     {
       "provider": "qwen",
-      "model": "qwen3-max-2025-09-23",
-      "benchmark_id": "livecodebench_pass1",
-      "score": 80.38,
-      "score_unit": "points",
-      "evaluated_at": null,
-      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
-      "benchmark_model": "Qwen3-235B-A22B",
-      "matched_benchmark_models": [
-        "Qwen3-235B-A22B"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "qwen",
       "model": "qwen3-max-2026-01-23",
-      "benchmark_id": "livecodebench_pass1",
-      "score": 80.38,
-      "score_unit": "points",
-      "evaluated_at": null,
-      "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
-      "benchmark_model": "Qwen3-235B-A22B",
-      "matched_benchmark_models": [
-        "Qwen3-235B-A22B"
-      ],
-      "notes": null
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-max-preview",
       "benchmark_id": "livecodebench_pass1",
       "score": 80.38,
       "score_unit": "points",
