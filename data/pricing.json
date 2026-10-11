@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T03:05:09.657Z",
+  "updated_at": "2026-10-11T11:51:29.579Z",
   "models": [
     {
       "provider": "openai",
@@ -795,24 +795,6 @@
     },
     {
       "provider": "qwen",
-      "model": "qwen3-max",
-      "type": "text",
-      "input_price_per_million": 1.2,
-      "output_price_per_million": 6,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-max-2026-01-23",
-      "type": "text",
-      "input_price_per_million": 1.2,
-      "output_price_per_million": 6,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
       "model": "qwen3.7-plus",
       "type": "text",
       "input_price_per_million": 0.4,
@@ -948,24 +930,6 @@
     },
     {
       "provider": "qwen",
-      "model": "qwen-plus-2025-09-11",
-      "type": "text",
-      "input_price_per_million": 0.115,
-      "output_price_per_million": 0.287,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen-plus-2025-07-28",
-      "type": "text",
-      "input_price_per_million": 0.115,
-      "output_price_per_million": 0.287,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
       "model": "qwen3.8-flash",
       "type": "text",
       "input_price_per_million": 0.15,
@@ -1056,24 +1020,6 @@
     },
     {
       "provider": "qwen",
-      "model": "qwen3-vl-plus-2025-09-23",
-      "type": "text",
-      "input_price_per_million": 0.143,
-      "output_price_per_million": 1.434,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-flash-2026-01-22",
-      "type": "text",
-      "input_price_per_million": 0.05,
-      "output_price_per_million": 0.4,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
       "model": "qwen-vl-ocr",
       "type": "text",
       "input_price_per_million": 0.07,
@@ -1096,15 +1042,6 @@
       "type": "text",
       "input_price_per_million": 0.043,
       "output_price_per_million": 0.072,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen-vl-ocr-2025-08-28",
-      "type": "text",
-      "input_price_per_million": 0.717,
-      "output_price_per_million": 0.717,
       "currency": "USD",
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
@@ -1272,181 +1209,10 @@
     },
     {
       "provider": "qwen",
-      "model": "qwen3-next-80b-a3b-thinking",
-      "type": "text",
-      "input_price_per_million": 0.144,
-      "output_price_per_million": 1.434,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-next-80b-a3b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.144,
-      "output_price_per_million": 0.574,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-235b-a22b-thinking-2507",
-      "type": "text",
-      "input_price_per_million": 0.23,
-      "output_price_per_million": 2.3,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-30b-a3b-thinking-2507",
-      "type": "text",
-      "input_price_per_million": 0.108,
-      "output_price_per_million": 1.076,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-30b-a3b-instruct-2507",
-      "type": "text",
-      "input_price_per_million": 0.108,
-      "output_price_per_million": 0.431,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-235b-a22b",
-      "type": "text",
-      "input_price_per_million": 0.287,
-      "output_price_per_million": 1.147,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-30b-a3b",
-      "type": "text",
-      "input_price_per_million": 0.108,
-      "output_price_per_million": 0.431,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-14b",
-      "type": "text",
-      "input_price_per_million": 0.144,
-      "output_price_per_million": 0.574,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-8b",
-      "type": "text",
-      "input_price_per_million": 0.072,
-      "output_price_per_million": 0.287,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
       "model": "qwen2-vl-72b-instruct",
       "type": "text",
       "input_price_per_million": 2.294,
       "output_price_per_million": 6.881,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-235b-a22b-thinking",
-      "type": "text",
-      "input_price_per_million": 0.287,
-      "output_price_per_million": 2.867,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-235b-a22b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.287,
-      "output_price_per_million": 1.147,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-32b-thinking",
-      "type": "text",
-      "input_price_per_million": 0.16,
-      "output_price_per_million": 0.64,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-32b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.16,
-      "output_price_per_million": 0.64,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-30b-a3b-thinking",
-      "type": "text",
-      "input_price_per_million": 0.108,
-      "output_price_per_million": 1.076,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-30b-a3b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.108,
-      "output_price_per_million": 0.431,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-8b-thinking",
-      "type": "text",
-      "input_price_per_million": 0.072,
-      "output_price_per_million": 0.717,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-vl-8b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.072,
-      "output_price_per_million": 0.287,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-coder-30b-a3b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.216,
-      "output_price_per_million": 0.861,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen3-coder-480b-a35b-instruct",
-      "type": "text",
-      "input_price_per_million": 0.861,
-      "output_price_per_million": 3.441,
       "currency": "USD",
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
@@ -1483,15 +1249,6 @@
       "type": "text",
       "input_price_per_million": 0.44,
       "output_price_per_million": 0.22,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "deepseek-v4-flash",
-      "type": "text",
-      "input_price_per_million": 0.138,
-      "output_price_per_million": 0.275,
       "currency": "USD",
       "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
     },
