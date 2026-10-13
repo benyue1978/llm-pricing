@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T13:14:22.457Z",
+  "updated_at": "2026-10-13T22:07:18.937Z",
   "models": [
     {
       "provider": "openai",
@@ -387,6 +387,15 @@
       "output_price_per_million": 5,
       "currency": "USD",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "provider": "google",
+      "model": "gemini-4-argon",
+      "type": "text",
+      "input_price_per_million": 2,
+      "output_price_per_million": 10,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing"
     },
     {
       "provider": "google",
