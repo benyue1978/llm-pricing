@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T02:30:30.188Z",
+  "updated_at": "2026-10-15T10:36:06.988Z",
   "models": [
     {
       "provider": "openai",
@@ -1066,15 +1066,6 @@
     {
       "provider": "qwen",
       "model": "qwen-math-plus-2024-09-19",
-      "type": "text",
-      "input_price_per_million": 0.574,
-      "output_price_per_million": 1.721,
-      "currency": "USD",
-      "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-    },
-    {
-      "provider": "qwen",
-      "model": "qwen-math-plus-2024-08-16",
       "type": "text",
       "input_price_per_million": 0.574,
       "output_price_per_million": 1.721,
